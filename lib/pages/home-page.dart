@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Page"),
+        title: Text("DevTools", style: Theme.of(context).textTheme.headline1),
       ),
       body: GridView(
         padding: EdgeInsets.all(15),

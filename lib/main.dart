@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo', theme: basicTheme(), home: HomePage(),
+      title: 'DevTools', theme: basicTheme(), home: HomePage(),
       // routes: {
       //   "/udp-messenger": (context) => udpPage(),
       //   "/device-data": (context) => DeviceDataPage(),
