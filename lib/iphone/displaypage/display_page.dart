@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_searchbar/displaypage/devicespage_icon.dart';
-import 'package:flutter_searchbar/infopage/deviceinfo_page.dart';
+import 'devicespage_icon.dart';
+import '../infopage/deviceinfo_page.dart';
 
 class DisplayPage extends StatefulWidget {
   final String title;
@@ -131,7 +131,8 @@ class _DisplayPageState extends State<DisplayPage>
                   .bodyText2
                   .copyWith(color: Colors.grey[600])),
           dense: true,
-          leading: Image.asset("assets/${devicesPageIcon.iconImageVal}"),
+          leading: Image.asset(
+              "assets/iphone_images/${devicesPageIcon.iconImageVal}"),
           trailing: Icon(Icons.arrow_forward_ios_sharp),
           onTap: () {
             Navigator.of(context).push(new MaterialPageRoute(

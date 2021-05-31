@@ -1,6 +1,6 @@
-import 'package:flutter_searchbar/homepage/homepage_icon.dart';
-import 'package:flutter_searchbar/displaypage/devicespage_icon.dart';
-import 'package:flutter_searchbar/infopage/properties.dart';
+import '../homepage/homepage_icon.dart';
+import '../displaypage/devicespage_icon.dart';
+import '../infopage/properties.dart';
 
 const homePageIconData = const [
   HomePageIcon(

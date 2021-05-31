@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_searchbar/homepage/homepage_icon.dart';
-import 'package:flutter_searchbar/displaypage/display_page.dart';
-import 'package:flutter_searchbar/util/data.dart';
-import 'package:flutter_searchbar/displaypage/devicespage_icon.dart';
+import '../homepage/homepage_icon.dart';
+import '../displaypage/display_page.dart';
+import '../util/data.dart';
+import '../displaypage/devicespage_icon.dart';
 
 class DevicesHomePage extends StatelessWidget {
   @override
@@ -55,7 +55,7 @@ class DevicesHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                "assets/$imageName",
+                "assets/iphone_images/$imageName",
                 height: 80,
               ),
               SizedBox(

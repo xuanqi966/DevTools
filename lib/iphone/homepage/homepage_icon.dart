@@ -1,4 +1,4 @@
-import 'package:flutter_searchbar/displaypage/devicespage_icon.dart';
+import '../displaypage/devicespage_icon.dart';
 
 class HomePageIcon {
   final String iconImageVal;

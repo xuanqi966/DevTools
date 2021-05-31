@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:dev_tools/pages/udp/tab-page.dart';
 import 'pages/qrcode/qrtabs-page.dart';
-import 'pages/qrcode/qr-generate-page.dart';
+import 'iphone/homepage/devices_homepage.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       routes: {
         "/udp-messenger": (context) => TabPage(),
-        //   "/device-data": (context) => DeviceDataPage(),
+        "/device-data": (context) => DevicesHomePage(),
         "/qrcode": (context) => QrTabPage()
       },
     );

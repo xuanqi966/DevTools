@@ -84,9 +84,10 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-    - assets/images/Frame@2x.png
-    - assets/images/Frame@3x.png
-    - assets/images/osim_logo.png
+    # - assets/images/Frame@2x.png
+    # - assets/images/Frame@3x.png
+    # - assets/images/osim_logo.png
+    - assets/iphone_images/
 
   fonts:
     - family: Raleway

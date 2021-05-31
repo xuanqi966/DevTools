@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_searchbar/homepage/devices_homepage.dart';
-import 'package:flutter_searchbar/util/theme.dart';
+import 'homepage/devices_homepage.dart';
+import 'util/theme.dart';
 
 void main() {
   runApp(MyApp());

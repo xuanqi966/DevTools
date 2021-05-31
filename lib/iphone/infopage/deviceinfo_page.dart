@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_searchbar/infopage/properties.dart';
-import 'package:flutter_searchbar/util/data.dart';
+import '../infopage/properties.dart';
+import '../util/data.dart';
 
 class DeviceInfoPage extends StatefulWidget {
   final String title;
