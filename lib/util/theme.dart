@@ -57,6 +57,15 @@ ThemeData basicTheme() {
             backgroundColor: MaterialStateProperty.all(Colors.black)));
   }
 
+  OutlinedButtonThemeData _rectOutlinedbuttonTheme() {
+    return OutlinedButtonThemeData(
+        style: ButtonStyle(
+            padding:
+                MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15)),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder()),
+            backgroundColor: MaterialStateProperty.all(Colors.black)));
+  }
+
   return base.copyWith(
       textTheme: _basicTextTheme(base.textTheme),
       appBarTheme: _basicAppBarTheme(base.appBarTheme),
