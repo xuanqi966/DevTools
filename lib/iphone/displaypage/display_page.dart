@@ -64,37 +64,33 @@ class _DisplayPageState extends State<DisplayPage>
       child: TabBarView(
         controller: _tabController,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-            child: ListView.separated(
-                separatorBuilder: (context, index) {
-                  return Ink(
-                    color: Colors.grey[200],
-                    child: Divider(
-                      thickness: 1.0,
-                    ),
-                  );
-                },
-                shrinkWrap: true,
-                padding: EdgeInsets.only(bottom: 16.0),
-                itemCount: widget.devicesList.length,
-                itemBuilder: (context, i) {
-                  return _buildRow(widget.devicesList[i], i);
-                }),
-          ),
+          _buildListView(widget.devicesList),
 
           // second tab bar view widget
-          Center(
-            child: Text(
-              'Buy Now',
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
+          _buildListView(widget.devicesList),
         ],
       ),
+    );
+  }
+
+  Padding _buildListView(List<DevicesIcon> devicesList) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+      child: ListView.separated(
+          separatorBuilder: (context, index) {
+            return Ink(
+              color: Colors.grey[200],
+              child: Divider(
+                thickness: 1.0,
+              ),
+            );
+          },
+          shrinkWrap: true,
+          padding: EdgeInsets.only(bottom: 16.0),
+          itemCount: devicesList.length,
+          itemBuilder: (context, i) {
+            return _buildRow(devicesList[i], i);
+          }),
     );
   }
 
