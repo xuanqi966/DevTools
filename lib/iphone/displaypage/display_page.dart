@@ -67,6 +67,7 @@ class _DisplayPageState extends State<DisplayPage>
           _buildListView(widget.devicesList),
 
           // second tab bar view widget
+          //change list here @xuanqi
           _buildListView(widget.devicesList),
         ],
       ),
