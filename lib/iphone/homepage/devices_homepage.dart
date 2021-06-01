@@ -26,7 +26,7 @@ class DevicesHomePage extends StatelessWidget {
     List<HomePageIcon> _homePageIcons = homePageIconData;
 
     return GridView(
-      padding: EdgeInsets.only(top: 20, left: 10, right: 10),
+      padding: EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
       children: _homePageIcons
           .map((icon) => buildCard(context, icon.iconImageVal, icon.imageName,
               icon.nextPage, icon.devicesList))
