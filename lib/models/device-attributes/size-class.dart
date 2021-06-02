@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SizeClass {
-  final Icon icon;
+  final ImageIcon icon;
   final String title;
   final String width;
   final String height;

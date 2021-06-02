@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Property {
-  final Icon icon;
+  final ImageIcon icon;
   final String propertyTitle;
   final String property1;
   String property2; // optional
