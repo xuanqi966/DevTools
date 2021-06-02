@@ -8,13 +8,13 @@ import '../../models/device-attributes/iwidget.dart';
 import 'data.dart';
 
 Map<String, Device> ipods = {
-  "7th Gen": Device("7th Gen", "2019", "dummy"),
-  "6th Gen": Device("6th Gen", "2015", "dummy"),
-  "5th Gen": Device("5th Gen", "2012", "dummy"),
-  "4th Gen": Device("4th Gen", "2010", "dummy"),
-  "3rd Gen": Device("3rd Gen", "2009", "dummy"),
-  "2nd Gen": Device("2nd Gen", "2008", "dummy"),
-  "1st Gen": Device("1st Gen", "2007", "dummy"),
+  "7th Gen": Device("7th Gen", "2019", "assets/images/ipod/ipodtouch-gen7.png"),
+  "6th Gen": Device("6th Gen", "2015", "assets/images/ipod/ipodtouch-gen6.png"),
+  "5th Gen": Device("5th Gen", "2012", "assets/images/ipod/ipodtouch-gen5.png"),
+  "4th Gen": Device("4th Gen", "2010", "assets/images/ipod/ipodtouch-gen4.png"),
+  "3rd Gen": Device("3rd Gen", "2009", "assets/images/ipod/ipodtouch-gen3.png"),
+  "2nd Gen": Device("2nd Gen", "2008", "assets/images/ipod/ipodtouch-gen2.png"),
+  "1st Gen": Device("1st Gen", "2007", "assets/images/ipod/ipodtouch-gen1.png"),
 };
 
 Map<String, List<Display>> displays = {
