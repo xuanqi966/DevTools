@@ -2,6 +2,7 @@ import '../homepage/homepage_icon.dart';
 import '../displaypage/devicespage_icon.dart';
 import '../infopage/properties.dart';
 import 'iphone-data.dart';
+import 'package:flutter/material.dart';
 
 final homePageIconData = [
   HomePageIcon(
@@ -130,3 +131,43 @@ final List<Properties> modelData = <Properties>[
     ],
   ),
 ];
+
+Map<String, ImageIcon> icons = {
+  'contrast': ImageIcon(AssetImage('assets/icons/contrastRatio.png')),
+  'earSize': ImageIcon(AssetImage('assets/icons/earSize.png')),
+  'ios': ImageIcon(AssetImage('assets/icons/ios.png')),
+  'landscape': ImageIcon(AssetImage('assets/icons/landscape.png')),
+  'landscapeHomeIndicator':
+      ImageIcon(AssetImage('assets/icons/landscapeHomeIndicator.png')),
+  'landscapeStatusBar':
+      ImageIcon(AssetImage('assets/icons/landscapeStatusBar.png')),
+  'large': ImageIcon(AssetImage('assets/icons/large.png')),
+  'medium': ImageIcon(AssetImage('assets/icons/medium.png')),
+  'notchSize': ImageIcon(AssetImage('assets/icons/notchSize.png')),
+  'portrait': ImageIcon(AssetImage('assets/icons/portrait.png')),
+  'portraitHomeIndicator':
+      ImageIcon(AssetImage('assets/icons/portraitHomeIndicator.png')),
+  'portraitStatusBar':
+      ImageIcon(AssetImage('assets/icons/portraitStatusBar.png')),
+  'ppi': ImageIcon(AssetImage('assets/icons/ppi.png')),
+  'resolution': ImageIcon(AssetImage('assets/icons/resolution.png')),
+  'small': ImageIcon(AssetImage('assets/icons/small.png')),
+  'trueTone': ImageIcon(AssetImage('assets/icons/trueTone.png')),
+  'aspectRatio': ImageIcon(AssetImage('assets/icons/aspectRatio.png')),
+  'display': ImageIcon(AssetImage('assets/icons/display.png')),
+  'halfLandscapeSplit':
+      ImageIcon(AssetImage('assets/icons/halfLandscapeSplit.png')),
+  'ipadOS': ImageIcon(AssetImage('assets/icons/ipadOS.png')),
+  'landscapeSplideOver': ImageIcon(
+      AssetImage('assets/icons/assets/icons/landscapeSplideOver.png')),
+  'oneThirdLandscapeSplit':
+      ImageIcon(AssetImage('assets/icons/oneThirdLandscapeSplit.png')),
+  'oneThirdPortraitSplit':
+      ImageIcon(AssetImage('assets/icons/oneThirdPortraitSplit.png')),
+  'portraitSlideOver':
+      ImageIcon(AssetImage('assets/icons/portraitSlideOver.png')),
+  'twoThirdLandscapeSplit':
+      ImageIcon(AssetImage('assets/icons/twoThirdLandscapeSplit.png')),
+  'twoThirdPortraitSplit':
+      ImageIcon(AssetImage('assets/icons/twoThirdPortraitSplit.png'))
+};

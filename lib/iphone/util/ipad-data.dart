@@ -1,5 +1,4 @@
 import 'package:dev_tools/models/devices/display.dart';
-import 'package:flutter/material.dart';
 
 import '../../models/devices/device.dart';
 import '../../models/device-attributes/property.dart';
@@ -7,6 +6,7 @@ import '../../models/device-attributes/safe-area.dart';
 import '../../models/device-attributes/size-class.dart';
 import '../../models/device-attributes/iwidget.dart';
 import '../../models/device-attributes/multitasking.dart';
+import 'data.dart';
 
 Map<String, Device> ipads = {
   '12.9\" Pro (5th Gen)': Device('12.9\" Pro (5th Gen)', '2021', 'dummy'),
@@ -36,3 +36,1039 @@ Map<String, Device> ipads = {
   'iPad (2nd Gen)': Device('iPad (2nd Gen)', '2011', 'dummy'),
   'iPad (1st Gen)': Device('iPad (1st Gen)', '2010', 'dummy'),
 };
+
+Map<String, List<Display>> ipadDisplays = {
+  '12.9 XDR': [twelveNineXdrS, twelveNineXdrZ],
+  '12.9 Liquid Retina': [twelveNineLiquidRetinaS, twelveNineLiquidRetinaZ],
+  '12.9 Display P3': [twelveNineDisplayS, twelveNineDisplayZ],
+  '12.9': [twelveNineS, twelveNineZ],
+  '11': [eleven],
+  '10.9': [tenNine],
+  '10.5': [tenFive],
+  '10.2': [tenTwo],
+  '9.7 Pro': [nineSevenPro],
+  '9.7 Air': [nineSevenAir],
+  '9.7 Retina': [nineSevenRetina],
+  '9.7': [nineSeven],
+  '7.9 Display P3': [sevenNineP3],
+  '7.9 Retina': [sevenNineRetina],
+  '7.9': [sevenNine]
+};
+
+Display twelveNineXdrS =
+    Display('12.9\" XDR', "Display P3 XDR Retina LCD", "Standard", [
+  ipads['12.9\" Pro (5th Gen)']
+], [
+  Property(
+      icons['resolution'], 'Resolution', '1024 x 1366 px', '2048 x 2732 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['contrast'], 'Contrast Ratio', '1,000,000:1'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 XDR Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '24 px', '48 px'),
+  Safearea(icons['portraitHomeIndicator'], 'Portrait Home Indicator', '20 px',
+      '40 px'),
+  Safearea(icons['landscapeHomeIndicator'], 'Landscape Home Indicator', '20 px',
+      '40 px')
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '170 x 170 px', '510 x 510 px'),
+  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '1092 x 510 px'),
+  Iwidget(icons['large'], 'Large', '364 x 383 px', '1092 x 1149 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '639 x 1366 px', '1278 x 2732 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '375 x 1366 px', '750 x 2732 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '375 x 1318 px', '750 x 2636 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '981 x 1024 px', '1962 x 2048 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '678 x 1024 px', '1356 x 2048 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '375 x 1024 px', '750 x 2048 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '375 x 976 px', '750 x 1952 px'),
+]);
+Display twelveNineXdrZ =
+    Display('12.9\" XDR', "Display P3 XDR Retina LCD", "Zoomed", [
+  ipads['12.9\" Pro (5th Gen)']
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['contrast'], 'Contrast Ratio', '1,000,000:1'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 XDR Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '24 px', '48 px'),
+  Safearea(icons['portraitHomeIndicator'], 'Portrait Home Indicator', '20 px',
+      '40 px'),
+  Safearea(icons['landscapeHomeIndicator'], 'Landscape Home Indicator', '20 px',
+      '40 px')
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '170 x 170 px', '510 x 510 px'),
+  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '1092 x 510 px'),
+  Iwidget(icons['large'], 'Large', '364 x 383 px', '1092 x 1149 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '438 x 1024 px', '876 x 2048 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1024 px', '640 x 2048 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 976 px', '640 x 1952 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '694 x 768 px', '1388 x 1536 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '507 x 768 px', '1014 x 1536 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 768 px', '640 x 1536 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 720 px', '640 x 1440 px'),
+]);
+
+Display twelveNineLiquidRetinaS =
+    Display('12.9\" Liquid Retina', "Display P3 Retina LCD", "Standard", [
+  ipads['12.9\" Pro (4th Gen)'],
+  ipads['12.9\" Pro (3rd Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '1024 x 1366 px', '2048 x 2732 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '24 px', '48 px'),
+  Safearea(icons['portraitHomeIndicator'], 'Portrait Home Indicator', '20 px',
+      '40 px'),
+  Safearea(icons['landscapeHomeIndicator'], 'Landscape Home Indicator', '20 px',
+      '40 px')
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '170 x 170 px', '510 x 510 px'),
+  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '1092 x 510 px'),
+  Iwidget(icons['large'], 'Large', '364 x 383 px', '1092 x 1149 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '639 x 1366 px', '1278 x 2732 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '375 x 1366 px', '750 x 2732 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '375 x 1318 px', '750 x 2636 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '981 x 1024 px', '1962 x 2048 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '678 x 1024 px', '1356 x 2048 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '375 x 1024 px', '750 x 2048 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '375 x 976 px', '750 x 1952 px'),
+]);
+Display twelveNineLiquidRetinaZ =
+    Display('12.9\" Liquid Retina', "Display P3 Retina LCD", "Zoomed", [
+  ipads['12.9\" Pro (4th Gen)'],
+  ipads['12.9\" Pro (3rd Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '24 px', '48 px'),
+  Safearea(icons['portraitHomeIndicator'], 'Portrait Home Indicator', '20 px',
+      '40 px'),
+  Safearea(icons['landscapeHomeIndicator'], 'Landscape Home Indicator', '20 px',
+      '40 px')
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '438 x 1024 px', '876 x 2048 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1024 px', '640 x 2048 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 976 px', '640 x 1952 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '694 x 768 px', '1388 x 1536 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '507 x 768 px', '1014 x 1536 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 768 px', '640 x 1536 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 720 px', '640 x 1440 px'),
+]);
+
+Display twelveNineDisplayS =
+    Display('12.9\" Display P3', "Display P3 Retina LCD", "Standard", [
+  ipads['12.9\" Pro (2nd Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '1024 x 1366 px', '2048 x 2732 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '170 x 170 px', '340 x 340 px'),
+  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '728 x 340 px'),
+  Iwidget(icons['large'], 'Large', '364 x 383 px', '728 x 764 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '639 x 1366 px', '1278 x 2732 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '375 x 1366 px', '750 x 2732 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '375 x 1318 px', '750 x 2636 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '981 x 1024 px', '1962 x 2048 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '678 x 1024 px', '1356 x 2048 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '375 x 1024 px', '750 x 2048 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '375 x 976 px', '750 x 1952 px'),
+]);
+Display twelveNineDisplayZ =
+    Display('12.9\" Display P3', "Display P3 Retina LCD", "Zoomed", [
+  ipads['12.9\" Pro (2nd Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '438 x 1024 px', '876 x 2048 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1024 px', '640 x 2048 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 976 px', '640 x 1952 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '694 x 768 px', '1388 x 1536 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '507 x 768 px', '1014 x 1536 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 768 px', '640 x 1536 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 720 px', '640 x 1440 px'),
+]);
+
+Display twelveNineS = Display('12.9\"', "sRGB Retina LCD", "Standard", [
+  ipads['12.9\" Pro (1st Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '1024 x 1366 px', '2048 x 2732 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Not Supported'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '170 x 170 px', '340 x 340 px'),
+  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '728 x 340 px'),
+  Iwidget(icons['large'], 'Large', '364 x 383 px', '728 x 764 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '639 x 1366 px', '1278 x 2732 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '375 x 1366 px', '750 x 2732 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '375 x 1318 px', '750 x 2636 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '981 x 1024 px', '1962 x 2048 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '678 x 1024 px', '1356 x 2048 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '375 x 1024 px', '750 x 2048 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '375 x 976 px', '750 x 1952 px'),
+]);
+Display twelveNineZ = Display('12.9\"', "sRGB Retina LCD", "Zoomed", [
+  ipads['12.9\" Pro (1st Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '438 x 1024 px', '876 x 2048 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1024 px', '640 x 2048 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 976 px', '640 x 1952 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '694 x 768 px', '1388 x 1536 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '507 x 768 px', '1014 x 1536 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 768 px', '640 x 1536 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 720 px', '640 x 1440 px'),
+]);
+
+Display eleven = Display('11\"', "Display P3 Retina LCD", "Standard", [
+  ipads['11\" Pro (1st Gen)'],
+  ipads['11\" Pro (2nd Gen)'],
+  ipads['11\" Pro (3rd Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '834 x 1194 px', '1668 x 2388 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '24 px', '48 px'),
+  Safearea(icons['portraitHomeIndicator'], 'Portrait Home Indicator', '20 px',
+      '40 px'),
+  Safearea(icons['landscapeHomeIndicator'], 'Landscape Home Indicator', '20 px',
+      '40 px')
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '504 x 1194 px', '1008 x 2388 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1194 px', '640 x 2388 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 1146 px', '640 x 2292 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '809 x 834 px', '1618 x 1668 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '592 x 834 px', '1184 x 1668 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '375 x 834 px', '750 x 1668 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '375 x 786 px', '750 x 1572 px'),
+]);
+
+Display tenNine = Display('10.9\"', "Display P3 Retina LCD", "Standard", [
+  ipads['Air (4th Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '820 x 1180 px', '1640 x 2360 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '24 px', '48 px'),
+  Safearea(icons['portraitHomeIndicator'], 'Portrait Home Indicator', '20 px',
+      '40 px'),
+  Safearea(icons['landscapeHomeIndicator'], 'Landscape Home Indicator', '20 px',
+      '40 px')
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '490 x 1180 px', '980 x 2360 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1180 px', '640 x 2360 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 1132 px', '640 x 2264 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '795 x 820 px', '1170 x 1640 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '375 x 820 px', '750 x 1640 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '375 x 820 px', '750 x 1640 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '375 x 772 px', '750 x 1544 px'),
+]);
+
+Display tenFive = Display('10.5\"', "Display P3 Retina LCD", "Standard", [
+  ipads['Air (3rd Gen)'],
+  ipads['10.5\" Pro'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '834 x 1112 px', '1668 x 2224 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '504 x 1112 px', '1008 x 2224 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1112 px', '640 x 2224 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 1072 px', '640 x 2144 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '782 x 834 px', '1564 x 1668 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '551 x 834 px', '1102 x 1668 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 834 px', '640 x 1668 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 794 px', '640 x 1588 px'),
+]);
+
+Display tenTwo = Display('10.2\"', "sRGB Retina LCD", "Standard", [
+  ipads['iPad (8th Gen)'],
+  ipads['iPad (7th Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '810 x 1080 px', '1620 x 2160 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Not Supported'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '480 x 1080 px', '960 x 2160 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1080 px', '640 x 2160 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 1040 px', '640 x 2080 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '750 x 810 px', '1500 x 1620 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '535 x 810 px', '1070 x 1620 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 810 px', '640 x 1620 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 770 px', '640 x 1540 px'),
+]);
+
+Display nineSevenPro =
+    Display('9.7\" Pro', "Display P3 Retina LCD", "Standard", [
+  ipads['9.7\" Pro'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '438 x 1024 px', '876 x 2048 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1024 px', '640 x 2048 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 984 px', '640 x 1968 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '694 x 768 px', '1388 x 1536 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '507 x 768 px', '1014 x 1536 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 768 px', '640 x 1536 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 728 px', '640 x 1456 px'),
+]);
+
+Display nineSevenAir = Display('9.7\" Air', "sRGB Retina LCD", "Standard", [
+  ipads['iPad (6th Gen)'],
+  ipads['iPad (5th Gen)'],
+  ipads['Air (2nd Gen)'],
+  ipads['Air (1st Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Not Supported'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '438 x 1024 px', '876 x 2048 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1024 px', '640 x 2048 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 984 px', '640 x 1968 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '694 x 768 px', '1388 x 1536 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '507 x 768 px', '1014 x 1536 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 768 px', '640 x 1536 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 728 px', '640 x 1456 px'),
+]);
+
+Display nineSevenRetina =
+    Display('9.7\" Retina', "sRGB Retina LCD", "Standard", [
+  ipads['iPad (4th Gen)'],
+  ipads['iPad (3rd Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 10'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Not Supported'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '438 x 1024 px', '876 x 2048 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1024 px', '640 x 2048 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 984 px', '640 x 1968 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '694 x 768 px', '1388 x 1536 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '507 x 768 px', '1014 x 1536 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 768 px', '640 x 1536 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 728 px', '640 x 1456 px'),
+]);
+
+Display nineSeven = Display('9.7\"', "sRGB LCD", "Standard", [
+  ipads['iPad (2nd Gen)'],
+  ipads['iPad (1st Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 9'),
+  Property(icons['ppi'], 'PPI', '264'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Not Supported'),
+  Property(icons['display'], 'Display', 'sRGB LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px'),
+  Safearea(icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [], [
+  Multitasking(
+      icons['twoThirdPortraitSplit'], "2/3 Portrait Split", '438 x 1024 px'),
+  Multitasking(
+      icons['oneThirdPortraitSplit'], "1/3 Portrait Split", '320 x 1024 px'),
+  Multitasking(
+      icons['portraitSlideOver'], "Portrait Slide Over", '320 x 984 px'),
+  Multitasking(
+      icons['twoThirdLandscapeSplit'], "2/3 Landscape Split", '694 x 768 px'),
+  Multitasking(
+      icons['halfLandscapeSplit'], "1/2 Landscape Split", '507 x 768 px'),
+  Multitasking(
+      icons['oneThirdLandscapeSplit'], "1/3 Landscape Split", '320 x 768 px'),
+  Multitasking(
+      icons['landscapeSplideOver'], "Landscape Slide Over", '320 x 728 px'),
+]);
+
+Display sevenNineP3 =
+    Display('7.9\" Display P3', "Display P3 Retina LCD", "Standard", [
+  ipads['Mini (5th Gen)']
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '326'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Supported'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '158 x 158 px', '316 x 316 px'),
+  Iwidget(icons['medium'], 'Medium', '338 x 158 px', '676 x 316 px'),
+  Iwidget(icons['large'], 'Large', '338 x 354 px', '676 x 708 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '438 x 1024 px', '876 x 2048 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1024 px', '640 x 2048 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 984 px', '640 x 1968 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '694 x 768 px', '1388 x 1536 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '507 x 768 px', '1014 x 1536 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 768 px', '640 x 1536 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 728 px', '640 x 1456 px'),
+]);
+
+Display sevenNineRetina =
+    Display('7.9\" Retina', "sRGB Retina LCD", "Standard", [
+  ipads['Mini (4th Gen)'],
+  ipads['Mini (3rd Gen)'],
+  ipads['Mini (2nd Gen)'],
+], [
+  Property(
+      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 14'),
+  Property(icons['ppi'], 'PPI', '326'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Not Supported'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
+  Safearea(
+      icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px', '40 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [
+  Iwidget(icons['small'], 'Small', '158 x 158 px', '316 x 316 px'),
+  Iwidget(icons['medium'], 'Medium', '338 x 158 px', '676 x 316 px'),
+  Iwidget(icons['large'], 'Large', '338 x 354 px', '676 x 708 px'),
+], [
+  Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
+      '438 x 1024 px', '876 x 2048 px'),
+  Multitasking(icons['oneThirdPortraitSplit'], "1/3 Portrait Split",
+      '320 x 1024 px', '640 x 2048 px'),
+  Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
+      '320 x 984 px', '640 x 1968 px'),
+  Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
+      '694 x 768 px', '1388 x 1536 px'),
+  Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
+      '507 x 768 px', '1014 x 1536 px'),
+  Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
+      '320 x 768 px', '640 x 1536 px'),
+  Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
+      '320 x 728 px', '640 x 1456 px'),
+]);
+
+Display sevenNine = Display('7.9\"', "sRGB LCD", "Standard", [
+  ipads['Mini (1st Gen)'],
+], [
+  Property(icons['resolution'], 'Resolution', '768 x 1024 px'),
+  Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 9'),
+  Property(icons['ppi'], 'PPI', '163'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
+  Property(icons['trueTone'], 'True Tone', 'Not Supported'),
+  Property(icons['display'], 'Display', 'sRGB LCD'),
+], [
+  Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px'),
+  Safearea(icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px'),
+], [
+  SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
+      'Regular'),
+  SizeClass(
+      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(
+      icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
+  SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
+  SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
+      'Regular'),
+  SizeClass(
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+  SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
+      'Regular'),
+  SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
+      'Regular'),
+], [], [
+  Multitasking(
+      icons['twoThirdPortraitSplit'], "2/3 Portrait Split", '438 x 1024 px'),
+  Multitasking(
+      icons['oneThirdPortraitSplit'], "1/3 Portrait Split", '320 x 1024 px'),
+  Multitasking(
+      icons['portraitSlideOver'], "Portrait Slide Over", '320 x 984 px'),
+  Multitasking(
+      icons['twoThirdLandscapeSplit'], "2/3 Landscape Split", '694 x 768 px'),
+  Multitasking(
+      icons['halfLandscapeSplit'], "1/2 Landscape Split", '507 x 768 px'),
+  Multitasking(
+      icons['oneThirdLandscapeSplit'], "1/3 Landscape Split", '320 x 768 px'),
+  Multitasking(
+      icons['landscapeSplideOver'], "Landscape Slide Over", '320 x 728 px'),
+]);

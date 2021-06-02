@@ -6,7 +6,7 @@ import 'package:dev_tools/models/devices/display.dart';
 class DisplayPage extends StatefulWidget {
   final String title;
   final List<DevicesIcon> devicesList;
-  final List<Display> displayList;
+  final Map<String, List<Display>> displayList;
 
   DisplayPage({this.title, this.devicesList, this.displayList});
 
@@ -135,11 +135,11 @@ class _DisplayPageState extends State<DisplayPage>
           trailing: Icon(Icons.arrow_forward_ios_sharp),
           onTap: () {
             Navigator.of(context).push(new MaterialPageRoute(
-                builder: (BuildContext context) => new DeviceInfoPage(
-                      title: devicesPageIcon.imageName,
-                      previousPage: widget.title,
-                      displayList: widget.displayList[index],
-                    )));
+              builder: (BuildContext context) => new DeviceInfoPage(
+                  title: devicesPageIcon.imageName,
+                  previousPage: widget.title,
+                  displayList: widget.displayList[index]),
+            ));
           },
         ),
       ),

@@ -43,7 +43,7 @@ class DevicesHomePage extends StatelessWidget {
       String title,
       String nextPage,
       List<DevicesIcon> devicesList,
-      List<Display> displayList) {
+      Map<String, List<Display>> displayList) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(new MaterialPageRoute(

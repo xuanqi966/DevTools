@@ -9,7 +9,7 @@ import '../../models/device-attributes/safe-area.dart';
 class DeviceInfoPage extends StatefulWidget {
   final String title;
   final String previousPage;
-  final Display displayList;
+  final List<Display> displayList;
 
   DeviceInfoPage({this.title, this.previousPage, this.displayList});
 
@@ -78,14 +78,15 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildContainer(widget.displayList.properties.sublist(0, 2)),
+                  _buildContainer(
+                      widget.displayList[0].properties.sublist(0, 2)),
                   _needBuildExpansionTile(
-                      widget.displayList.properties.sublist(2)),
-                  _buildModelColumn(widget.displayList.devices),
-                  _buildSubColumn(widget.displayList.safeAreas, "Safe Area"),
+                      widget.displayList[0].properties.sublist(2)),
+                  _buildModelColumn(widget.displayList[0].devices),
+                  _buildSubColumn(widget.displayList[0].safeAreas, "Safe Area"),
                   _buildSubColumn(
-                      widget.displayList.sizeClasses, "Size Classes"),
-                  _buildSubColumn(widget.displayList.widgets, "Widgets"),
+                      widget.displayList[0].sizeClasses, "Size Classes"),
+                  _buildSubColumn(widget.displayList[0].widgets, "Widgets"),
                 ],
               ),
             ),

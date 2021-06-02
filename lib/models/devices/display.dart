@@ -1,3 +1,5 @@
+import 'package:dev_tools/models/device-attributes/multitasking.dart';
+
 import '../device-attributes/property.dart';
 import '../device-attributes/safe-area.dart';
 import '../device-attributes/size-class.dart';
@@ -13,7 +15,9 @@ class Display {
   final List<Safearea> safeAreas;
   final List<SizeClass> sizeClasses;
   final List<Iwidget> widgets;
+  List<Multitasking> multitaskings;
 
   Display(this.display, this.displayType, this.type, this.devices,
-      this.properties, this.safeAreas, this.sizeClasses, this.widgets);
+      this.properties, this.safeAreas, this.sizeClasses, this.widgets,
+      [this.multitaskings]);
 }

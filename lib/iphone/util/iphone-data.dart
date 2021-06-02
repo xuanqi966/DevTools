@@ -6,6 +6,7 @@ import '../../models/device-attributes/property.dart';
 import '../../models/device-attributes/safe-area.dart';
 import '../../models/device-attributes/size-class.dart';
 import '../../models/device-attributes/iwidget.dart';
+import 'data.dart';
 
 Map<String, Device> iphones = {
   "12 Pro Max": Device("12 Pro Max", "2020", "dummy"),
@@ -39,59 +40,22 @@ Map<String, Device> iphones = {
   "iPhone": Device("iPhone", "2007", "dummy"),
 };
 
-List<Display> displays = [
-  sixSevenS,
-  sixSevenZ,
-  sixFiveXDRS,
-  sixFiveXDRZ,
-  sixFiveS,
-  sixFiveZ,
-  sixOneSuperRetinaS,
-  sixOneSuperRetinaZ,
-  sixOneLiquidRetinaS,
-  sixOneLiquidRetinaZ,
-  fiveEightXdrS,
-  fiveEightXdrZ,
-  fiveEightS,
-  fiveEightZ,
-  fiveFiveP3S,
-  fiveFiveP3Z,
-  fiveFiveS,
-  fiveFiveZ,
-  fiveFourS,
-  fiveFourZ,
-  fourSevenDisplayP3S,
-  fourSevenDisplayP3Z,
-  fourSevenS,
-  fourSevenZ,
-  four,
-  threeFiveRetina,
-  threeFive
-];
-
-Map<String, ImageIcon> icons = {
-  'contrast': ImageIcon(AssetImage('assets/icons/contrastRatio.png')),
-  'earSize': ImageIcon(AssetImage('assets/icons/earSize.png')),
-  'ios': ImageIcon(AssetImage('assets/icons/ios.png')),
-  'landscape': ImageIcon(AssetImage('assets/icons/landscape.png')),
-  'landscapeHomeIndicator':
-      ImageIcon(AssetImage('assets/icons/landscapeHomeIndicator.png')),
-  'landscapeStatusBar':
-      ImageIcon(AssetImage('assets/icons/landscapeStatusBar.png')),
-  'large': ImageIcon(AssetImage('assets/icons/large.png')),
-  'medium': ImageIcon(AssetImage('assets/icons/medium.png')),
-  'notchSize': ImageIcon(AssetImage('assets/icons/notchSize.png')),
-  'portrait': ImageIcon(AssetImage('assets/icons/portrait.png')),
-  'portraitHomeIndicator':
-      ImageIcon(AssetImage('assets/icons/portraitHomeIndicator.png')),
-  'portraitStatusBar':
-      ImageIcon(AssetImage('assets/icons/portraitStatusBar.png')),
-  'ppi': ImageIcon(AssetImage('assets/icons/ppi.png')),
-  'resolution': ImageIcon(AssetImage('assets/icons/resolution.png')),
-  'small': ImageIcon(AssetImage('assets/icons/small.png')),
-  'trueTone': ImageIcon(AssetImage('assets/icons/trueTone.png')),
-  'aspectRatio': ImageIcon(AssetImage('assets/icons/aspectRatio.png')),
-  'display': ImageIcon(AssetImage('assets/icons/display.png')),
+Map<String, List<Display>> displays = {
+  '6.7': [sixSevenS, sixSevenZ],
+  '6.5 XDR': [sixFiveXDRS, sixFiveXDRZ],
+  '6.5': [sixFiveS, sixFiveZ],
+  '6.1 Super Retina': [sixOneSuperRetinaS, sixOneSuperRetinaZ],
+  '6.1 Liquid Retina': [sixOneLiquidRetinaS, sixOneLiquidRetinaZ],
+  '5.8 XDR': [fiveEightXdrS, fiveEightXdrZ],
+  '5.8': [fiveEightS, fiveEightZ],
+  '5.5 Display P3': [fiveFiveP3S, fiveFiveP3Z],
+  '5.5': [fiveFiveS, fiveFiveZ],
+  '5.4': [fiveFourS, fiveFourZ],
+  '4.7 Display P3': [fourSevenDisplayP3S, fourSevenDisplayP3Z],
+  '4.7': [fourSevenS, fourSevenZ],
+  '4': [four],
+  '3.5 Retina': [threeFiveRetina],
+  '3.5': [threeFive]
 };
 
 Display sixSevenS = Display('6.7\"', "Display P3 XDR Retina OLED", "Standard", [

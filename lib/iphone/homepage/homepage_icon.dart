@@ -6,7 +6,7 @@ class HomePageIcon {
   final String imageName;
   final String nextPage;
   final List<DevicesIcon> devicesList;
-  List<Display> displayList;
+  Map<String, List<Display>> displayList;
 
   HomePageIcon(
       {this.iconImageVal,
