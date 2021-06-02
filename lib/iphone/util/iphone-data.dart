@@ -39,6 +39,36 @@ Map<String, Device> iphones = {
   "iPhone": Device("iPhone", "2007", "dummy"),
 };
 
+List<Display> displays = [
+  sixSevenS,
+  sixSevenZ,
+  sixFiveXDRS,
+  sixFiveXDRZ,
+  sixFiveS,
+  sixFiveZ,
+  sixOneSuperRetinaS,
+  sixOneSuperRetinaZ,
+  sixOneLiquidRetinaS,
+  sixOneLiquidRetinaZ,
+  fiveEightXdrS,
+  fiveEightXdrZ,
+  fiveEightS,
+  fiveEightZ,
+  fiveFiveP3S,
+  fiveFiveP3Z,
+  fiveFiveS,
+  fiveFiveZ,
+  fiveFourS,
+  fiveFourZ,
+  fourSevenDisplayP3S,
+  fourSevenDisplayP3Z,
+  fourSevenS,
+  fourSevenZ,
+  four,
+  threeFiveRetina,
+  threeFive
+];
+
 Map<String, ImageIcon> icons = {
   'contrast': ImageIcon(AssetImage('assets/icons/contrastRatio.png')),
   'earSize': ImageIcon(AssetImage('assets/icons/earSize.png')),
