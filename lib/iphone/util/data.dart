@@ -3,6 +3,7 @@ import '../displaypage/devicespage_icon.dart';
 import '../infopage/properties.dart';
 import 'iphone-data.dart';
 import 'package:flutter/material.dart';
+import '../../models/devices/device.dart';
 
 final homePageIconData = [
   HomePageIcon(
@@ -10,7 +11,8 @@ final homePageIconData = [
       iconImageVal: "iphone_icon.png",
       nextPage: "/iphone_page",
       devicesList: iphoneDevicesPageIconData,
-      displayList: displays),
+      displayList: displays,
+      phonesList: iphones),
   HomePageIcon(
       imageName: "iPad",
       iconImageVal: "ipad_icon.png",
@@ -38,98 +40,20 @@ final homePageIconData = [
       devicesList: iphoneDevicesPageIconData),
 ];
 
-const iphoneDevicesPageIconData = const [
-  DevicesIcon(
-      iconImageVal: "iphone_new.png", imageName: "6.7\"", subtitle: "1 Model"),
-  DevicesIcon(
-      iconImageVal: "iphone_new.png",
-      imageName: "6.5\" XDR",
-      subtitle: "1 Model"),
-  DevicesIcon(
-      iconImageVal: "iphone_new.png", imageName: "6.5\"", subtitle: "1 Model"),
-  DevicesIcon(
-      iconImageVal: "iphone_new.png",
-      imageName: "6.1\" Super Retina",
-      subtitle: "2 Models"),
-  DevicesIcon(
-      iconImageVal: "iphone_new.png",
-      imageName: "6.1\" Liquid Retina",
-      subtitle: "2 Models"),
-  DevicesIcon(
-      iconImageVal: "iphone_new.png",
-      imageName: "5.8\" XDR",
-      subtitle: "1 Model"),
-  DevicesIcon(
-      iconImageVal: "iphone_old.png",
-      imageName: "5.5\" Display P3",
-      subtitle: "2 Models"),
-  DevicesIcon(
-      iconImageVal: "iphone_old.png", imageName: "5.5\"", subtitle: "2 Models"),
-  DevicesIcon(
-      iconImageVal: "iphone_new.png", imageName: "5.4\"", subtitle: "1 Model"),
-  DevicesIcon(
-      iconImageVal: "iphone_old.png", imageName: "4.7\"", subtitle: "2 Models"),
-  DevicesIcon(
-      iconImageVal: "iphone_old.png", imageName: "4\"", subtitle: "4 Models"),
-  DevicesIcon(
-      iconImageVal: "iphone_old.png",
-      imageName: "3.5\" Retina",
-      subtitle: "2 Models"),
-  DevicesIcon(
-      iconImageVal: "iphone_old.png", imageName: "3.5\"", subtitle: "3 Models"),
-];
-
-final List<Properties> propertyData = <Properties>[
-  Properties(
-    title: "Normal",
-    children: <DevicesIcon>[
-      DevicesIcon(
-          iconImageVal: "iphone_old.png",
-          imageName: "3.5\"",
-          subtitle: "3 Models"),
-      DevicesIcon(
-          iconImageVal: "iphone_old.png",
-          imageName: "3.5\"",
-          subtitle: "3 Models"),
-      DevicesIcon(
-          iconImageVal: "iphone_old.png",
-          imageName: "3.5\"",
-          subtitle: "3 Models")
-    ],
-  ),
-  Properties(
-    title: "Properties",
-    children: <DevicesIcon>[
-      DevicesIcon(
-          iconImageVal: "iphone_old.png",
-          imageName: "3.5\"",
-          subtitle: "3 Models"),
-      DevicesIcon(
-          iconImageVal: "iphone_old.png",
-          imageName: "3.5\"",
-          subtitle: "3 Models"),
-      DevicesIcon(
-          iconImageVal: "iphone_old.png",
-          imageName: "3.5\"",
-          subtitle: "3 Models")
-    ],
-  )
-];
-
-final List<Properties> modelData = <Properties>[
-  Properties(
-    title: "Models",
-    children: <DevicesIcon>[
-      DevicesIcon(
-          iconImageVal: "iphone_old.png",
-          imageName: "3.5\"",
-          subtitle: "3 Models"),
-      DevicesIcon(
-          iconImageVal: "iphone_old.png",
-          imageName: "3.5\"",
-          subtitle: "3 Models"),
-    ],
-  ),
+final iphoneDevicesPageIconData = [
+  Device("6.7\"", "1 Model", "iphone_new.png"),
+  Device("6.5\" XDR", "1 Model", "iphone_new.png"),
+  Device("6.5\"", "1 Model", "iphone_new.png"),
+  Device("6.1\" Super Retina", "2 Models", "iphone_new.png"),
+  Device("6.1\" Liquid Retina", "2 Models", "iphone_new.png"),
+  Device("5.8\" XDR", "1 Model", "iphone_new.png"),
+  Device("5.5\" Display P3", "2 Models", "iphone_old.png"),
+  Device("5.5\"", "2 Models", "iphone_old.png"),
+  Device("5.4\"", "1 Model", "iphone_new.png"),
+  Device("4.7\"", "2 Models", "iphone_old.png"),
+  Device("4\"", "4 Models", "iphone_old.png"),
+  Device("3.5\" Retina", "2 Models", "iphone_old.png"),
+  Device("3.5\"", "3 Models", "iphone_old.png"),
 ];
 
 Map<String, ImageIcon> icons = {

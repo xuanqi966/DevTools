@@ -71,38 +71,31 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
         controller: _tabController,
         children: [
           //first tab bar view widget
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildContainer(
-                      widget.displayList[0].properties.sublist(0, 2)),
-                  _needBuildExpansionTile(
-                      widget.displayList[0].properties.sublist(2)),
-                  _buildModelColumn(widget.displayList[0].devices),
-                  _buildSubColumn(widget.displayList[0].safeAreas, "Safe Area"),
-                  _buildSubColumn(
-                      widget.displayList[0].sizeClasses, "Size Classes"),
-                  _buildSubColumn(widget.displayList[0].widgets, "Widgets"),
-                ],
-              ),
-            ),
-          ),
+          _buildSubTabView(widget.displayList[0]),
 
           // second tab bar view widget
-          Center(
-            child: Text(
-              'Buy Now',
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
+          _buildSubTabView(widget.displayList[1]),
         ],
+      ),
+    );
+  }
+
+  Widget _buildSubTabView(Display displayList) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildContainer(displayList.properties.sublist(0, 2)),
+            _needBuildExpansionTile(displayList.properties.sublist(2)),
+            _buildModelColumn(displayList.devices),
+            _buildSubColumn(displayList.safeAreas, "Safe Area"),
+            _buildSubColumn(displayList.sizeClasses, "Size Classes"),
+            _buildSubColumn(displayList.widgets, "Widgets"),
+          ],
+        ),
       ),
     );
   }

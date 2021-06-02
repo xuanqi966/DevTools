@@ -40,22 +40,22 @@ Map<String, Device> iphones = {
   "iPhone": Device("iPhone", "2007", "dummy"),
 };
 
-Map<String, List<Display>> displays = {
-  '6.7': [sixSevenS, sixSevenZ],
-  '6.5 XDR': [sixFiveXDRS, sixFiveXDRZ],
-  '6.5': [sixFiveS, sixFiveZ],
-  '6.1 Super Retina': [sixOneSuperRetinaS, sixOneSuperRetinaZ],
-  '6.1 Liquid Retina': [sixOneLiquidRetinaS, sixOneLiquidRetinaZ],
-  '5.8 XDR': [fiveEightXdrS, fiveEightXdrZ],
-  '5.8': [fiveEightS, fiveEightZ],
-  '5.5 Display P3': [fiveFiveP3S, fiveFiveP3Z],
-  '5.5': [fiveFiveS, fiveFiveZ],
-  '5.4': [fiveFourS, fiveFourZ],
-  '4.7 Display P3': [fourSevenDisplayP3S, fourSevenDisplayP3Z],
-  '4.7': [fourSevenS, fourSevenZ],
-  '4': [four],
-  '3.5 Retina': [threeFiveRetina],
-  '3.5': [threeFive]
+Map<int, List<Display>> displays = {
+  0: [sixSevenS, sixSevenZ],
+  1: [sixFiveXDRS, sixFiveXDRZ],
+  2: [sixFiveS, sixFiveZ],
+  3: [sixOneSuperRetinaS, sixOneSuperRetinaZ],
+  4: [sixOneLiquidRetinaS, sixOneLiquidRetinaZ],
+  5: [fiveEightXdrS, fiveEightXdrZ],
+  6: [fiveEightS, fiveEightZ],
+  7: [fiveFiveP3S, fiveFiveP3Z],
+  8: [fiveFiveS, fiveFiveZ],
+  9: [fiveFourS, fiveFourZ],
+  10: [fourSevenDisplayP3S, fourSevenDisplayP3Z],
+  11: [fourSevenS, fourSevenZ],
+  12: [four],
+  13: [threeFiveRetina],
+  14: [threeFive]
 };
 
 Display sixSevenS = Display('6.7\"', "Display P3 XDR Retina OLED", "Standard", [
@@ -90,7 +90,7 @@ Display sixSevenS = Display('6.7\"', "Display P3 XDR Retina OLED", "Standard", [
 Display sixSevenZ = Display('6.7\"', "Display P3 XDR Retina OLED", "Zoomed", [
   iphones['12 Pro Max']
 ], [
-  Property(icons['resolution'], 'Resolution', '428 x 926 px', '1284 x 2778 px'),
+  Property(icons['resolution'], 'Resolution', '375 x 812 px', '1125 x 2436 px'),
   Property(icons['ios'], 'Last Supported By', 'iOS 14'),
   Property(icons['ppi'], 'PPI', '458'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '19.5:9'),

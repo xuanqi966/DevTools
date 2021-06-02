@@ -4,6 +4,7 @@ import '../displaypage/display_page.dart';
 import '../util/data.dart';
 import '../displaypage/devicespage_icon.dart';
 import 'package:dev_tools/models/devices/display.dart';
+import '../../models/devices/device.dart';
 
 class DevicesHomePage extends StatelessWidget {
   @override
@@ -29,8 +30,14 @@ class DevicesHomePage extends StatelessWidget {
     return GridView(
       padding: EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
       children: _homePageIcons
-          .map((icon) => buildCard(context, icon.iconImageVal, icon.imageName,
-              icon.nextPage, icon.devicesList, icon.displayList))
+          .map((icon) => buildCard(
+              context,
+              icon.iconImageVal,
+              icon.imageName,
+              icon.nextPage,
+              icon.devicesList,
+              icon.displayList,
+              icon.phonesList))
           .toList(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
@@ -42,8 +49,9 @@ class DevicesHomePage extends StatelessWidget {
       String imageName,
       String title,
       String nextPage,
-      List<DevicesIcon> devicesList,
-      Map<String, List<Display>> displayList) {
+      List<Device> devicesList,
+      Map<int, List<Display>> displayList,
+      Map<String, Device> phonesList) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(new MaterialPageRoute(
@@ -51,6 +59,7 @@ class DevicesHomePage extends StatelessWidget {
                   title: "$title",
                   devicesList: devicesList,
                   displayList: displayList,
+                  phonesList: phonesList,
                 )));
       },
       child: Card(

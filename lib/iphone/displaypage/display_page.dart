@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import '../../models/devices/device.dart';
+import '../../models/devices/device.dart';
 import 'devicespage_icon.dart';
 import '../infopage/deviceinfo_page.dart';
 import 'package:dev_tools/models/devices/display.dart';
+import '../../models/devices/device.dart';
+import 'devicespage_icon.dart';
 
 class DisplayPage extends StatefulWidget {
   final String title;
-  final List<DevicesIcon> devicesList;
-  final Map<String, List<Display>> displayList;
+  final List<Device> devicesList;
+  final Map<int, List<Display>> displayList;
+  final Map<String, Device> phonesList;
 
-  DisplayPage({this.title, this.devicesList, this.displayList});
+  DisplayPage(
+      {this.title, this.devicesList, this.displayList, this.phonesList});
 
   @override
   _DisplayPageState createState() => _DisplayPageState();
@@ -62,21 +68,21 @@ class _DisplayPageState extends State<DisplayPage>
   }
 
   Widget _buildTabView() {
+    List<Device> _devicesList2 = [];
+    widget.phonesList.forEach((key, value) => _devicesList2
+        .add(Device(value.title, value.yearOfRelease, value.imagePath)));
     return Expanded(
       child: TabBarView(
         controller: _tabController,
         children: [
           _buildListView(widget.devicesList),
-
-          // second tab bar view widget
-          //change list here @xuanqi
-          _buildListView(widget.devicesList),
+          _buildListView(_devicesList2),
         ],
       ),
     );
   }
 
-  Padding _buildListView(List<DevicesIcon> devicesList) {
+  Padding _buildListView(List<Device> devicesList) {
     return Padding(
       padding: const EdgeInsets.only(left: 15.0, right: 15.0),
       child: ListView.separated(
@@ -97,7 +103,7 @@ class _DisplayPageState extends State<DisplayPage>
     );
   }
 
-  Widget _buildRow(DevicesIcon devicesPageIcon, int index) {
+  Widget _buildRow(Device devicesPageIcon, int index) {
     BorderRadius _findBorderRadius() {
       if (index == 0) {
         return BorderRadius.only(
@@ -119,24 +125,24 @@ class _DisplayPageState extends State<DisplayPage>
       ),
       child: Center(
         child: ListTile(
-          title: Text(devicesPageIcon.imageName,
+          title: Text(devicesPageIcon.title,
               style: Theme.of(context)
                   .textTheme
                   .bodyText1
                   .copyWith(fontWeight: FontWeight.bold)),
-          subtitle: Text(devicesPageIcon.subtitle,
+          subtitle: Text(devicesPageIcon.yearOfRelease,
               style: Theme.of(context)
                   .textTheme
                   .bodyText2
                   .copyWith(color: Colors.grey[600])),
           dense: true,
-          leading: Image.asset(
-              "assets/iphone_images/${devicesPageIcon.iconImageVal}"),
+          leading:
+              Image.asset("assets/iphone_images/${devicesPageIcon.imagePath}"),
           trailing: Icon(Icons.arrow_forward_ios_sharp),
           onTap: () {
             Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new DeviceInfoPage(
-                  title: devicesPageIcon.imageName,
+                  title: devicesPageIcon.title,
                   previousPage: widget.title,
                   displayList: widget.displayList[index]),
             ));
