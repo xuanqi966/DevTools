@@ -1,13 +1,15 @@
 import '../homepage/homepage_icon.dart';
 import '../displaypage/devicespage_icon.dart';
 import '../infopage/properties.dart';
+import 'iphone-data.dart';
 
-const homePageIconData = const [
+final homePageIconData = [
   HomePageIcon(
       imageName: "iPhone",
       iconImageVal: "iphone_icon.png",
       nextPage: "/iphone_page",
-      devicesList: iphoneDevicesPageIconData),
+      devicesList: iphoneDevicesPageIconData,
+      displayList: displays),
   HomePageIcon(
       imageName: "iPad",
       iconImageVal: "ipad_icon.png",
@@ -77,18 +79,54 @@ const iphoneDevicesPageIconData = const [
 ];
 
 final List<Properties> propertyData = <Properties>[
-  Properties(<DevicesIcon>[
-    DevicesIcon(
-        iconImageVal: "iphone_old.png",
-        imageName: "3.5\"",
-        subtitle: "3 Models"),
-    DevicesIcon(
-        iconImageVal: "iphone_old.png",
-        imageName: "3.5\"",
-        subtitle: "3 Models"),
-    DevicesIcon(
-        iconImageVal: "iphone_old.png",
-        imageName: "3.5\"",
-        subtitle: "3 Models")
-  ])
+  Properties(
+    title: "Normal",
+    children: <DevicesIcon>[
+      DevicesIcon(
+          iconImageVal: "iphone_old.png",
+          imageName: "3.5\"",
+          subtitle: "3 Models"),
+      DevicesIcon(
+          iconImageVal: "iphone_old.png",
+          imageName: "3.5\"",
+          subtitle: "3 Models"),
+      DevicesIcon(
+          iconImageVal: "iphone_old.png",
+          imageName: "3.5\"",
+          subtitle: "3 Models")
+    ],
+  ),
+  Properties(
+    title: "Properties",
+    children: <DevicesIcon>[
+      DevicesIcon(
+          iconImageVal: "iphone_old.png",
+          imageName: "3.5\"",
+          subtitle: "3 Models"),
+      DevicesIcon(
+          iconImageVal: "iphone_old.png",
+          imageName: "3.5\"",
+          subtitle: "3 Models"),
+      DevicesIcon(
+          iconImageVal: "iphone_old.png",
+          imageName: "3.5\"",
+          subtitle: "3 Models")
+    ],
+  )
+];
+
+final List<Properties> modelData = <Properties>[
+  Properties(
+    title: "Models",
+    children: <DevicesIcon>[
+      DevicesIcon(
+          iconImageVal: "iphone_old.png",
+          imageName: "3.5\"",
+          subtitle: "3 Models"),
+      DevicesIcon(
+          iconImageVal: "iphone_old.png",
+          imageName: "3.5\"",
+          subtitle: "3 Models"),
+    ],
+  ),
 ];

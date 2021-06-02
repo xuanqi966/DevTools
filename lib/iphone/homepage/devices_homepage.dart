@@ -3,6 +3,7 @@ import '../homepage/homepage_icon.dart';
 import '../displaypage/display_page.dart';
 import '../util/data.dart';
 import '../displaypage/devicespage_icon.dart';
+import 'package:dev_tools/models/devices/display.dart';
 
 class DevicesHomePage extends StatelessWidget {
   @override
@@ -29,21 +30,27 @@ class DevicesHomePage extends StatelessWidget {
       padding: EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
       children: _homePageIcons
           .map((icon) => buildCard(context, icon.iconImageVal, icon.imageName,
-              icon.nextPage, icon.devicesList))
+              icon.nextPage, icon.devicesList, icon.displayList))
           .toList(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
     );
   }
 
-  Widget buildCard(BuildContext context, String imageName, String title,
-      String nextPage, List<DevicesIcon> devicesList) {
+  Widget buildCard(
+      BuildContext context,
+      String imageName,
+      String title,
+      String nextPage,
+      List<DevicesIcon> devicesList,
+      List<Display> displayList) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(new MaterialPageRoute(
             builder: (BuildContext context) => new DisplayPage(
                   title: "$title",
                   devicesList: devicesList,
+                  displayList: displayList,
                 )));
       },
       child: Card(

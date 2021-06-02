@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'devicespage_icon.dart';
 import '../infopage/deviceinfo_page.dart';
+import 'package:dev_tools/models/devices/display.dart';
 
 class DisplayPage extends StatefulWidget {
   final String title;
   final List<DevicesIcon> devicesList;
+  final List<Display> displayList;
 
-  DisplayPage({this.title, this.devicesList});
+  DisplayPage({this.title, this.devicesList, this.displayList});
 
   @override
   _DisplayPageState createState() => _DisplayPageState();
@@ -135,6 +137,8 @@ class _DisplayPageState extends State<DisplayPage>
             Navigator.of(context).push(new MaterialPageRoute(
                 builder: (BuildContext context) => new DeviceInfoPage(
                       title: devicesPageIcon.imageName,
+                      previousPage: widget.title,
+                      displayList: widget.displayList[index],
                     )));
           },
         ),

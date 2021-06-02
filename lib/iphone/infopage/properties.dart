@@ -1,8 +1,8 @@
 import '../displaypage/devicespage_icon.dart';
 
 class Properties {
-  final String title = "Properties";
+  final String title;
   final List<DevicesIcon> children;
 
-  Properties(this.children);
+  Properties({this.title, this.children});
 }
