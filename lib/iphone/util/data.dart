@@ -131,5 +131,6 @@ Map<String, ImageIcon> icons = {
   'twoThirdLandscapeSplit':
       ImageIcon(AssetImage('assets/icons/twoThirdLandscapeSplit.png')),
   'twoThirdPortraitSplit':
-      ImageIcon(AssetImage('assets/icons/twoThirdPortraitSplit.png'))
+      ImageIcon(AssetImage('assets/icons/twoThirdPortraitSplit.png')),
+  'rightOverScan': ImageIcon(AssetImage('assets/icons/rightOverScan.png')),
 };
