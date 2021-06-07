@@ -106,23 +106,23 @@ Map<int, List<Display>> displays2 = {
   //6
   19: [fourSevenS, fourSevenZ],
   //SE(1st gen)
-  20: [four],
+  20: [four, null],
   //5s
-  21: [four],
+  21: [four, null],
   //5c
-  22: [four],
+  22: [four, null],
   //5
-  23: [four],
+  23: [four, null],
   //4s
-  24: [threeFiveRetina],
+  24: [threeFiveRetina, null],
   //4
-  25: [threeFiveRetina],
+  25: [threeFiveRetina, null],
   //3gs
-  26: [threeFive],
+  26: [threeFive, null],
   //3g
-  27: [threeFive],
+  27: [threeFive, null],
   //iPhone
-  28: [threeFive],
+  28: [threeFive, null],
 };
 
 Display sixSevenS = Display('6.7\"', "Display P3 XDR Retina OLED", "Standard", [

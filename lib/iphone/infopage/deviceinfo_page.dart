@@ -96,7 +96,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
 
   Widget _buildSubTabView(Display displayList) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+      padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 10),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
