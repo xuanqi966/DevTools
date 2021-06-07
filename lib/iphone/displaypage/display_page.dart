@@ -102,8 +102,10 @@ class _DisplayPageState extends State<DisplayPage>
       padding: const EdgeInsets.only(left: 15.0, right: 15.0),
       child: ListView.separated(
           separatorBuilder: (context, index) {
-            return Ink(
-              color: Colors.grey[200],
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+              ),
               child: Divider(
                 thickness: 1.0,
               ),
