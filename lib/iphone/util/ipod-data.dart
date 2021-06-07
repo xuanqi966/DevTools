@@ -51,7 +51,7 @@ Display four = Display('4\"', "sRGB Retina LCD", "Standard", [
   Property(icons['aspectRatio'], 'Aspect Ratio', '16:9'),
   Property(icons['contrast'], 'Contrast Ratio', '800:1'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD', '4\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(icons['landscapeStatusBar'], 'Landscape Status Bar', '0 px', '0 px'),
@@ -70,10 +70,10 @@ Display threeFiveRetina =
   Property(icons['resolution'], 'Resolution', '320 x 480 px', '640 x 960 px'),
   Property(icons['ios'], 'Last Supported By', 'iOS 6'),
   Property(icons['ppi'], 'PPI', '326'),
-  Property(icons['aspectRatio'], 'Aspect Ratio', '16:9'),
+  Property(icons['aspectRatio'], 'Aspect Ratio', '3:2'),
   Property(icons['contrast'], 'Contrast Ratio', '800:1'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD', '3.5\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(icons['landscapeStatusBar'], 'Landscape Status Bar', '0 px', '0 px'),
@@ -92,7 +92,7 @@ Display threeFive = Display('3.5\"', "sRGB LCD", "Standard", [
   Property(icons['aspectRatio'], 'Aspect Ratio', '3:2'),
   Property(icons['contrast'], 'Contrast Ratio', '200:1'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB LCD'),
+  Property(icons['display'], 'Display', 'sRGB LCD', '3.5\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px'),
   Safearea(icons['landscapeStatusBar'], 'Landscape Status Bar', '0 px'),

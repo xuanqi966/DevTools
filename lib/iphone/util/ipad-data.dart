@@ -151,7 +151,7 @@ Display twelveNineXdrS =
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['contrast'], 'Contrast Ratio', '1,000,000:1'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 XDR Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 XDR Retina LCD', '12.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
   Safearea(
@@ -164,8 +164,8 @@ Display twelveNineXdrS =
   SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
   SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
       'Regular'),
-  SizeClass(
-      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdPortraitSplit'], '1/3 Portrait Split', 'Compact',
+      'Regular'),
   SizeClass(
       icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
   SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
@@ -178,9 +178,9 @@ Display twelveNineXdrS =
   SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
       'Regular'),
 ], [
-  Iwidget(icons['small'], 'Small', '170 x 170 px', '510 x 510 px'),
-  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '1092 x 510 px'),
-  Iwidget(icons['large'], 'Large', '364 x 383 px', '1092 x 1149 px'),
+  Iwidget(icons['small'], 'Small', '170 x 170 px', '340 x 340 px'),
+  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '728 x 340 px'),
+  Iwidget(icons['large'], 'Large', '364 x 382 px', '728 x 764 px'),
 ], [
   Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
       '639 x 1366 px', '1278 x 2732 px'),
@@ -197,6 +197,7 @@ Display twelveNineXdrS =
   Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
       '375 x 976 px', '750 x 1952 px'),
 ]);
+
 Display twelveNineXdrZ =
     Display('12.9\" XDR', "Display P3 XDR Retina LCD", "Zoomed", [
   ipads['12.9\" Pro (5th Gen)']
@@ -208,7 +209,7 @@ Display twelveNineXdrZ =
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['contrast'], 'Contrast Ratio', '1,000,000:1'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 XDR Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 XDR Retina LCD', '12.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
   Safearea(
@@ -219,10 +220,10 @@ Display twelveNineXdrZ =
       '40 px')
 ], [
   SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
-  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Regular',
+  SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
       'Regular'),
-  SizeClass(
-      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdPortraitSplit'], '1/3 Portrait Split', 'Compact',
+      'Regular'),
   SizeClass(
       icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
   SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
@@ -235,9 +236,9 @@ Display twelveNineXdrZ =
   SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
       'Regular'),
 ], [
-  Iwidget(icons['small'], 'Small', '170 x 170 px', '510 x 510 px'),
-  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '1092 x 510 px'),
-  Iwidget(icons['large'], 'Large', '364 x 383 px', '1092 x 1149 px'),
+  Iwidget(icons['small'], 'Small', '155 x 155 px', '310 x 310 px'),
+  Iwidget(icons['medium'], 'Medium', '329 x 155 px', '658 x 310 px'),
+  Iwidget(icons['large'], 'Large', '329 x 345 px', '658 x 690 px'),
 ], [
   Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
       '438 x 1024 px', '876 x 2048 px'),
@@ -266,7 +267,7 @@ Display twelveNineLiquidRetinaS =
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD', '12.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
   Safearea(
@@ -279,8 +280,8 @@ Display twelveNineLiquidRetinaS =
   SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
   SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
       'Regular'),
-  SizeClass(
-      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdPortraitSplit'], '1/3 Portrait Split', 'Compact',
+      'Regular'),
   SizeClass(
       icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
   SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
@@ -293,9 +294,9 @@ Display twelveNineLiquidRetinaS =
   SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
       'Regular'),
 ], [
-  Iwidget(icons['small'], 'Small', '170 x 170 px', '510 x 510 px'),
-  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '1092 x 510 px'),
-  Iwidget(icons['large'], 'Large', '364 x 383 px', '1092 x 1149 px'),
+  Iwidget(icons['small'], 'Small', '170 x 170 px', '340 x 340 px'),
+  Iwidget(icons['medium'], 'Medium', '364 x 170 px', '728 x 340 px'),
+  Iwidget(icons['large'], 'Large', '364 x 382 px', '728 x 764 px'),
 ], [
   Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
       '639 x 1366 px', '1278 x 2732 px'),
@@ -323,7 +324,7 @@ Display twelveNineLiquidRetinaZ =
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD', '12.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
   Safearea(
@@ -336,8 +337,8 @@ Display twelveNineLiquidRetinaZ =
   SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
   SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
       'Regular'),
-  SizeClass(
-      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdPortraitSplit'], '1/3 Portrait Split', 'Compact',
+      'Regular'),
   SizeClass(
       icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
   SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
@@ -380,7 +381,7 @@ Display twelveNineDisplayS =
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD', '12.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -389,8 +390,8 @@ Display twelveNineDisplayS =
   SizeClass(icons['portrait'], 'Portrait', 'Regular', 'Regular'),
   SizeClass(icons['twoThirdPortraitSplit'], '2/3 Portrait Split', 'Compact',
       'Regular'),
-  SizeClass(
-      icons['oneThirdPortraitSplit'], '1/3 Portrait', 'Compact', 'Regular'),
+  SizeClass(icons['oneThirdPortraitSplit'], '1/3 Portrait Split', 'Compact',
+      'Regular'),
   SizeClass(
       icons['portraitSlideOver'], 'Portrait Slide Over', 'Compact', 'Regular'),
   SizeClass(icons['landscape'], 'Landscape', 'Regular', 'Regular'),
@@ -405,7 +406,7 @@ Display twelveNineDisplayS =
 ], [
   Iwidget(icons['small'], 'Small', '170 x 170 px', '340 x 340 px'),
   Iwidget(icons['medium'], 'Medium', '364 x 170 px', '728 x 340 px'),
-  Iwidget(icons['large'], 'Large', '364 x 383 px', '728 x 764 px'),
+  Iwidget(icons['large'], 'Large', '364 x 382 px', '728 x 764 px'),
 ], [
   Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
       '639 x 1366 px', '1278 x 2732 px'),
@@ -432,7 +433,7 @@ Display twelveNineDisplayZ =
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD', '12.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -484,7 +485,7 @@ Display twelveNineS = Display('12.9\"', "sRGB Retina LCD", "Standard", [
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD', '12.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -509,7 +510,7 @@ Display twelveNineS = Display('12.9\"', "sRGB Retina LCD", "Standard", [
 ], [
   Iwidget(icons['small'], 'Small', '170 x 170 px', '340 x 340 px'),
   Iwidget(icons['medium'], 'Medium', '364 x 170 px', '728 x 340 px'),
-  Iwidget(icons['large'], 'Large', '364 x 383 px', '728 x 764 px'),
+  Iwidget(icons['large'], 'Large', '364 x 382 px', '728 x 764 px'),
 ], [
   Multitasking(icons['twoThirdPortraitSplit'], "2/3 Portrait Split",
       '639 x 1366 px', '1278 x 2732 px'),
@@ -535,7 +536,7 @@ Display twelveNineZ = Display('12.9\"', "sRGB Retina LCD", "Zoomed", [
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD', '12.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -589,7 +590,7 @@ Display eleven = Display('11\"', "Display P3 Retina LCD", "Standard", [
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD', '11\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
   Safearea(
@@ -645,7 +646,7 @@ Display tenNine = Display('10.9\"', "Display P3 Retina LCD", "Standard", [
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD', '10.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '24 px', '48 px'),
   Safearea(
@@ -683,9 +684,9 @@ Display tenNine = Display('10.9\"', "Display P3 Retina LCD", "Standard", [
   Multitasking(icons['portraitSlideOver'], "Portrait Slide Over",
       '320 x 1132 px', '640 x 2264 px'),
   Multitasking(icons['twoThirdLandscapeSplit'], "2/3 Landscape Split",
-      '795 x 820 px', '1170 x 1640 px'),
+      '795 x 820 px', '1590 x 1640 px'),
   Multitasking(icons['halfLandscapeSplit'], "1/2 Landscape Split",
-      '375 x 820 px', '750 x 1640 px'),
+      '585 x 820 px', '1170 x 1640 px'),
   Multitasking(icons['oneThirdLandscapeSplit'], "1/3 Landscape Split",
       '375 x 820 px', '750 x 1640 px'),
   Multitasking(icons['landscapeSplideOver'], "Landscape Slide Over",
@@ -702,7 +703,7 @@ Display tenFive = Display('10.5\"', "Display P3 Retina LCD", "Standard", [
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD', '10.5\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -755,7 +756,7 @@ Display tenTwo = Display('10.2\"', "sRGB Retina LCD", "Standard", [
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD', '10.2\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -808,7 +809,7 @@ Display nineSevenPro =
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD', '9.7\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -863,7 +864,7 @@ Display nineSevenAir = Display('9.7\" Air', "sRGB Retina LCD", "Standard", [
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD', '9.7\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -917,7 +918,7 @@ Display nineSevenRetina =
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD', '9.7\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -960,13 +961,12 @@ Display nineSeven = Display('9.7\"', "sRGB LCD", "Standard", [
   ipads['iPad (2nd Gen)'],
   ipads['iPad (1st Gen)'],
 ], [
-  Property(
-      icons['resolution'], 'Resolution', '768 x 1024 px', '1536 x 2048 px'),
+  Property(icons['resolution'], 'Resolution', '768 x 1024 px'),
   Property(icons['ipadOS'], 'Last Supported By', 'iPadOS 9'),
   Property(icons['ppi'], 'PPI', '264'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB LCD'),
+  Property(icons['display'], 'Display', 'sRGB LCD', '9.7\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px'),
   Safearea(icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px'),
@@ -1014,7 +1014,7 @@ Display sevenNineP3 =
   Property(icons['ppi'], 'PPI', '326'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Supported'),
-  Property(icons['display'], 'Display', 'Display P3 Retina LCD'),
+  Property(icons['display'], 'Display', 'Display P3 Retina LCD', '7.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -1031,7 +1031,7 @@ Display sevenNineP3 =
   SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
       'Regular'),
   SizeClass(
-      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
   SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
       'Regular'),
   SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
@@ -1069,7 +1069,7 @@ Display sevenNineRetina =
   Property(icons['ppi'], 'PPI', '326'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB Retina LCD'),
+  Property(icons['display'], 'Display', 'sRGB Retina LCD', '7.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px', '40 px'),
   Safearea(
@@ -1086,7 +1086,7 @@ Display sevenNineRetina =
   SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
       'Regular'),
   SizeClass(
-      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
   SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
       'Regular'),
   SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',
@@ -1120,7 +1120,7 @@ Display sevenNine = Display('7.9\"', "sRGB LCD", "Standard", [
   Property(icons['ppi'], 'PPI', '163'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '4:3'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'sRGB LCD'),
+  Property(icons['display'], 'Display', 'sRGB LCD', '7.9\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Portrait Status Bar', '20 px'),
   Safearea(icons['landscapeStatusBar'], 'Landscape Status Bar', '20 px'),
@@ -1136,7 +1136,7 @@ Display sevenNine = Display('7.9\"', "sRGB LCD", "Standard", [
   SizeClass(icons['twoThirdLandscapeSplit'], '2/3 Landscape Split', 'Regular',
       'Regular'),
   SizeClass(
-      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Regular', 'Regular'),
+      icons['halfLandscapeSplit'], '1/2 Landscape Split', 'Compact', 'Regular'),
   SizeClass(icons['oneThirdLandscapeSplit'], '1/3 Landscape Split', 'Compact',
       'Regular'),
   SizeClass(icons['landscapeSplideOver'], 'Landscape Slide Over', 'Compact',

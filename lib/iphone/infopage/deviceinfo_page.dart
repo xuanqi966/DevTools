@@ -199,6 +199,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
         padding: EdgeInsets.only(top: 20, left: 10, right: 10),
         width: 120,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               "${_modelData.imagePath}",
@@ -206,13 +207,14 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
               width: 70,
             ),
             SizedBox(
-              height: 10.0,
+              height: 8.0,
             ),
-            Text(_modelData.title,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    .copyWith(fontSize: 10)),
+            Text(
+              _modelData.title,
+              style:
+                  Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 11),
+              textAlign: TextAlign.center,
+            ),
             SizedBox(
               height: 3.0,
             ),
@@ -248,9 +250,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
                   thickness: 1.0,
                   color: Colors.grey[300],
                 ),
-                _buildListView(
-                  _propertyData,
-                ),
+                _buildListView(_propertyData),
               ],
             ),
           ),
@@ -288,12 +288,11 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
   Widget _buildRow(dynamic devicesPageIcon) {
     String title;
     String subtitle;
-    String dimensionOne = "@1x: ";
-    String dimensionTwo;
+    String dimensionOne = "";
+    String dimensionTwo = "";
 
-    if (widget.previousPage == "iPhone") {
-      dimensionTwo = "@3x: ";
-    } else {
+    if (widget.previousPage != "iPhone") {
+      dimensionOne = "@1x: ";
       dimensionTwo = "@2x: ";
     }
 
@@ -303,17 +302,19 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
         subtitle = dimensionOne + devicesPageIcon.property1;
         if (devicesPageIcon.property2 != null) {
           subtitle =
-              subtitle + "         " + dimensionTwo + devicesPageIcon.property2;
+              subtitle + "      " + dimensionTwo + devicesPageIcon.property2;
         }
+      } else if (title == "Display" && widget.needModel == false) {
+        subtitle = devicesPageIcon.property2 + " " + devicesPageIcon.property1;
       } else {
         subtitle = devicesPageIcon.property1;
       }
     } else if (devicesPageIcon.runtimeType == Safearea) {
       title = devicesPageIcon.title;
-      subtitle = "@1x: " + devicesPageIcon.dimension1x;
+      subtitle = dimensionOne + devicesPageIcon.dimension1x;
       if (devicesPageIcon.dimension3x != null) {
         subtitle =
-            subtitle + "         " + dimensionTwo + devicesPageIcon.dimension3x;
+            subtitle + "      " + dimensionTwo + devicesPageIcon.dimension3x;
       }
     } else if (devicesPageIcon.runtimeType == SizeClass) {
       title = devicesPageIcon.title;
@@ -323,14 +324,14 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
           devicesPageIcon.height;
     } else if (devicesPageIcon.runtimeType == Iwidget) {
       title = devicesPageIcon.size;
-      subtitle = "@1x: " + devicesPageIcon.dimension1x;
+      subtitle = dimensionOne + devicesPageIcon.dimension1x;
       if (devicesPageIcon.dimension3x != null) {
         subtitle =
             subtitle + "         " + dimensionTwo + devicesPageIcon.dimension3x;
       }
     } else if (devicesPageIcon.runtimeType == Multitasking) {
       title = devicesPageIcon.title;
-      subtitle = "@1x: " + devicesPageIcon.dimension1x;
+      subtitle = dimensionOne + devicesPageIcon.dimension1x;
       if (devicesPageIcon.dimension2x != null) {
         subtitle =
             subtitle + "         " + dimensionTwo + devicesPageIcon.dimension2x;

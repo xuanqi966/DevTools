@@ -1,10 +1,7 @@
 import 'package:dev_tools/models/devices/display.dart';
-
 import '../../models/devices/device.dart';
 import '../../models/device-attributes/property.dart';
 import '../../models/device-attributes/safe-area.dart';
-import '../../models/device-attributes/size-class.dart';
-import '../../models/device-attributes/iwidget.dart';
 import 'data.dart';
 
 Map<String, Device> watches = {
@@ -95,7 +92,7 @@ Display s44mm = Display('44mm', "LTPO Retina OLED", "Standard", [
   Property(icons['ppi'], 'PPI', '326'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '16:13'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'LTPO Retina OLED'),
+  Property(icons['display'], 'Display', 'LTPO Retina OLED', '1.73\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Status Bar', '31 px', '62 px'),
   Safearea(icons['portraitHomeIndicator'], 'Bottom Margin', '31 px', '62 px'),
@@ -112,7 +109,7 @@ Display s42mm = Display('42mm', "Retina OLED", "Standard", [
   Property(icons['ppi'], 'PPI', '326'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '5:4'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'Retina OLED'),
+  Property(icons['display'], 'Display', 'Retina OLED', '1.65\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Status Bar', '21 px', '42 px'),
   Safearea(icons['portraitHomeIndicator'], 'Bottom Margin', '0 px', '0 px'),
@@ -129,7 +126,7 @@ Display s40mm = Display('40mm', "LTPO Retina OLED", "Standard", [
   Property(icons['ppi'], 'PPI', '326'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '16:13'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'LTPO Retina OLED'),
+  Property(icons['display'], 'Display', 'LTPO Retina OLED', '1.57\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Status Bar', '28 px', '56 px'),
   Safearea(icons['portraitHomeIndicator'], 'Bottom Margin', '28 px', '56 px'),
@@ -141,12 +138,12 @@ Display s38mm = Display('38mm', "Retina OLED", "Standard", [
   watches['Series 1 (38mm)'],
   watches['Apple Watch (38mm)'],
 ], [
-  Property(icons['resolution'], 'Resolution', '136 x 170 px', '270 x 340 px'),
+  Property(icons['resolution'], 'Resolution', '136 x 170 px', '272 x 340 px'),
   Property(icons['ios'], 'Last Supported By', 'watchOS 7'),
   Property(icons['ppi'], 'PPI', '326'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '5:4'),
   Property(icons['trueTone'], 'True Tone', 'Not Supported'),
-  Property(icons['display'], 'Display', 'Retina OLED'),
+  Property(icons['display'], 'Display', 'Retina OLED', '1.5\"'),
 ], [
   Safearea(icons['portraitStatusBar'], 'Status Bar', '19 px', '38 px'),
   Safearea(icons['portraitHomeIndicator'], 'Bottom Margin', '0 px', '0 px'),
