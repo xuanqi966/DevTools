@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Multitasking {
-  final ImageIcon icon;
+  final Image icon;
   final String title;
   final String dimension1x;
   String dimension2x;

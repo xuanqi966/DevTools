@@ -17,6 +17,7 @@ class DevicesHomePage extends StatelessWidget {
           style: Theme.of(context).textTheme.headline1,
         ),
         centerTitle: false,
+        leadingWidth: 20,
       ),
       body: SafeArea(
         child: buildGridView(context),
@@ -74,7 +75,7 @@ class DevicesHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                "assets/iphone_images/$imageName",
+                "$imageName",
                 height: 80,
               ),
               SizedBox(

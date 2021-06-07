@@ -1,3 +1,4 @@
+import 'package:dev_tools/models/device-attributes/multitasking.dart';
 import 'package:flutter/material.dart';
 import '../../models/device-attributes/iwidget.dart';
 import '../../models/device-attributes/property.dart';
@@ -53,10 +54,10 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
         child: Column(
           children: [
             // give the tab bar a height
-            _buildTabBar(),
-            _buildDivider(),
+            _needBuildTabBar(),
+            _needBuildDivider(),
             // tab bar view here
-            _buildTabView(),
+            _needBuildTabView(),
             //Spacer(),
           ],
         ),
@@ -64,7 +65,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
     );
   }
 
-  Widget _buildDivider() {
+  Widget _needBuildDivider() {
     if (widget.displayList[1] == null) {
       return SizedBox.shrink();
     } else {
@@ -75,7 +76,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
     }
   }
 
-  Widget _buildTabView() {
+  Widget _needBuildTabView() {
     if (widget.displayList[1] == null) {
       return Expanded(child: _buildSubTabView(widget.displayList[0]));
     } else {
@@ -104,13 +105,22 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
             _buildContainer(displayList.properties.sublist(0, 2)),
             _needBuildExpansionTile(displayList.properties.sublist(2)),
             _buildModelColumn(displayList.devices),
-            _buildSubColumn(displayList.safeAreas, "Safe Area"),
+            _buildSubColumn(displayList.safeAreas, "Safe Areas"),
+            _needBuildMultiSubColumn(displayList),
             _buildSubColumn(displayList.sizeClasses, "Size Classes"),
             _buildSubColumn(displayList.widgets, "Widgets"),
           ],
         ),
       ),
     );
+  }
+
+  Widget _needBuildMultiSubColumn(Display display) {
+    if (widget.previousPage == "iPad") {
+      return _buildSubColumn(display.multitaskings, "Multitaskings");
+    } else {
+      return SizedBox.shrink();
+    }
   }
 
   Widget _buildSubColumn(List<dynamic> _propertyData, String title) {
@@ -180,11 +190,10 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
     return Container(
         padding: EdgeInsets.only(top: 20, left: 10, right: 10),
         width: 120,
-        color: Colors.grey[300],
         child: Column(
           children: [
             Image.asset(
-              "assets/iphone_images/${_modelData.imagePath}",
+              "${_modelData.imagePath}",
               height: 70,
               width: 70,
             ),
@@ -311,6 +320,13 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
         subtitle =
             subtitle + "         " + dimensionTwo + devicesPageIcon.dimension3x;
       }
+    } else if (devicesPageIcon.runtimeType == Multitasking) {
+      title = devicesPageIcon.title;
+      subtitle = "@1x: " + devicesPageIcon.dimension1x;
+      if (devicesPageIcon.dimension2x != null) {
+        subtitle =
+            subtitle + "         " + dimensionTwo + devicesPageIcon.dimension2x;
+      }
     }
 
     return ListTile(
@@ -329,7 +345,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
     );
   }
 
-  Widget _buildTabBar() {
+  Widget _needBuildTabBar() {
     if (widget.displayList[1] == null) {
       return SizedBox(
         height: 10,

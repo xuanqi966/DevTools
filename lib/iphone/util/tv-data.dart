@@ -6,9 +6,12 @@ import '../../models/device-attributes/safe-area.dart';
 import 'data.dart';
 
 Map<String, Device> tvs = {
-  "4K (6th Gen)": Device("4K (6th Gen)", "2021", "dummy"),
-  "4K (5th Gen)": Device("4K (5th Gen)", "2017", "dummy"),
-  "HD (4th Gen)": Device("HD (4th Gen)", "2015", "dummy"),
+  "4K (6th Gen)":
+      Device("4K (6th Gen)", "2021", "assets/images/tv/appletv-gen6.png"),
+  "4K (5th Gen)":
+      Device("4K (5th Gen)", "2017", "assets/images/tv/appletv-gen5.png"),
+  "HD (4th Gen)":
+      Device("HD (4th Gen)", "2015", "assets/images/tv/appletv-gen4.png"),
 };
 
 Map<int, List<Display>> tvDisplays = {

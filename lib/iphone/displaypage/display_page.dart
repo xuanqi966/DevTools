@@ -113,7 +113,6 @@ class _DisplayPageState extends State<DisplayPage>
           padding: EdgeInsets.only(bottom: 16.0),
           itemCount: devicesList.length,
           itemBuilder: (context, i) {
-            print("length is ${devicesList.length}");
             return _buildRow(
                 devicesList[i], i, devicesList, displayList, needModel);
           }),
@@ -154,8 +153,7 @@ class _DisplayPageState extends State<DisplayPage>
                   .bodyText2
                   .copyWith(color: Colors.grey[600])),
           dense: true,
-          leading:
-              Image.asset("assets/iphone_images/${devicesPageIcon.imagePath}"),
+          leading: Image.asset("${devicesPageIcon.imagePath}"),
           trailing: Icon(Icons.arrow_forward_ios_sharp),
           onTap: () {
             Navigator.of(context).push(new MaterialPageRoute(

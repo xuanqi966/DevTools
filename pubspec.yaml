@@ -89,6 +89,11 @@ flutter:
     # - assets/images/osim_logo.png
     - assets/iphone_images/
     - assets/icons/
+    - assets/images/iphone/
+    - assets/images/ipad/
+    - assets/images/ipod/
+    - assets/images/tv/
+    - assets/images/watch/
 
   fonts:
     - family: Raleway

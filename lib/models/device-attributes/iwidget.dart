@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Iwidget {
-  final ImageIcon icon;
+  final Image icon;
   final String size;
   final String dimension1x;
   final String dimension3x;
