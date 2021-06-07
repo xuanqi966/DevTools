@@ -37,6 +37,7 @@ class DevicesHomePage extends StatelessWidget {
               icon.nextPage,
               icon.devicesList,
               icon.displayList,
+              icon.displayList2,
               icon.phonesList))
           .toList(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -51,6 +52,7 @@ class DevicesHomePage extends StatelessWidget {
       String nextPage,
       List<Device> devicesList,
       Map<int, List<Display>> displayList,
+      Map<int, List<Display>> displayList2,
       Map<String, Device> phonesList) {
     return GestureDetector(
       onTap: () {
@@ -60,6 +62,7 @@ class DevicesHomePage extends StatelessWidget {
                   devicesList: devicesList,
                   displayList: displayList,
                   phonesList: phonesList,
+                  displayList2: displayList2,
                 )));
       },
       child: Card(

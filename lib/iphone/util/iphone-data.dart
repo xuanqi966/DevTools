@@ -59,9 +59,70 @@ Map<int, List<Display>> displays = {
   9: [fiveFourS, fiveFourZ],
   10: [fourSevenDisplayP3S, fourSevenDisplayP3Z],
   11: [fourSevenS, fourSevenZ],
-  12: [four],
-  13: [threeFiveRetina],
-  14: [threeFive]
+  12: [four, null],
+  13: [threeFiveRetina, null],
+  14: [threeFive, null]
+};
+
+Map<int, List<Display>> displays2 = {
+  //12 Pro Max
+  0: [sixSevenS, sixSevenZ],
+  //12 Pro
+  1: [sixOneSuperRetinaS, sixOneSuperRetinaZ],
+  //12
+  2: [sixOneSuperRetinaS, sixOneSuperRetinaZ],
+  //12 mini
+  3: [fiveFourS, fiveFourZ],
+  //SE(2nd gen)
+  4: [fourSevenDisplayP3S, fourSevenDisplayP3Z],
+  //11 pro Max
+  5: [sixFiveXDRS, sixFiveXDRZ],
+  //11 pro
+  6: [fiveEightXdrS, fiveEightXdrZ],
+  //11
+  7: [sixOneLiquidRetinaS, sixOneLiquidRetinaZ],
+  //Xs Max
+  8: [sixFiveS, sixFiveZ],
+  //Xs
+  9: [fiveEightS, fiveEightZ],
+  //Xr
+  10: [sixOneLiquidRetinaS, sixOneLiquidRetinaZ],
+  //X
+  11: [fiveEightS, fiveEightZ],
+  //8 Plus
+  12: [fiveFiveP3S, fiveFiveP3Z],
+  //8
+  13: [fourSevenDisplayP3S, fourSevenDisplayP3Z],
+  //7 plus
+  14: [fiveFiveP3S, fiveFiveP3Z],
+  //7
+  15: [fourSevenDisplayP3S, fourSevenDisplayP3Z],
+  //6s Plus
+  16: [fiveFiveS, fiveFiveZ],
+  //6s
+  17: [fourSevenS, fourSevenZ],
+  //6 plus
+  18: [fiveFiveS, fiveFiveZ],
+  //6
+  19: [fourSevenS, fourSevenZ],
+  //SE(1st gen)
+  20: [four],
+  //5s
+  21: [four],
+  //5c
+  22: [four],
+  //5
+  23: [four],
+  //4s
+  24: [threeFiveRetina],
+  //4
+  25: [threeFiveRetina],
+  //3gs
+  26: [threeFive],
+  //3g
+  27: [threeFive],
+  //iPhone
+  28: [threeFive],
 };
 
 Display sixSevenS = Display('6.7\"', "Display P3 XDR Retina OLED", "Standard", [
@@ -275,7 +336,7 @@ Display sixOneSuperRetinaZ =
   iphones['12 Pro'],
   iphones['12']
 ], [
-  Property(icons['resolution'], 'Resolution', '390 x 844 px', '1170 x 2532 px'),
+  Property(icons['resolution'], 'Resolution', '320 x 693 px', '960 x 2079 px'),
   Property(icons['ios'], 'Last Supported By', 'iOS 14'),
   Property(icons['ppi'], 'PPI', '460'),
   Property(icons['aspectRatio'], 'Aspect Ratio', '19.5:9'),

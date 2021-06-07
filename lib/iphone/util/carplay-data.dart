@@ -1,16 +1,14 @@
 import 'package:dev_tools/models/devices/display.dart';
-
-import '../../models/devices/device.dart';
 import '../../models/device-attributes/property.dart';
 import '../../models/device-attributes/safe-area.dart';
 import 'data.dart';
 import 'iphone-data.dart';
 
-Map<String, List<Display>> displays = {
-  '8:3': [s83],
-  '16:9 HD': [s169hd],
-  '16:9': [s169],
-  '5:3': [s53]
+Map<int, List<Display>> carplayDisplays = {
+  0: [s83, null],
+  1: [s169hd, null],
+  2: [s169, null],
+  3: [s53, null]
 };
 
 Display s83 = Display('8:3', null, "Standard", [

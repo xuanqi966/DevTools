@@ -10,8 +10,10 @@ class DeviceInfoPage extends StatefulWidget {
   final String title;
   final String previousPage;
   final List<Display> displayList;
+  final bool needModel;
 
-  DeviceInfoPage({this.title, this.previousPage, this.displayList});
+  DeviceInfoPage(
+      {this.title, this.previousPage, this.displayList, this.needModel});
 
   @override
   _DeviceInfoPageState createState() => _DeviceInfoPageState();
@@ -52,10 +54,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
           children: [
             // give the tab bar a height
             _buildTabBar(),
-            Divider(
-              height: 40,
-              thickness: 1.5,
-            ),
+            _buildDivider(),
             // tab bar view here
             _buildTabView(),
             //Spacer(),
@@ -65,19 +64,33 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
     );
   }
 
-  Widget _buildTabView() {
-    return Expanded(
-      child: TabBarView(
-        controller: _tabController,
-        children: [
-          //first tab bar view widget
-          _buildSubTabView(widget.displayList[0]),
+  Widget _buildDivider() {
+    if (widget.displayList[1] == null) {
+      return SizedBox.shrink();
+    } else {
+      return Divider(
+        height: 40,
+        thickness: 1.5,
+      );
+    }
+  }
 
-          // second tab bar view widget
-          _buildSubTabView(widget.displayList[1]),
-        ],
-      ),
-    );
+  Widget _buildTabView() {
+    if (widget.displayList[1] == null) {
+      return Expanded(child: _buildSubTabView(widget.displayList[0]));
+    } else {
+      return Expanded(
+        child: TabBarView(
+          controller: _tabController,
+          children: [
+            //first tab bar view widget
+            _buildSubTabView(widget.displayList[0]),
+            // second tab bar view widget
+            _buildSubTabView(widget.displayList[1]),
+          ],
+        ),
+      );
+    }
   }
 
   Widget _buildSubTabView(Display displayList) {
@@ -101,64 +114,73 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
   }
 
   Widget _buildSubColumn(List<dynamic> _propertyData, String title) {
-    return Column(
+    if (_propertyData.length == 0) {
+      return SizedBox.shrink();
+    } else {
+      return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.headline2,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            _buildContainer(_propertyData),
+          ]);
+    }
+  }
+
+  Widget _buildModelColumn(List<dynamic> _modelData) {
+    if (widget.needModel == false) {
+      return SizedBox.shrink();
+    } else {
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Text(
-            title,
+            "Models",
             style: Theme.of(context).textTheme.headline2,
           ),
           SizedBox(
             height: 10,
           ),
-          _buildContainer(_propertyData),
-        ]);
-  }
-
-  Widget _buildModelColumn(List<dynamic> _modelData) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          "Models",
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey[300]),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          height: 160,
-          width: double.infinity,
-          child: ListView.separated(
-            separatorBuilder: (context, index) => SizedBox(
-              width: 10,
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey[300]),
+              borderRadius: BorderRadius.circular(10.0),
             ),
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: _modelData.length,
-            itemBuilder: (context, index) {
-              return _buildModelContainer(_modelData[index]);
-            },
+            height: 160,
+            width: double.infinity,
+            child: ListView.separated(
+              separatorBuilder: (context, index) => SizedBox(
+                width: 10,
+              ),
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: _modelData.length,
+              itemBuilder: (context, index) {
+                return _buildModelContainer(_modelData[index]);
+              },
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
+    }
   }
 
   Widget _buildModelContainer(Device _modelData) {
     return Container(
         padding: EdgeInsets.only(top: 20, left: 10, right: 10),
         width: 120,
+        color: Colors.grey[300],
         child: Column(
           children: [
             Image.asset(
@@ -170,7 +192,10 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
               height: 10.0,
             ),
             Text(_modelData.title,
-                style: Theme.of(context).textTheme.bodyText1),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    .copyWith(fontSize: 10)),
             SizedBox(
               height: 3.0,
             ),
@@ -246,68 +271,101 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
   Widget _buildRow(dynamic devicesPageIcon) {
     String title;
     String subtitle;
+    String dimensionOne = "@1x: ";
+    String dimensionTwo;
+
+    if (widget.previousPage == "iPhone") {
+      dimensionTwo = "@3x: ";
+    } else {
+      dimensionTwo = "@2x: ";
+    }
 
     if (devicesPageIcon.runtimeType == Property) {
       title = devicesPageIcon.propertyTitle;
-      subtitle = devicesPageIcon.property1;
+      if (title == "Resolution") {
+        subtitle = dimensionOne + devicesPageIcon.property1;
+        if (devicesPageIcon.property2 != null) {
+          subtitle =
+              subtitle + "         " + dimensionTwo + devicesPageIcon.property2;
+        }
+      } else {
+        subtitle = devicesPageIcon.property1;
+      }
     } else if (devicesPageIcon.runtimeType == Safearea) {
       title = devicesPageIcon.title;
-      subtitle = devicesPageIcon.dimension1x;
+      subtitle = "@1x: " + devicesPageIcon.dimension1x;
+      if (devicesPageIcon.dimension3x != null) {
+        subtitle =
+            subtitle + "         " + dimensionTwo + devicesPageIcon.dimension3x;
+      }
     } else if (devicesPageIcon.runtimeType == SizeClass) {
       title = devicesPageIcon.title;
-      subtitle = devicesPageIcon.width;
+      subtitle = "Width: " +
+          devicesPageIcon.width +
+          "         Height: " +
+          devicesPageIcon.height;
     } else if (devicesPageIcon.runtimeType == Iwidget) {
       title = devicesPageIcon.size;
-      subtitle = devicesPageIcon.dimension1x;
+      subtitle = "@1x: " + devicesPageIcon.dimension1x;
+      if (devicesPageIcon.dimension3x != null) {
+        subtitle =
+            subtitle + "         " + dimensionTwo + devicesPageIcon.dimension3x;
+      }
     }
 
     return ListTile(
-      title: Text(title ?? "Hello",
+      title: Text(title,
           style: Theme.of(context)
               .textTheme
               .bodyText1
               .copyWith(fontWeight: FontWeight.bold)),
-      subtitle: Text(subtitle ?? "Hello",
+      subtitle: Text(subtitle,
           style: Theme.of(context)
               .textTheme
               .bodyText2
-              .copyWith(color: Colors.grey[600])),
+              .copyWith(color: Colors.grey[800])),
       dense: true,
       leading: devicesPageIcon.icon,
     );
   }
 
   Widget _buildTabBar() {
-    return Padding(
-      padding: EdgeInsets.only(left: 10, right: 10),
-      child: Container(
-        height: 35,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(
-              10.0,
+    if (widget.displayList[1] == null) {
+      return SizedBox(
+        height: 10,
+      );
+    } else {
+      return Padding(
+        padding: EdgeInsets.only(left: 10, right: 10),
+        child: Container(
+          height: 35,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(
+                10.0,
+              ),
+              border: Border.all(color: Colors.grey[350], width: 1.5)),
+          child: TabBar(
+            controller: _tabController,
+            // give the indicator a decoration (color and border radius)
+            indicator: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                10.0,
+              ),
+              color: Colors.grey[300],
             ),
-            border: Border.all(color: Colors.grey[350], width: 1.5)),
-        child: TabBar(
-          controller: _tabController,
-          // give the indicator a decoration (color and border radius)
-          indicator: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              10.0,
-            ),
-            color: Colors.grey[300],
+            labelColor: Colors.black,
+            tabs: [
+              Tab(
+                text: 'Standard',
+              ),
+              Tab(
+                text: 'Zoomed',
+              ),
+            ],
           ),
-          labelColor: Colors.black,
-          tabs: [
-            Tab(
-              text: 'Standard',
-            ),
-            Tab(
-              text: 'Zoomed',
-            ),
-          ],
         ),
-      ),
-    );
+      );
+    }
   }
 }

@@ -17,10 +17,27 @@ Map<String, Device> ipods = {
   "1st Gen": Device("1st Gen", "2007", "assets/images/ipod/ipodtouch-gen1.png"),
 };
 
-Map<String, List<Display>> displays = {
-  '4': [four],
-  '3.5 Retina': [threeFiveRetina],
-  '3.5': [threeFive]
+Map<int, List<Display>> ipodDisplays = {
+  0: [four, null],
+  1: [threeFiveRetina, null],
+  2: [threeFive, null]
+};
+
+Map<int, List<Display>> ipodDisplays2 = {
+  //7th
+  0: [four, null],
+  //6th
+  1: [four, null],
+  //5th
+  2: [four, null],
+  //4th
+  3: [threeFiveRetina, null],
+  //3rd
+  4: [threeFive, null],
+  //2nd
+  5: [threeFive, null],
+  //1st
+  6: [threeFive, null]
 };
 
 Display four = Display('4\"', "sRGB Retina LCD", "Standard", [

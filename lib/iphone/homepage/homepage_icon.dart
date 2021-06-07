@@ -8,7 +8,7 @@ class HomePageIcon {
   final String nextPage;
   final List<Device> devicesList;
   Map<String, Device> phonesList;
-
+  Map<int, List<Display>> displayList2;
   Map<int, List<Display>> displayList;
 
   HomePageIcon(
@@ -17,5 +17,6 @@ class HomePageIcon {
       this.nextPage,
       this.devicesList,
       this.displayList,
-      this.phonesList});
+      this.phonesList,
+      this.displayList2});
 }

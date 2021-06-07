@@ -42,11 +42,46 @@ Map<String, Device> watches = {
       "assets/images/watch/applewatch-series0mm38.png"),
 };
 
-Map<String, List<Display>> displays = {
-  '44mm': [s44mm],
-  '42mm': [s42mm],
-  '40mm': [s40mm],
-  '38mm': [s38mm],
+Map<int, List<Display>> watchDisplays = {
+  0: [s44mm, null],
+  1: [s42mm, null],
+  2: [s40mm, null],
+  3: [s38mm, null],
+};
+
+Map<int, List<Display>> watchDisplays2 = {
+  //series 6 - 44
+  0: [s44mm, null],
+  //series 6 - 40
+  1: [s40mm, null],
+  //se - 44
+  2: [s44mm, null],
+  //se - 40
+  3: [s40mm, null],
+  //series 5 - 44
+  4: [s44mm, null],
+  //series 5 - 40
+  5: [s40mm, null],
+  //series 4 - 44
+  6: [s44mm, null],
+  //series 4 - 40
+  7: [s40mm, null],
+  //series 3 - 42
+  8: [s42mm, null],
+  //series 3 - 38
+  9: [s38mm, null],
+  //series 2 - 42
+  10: [s42mm, null],
+  //series 2 - 38
+  11: [s38mm, null],
+  //series 1 - 42
+  12: [s42mm, null],
+  //series 1 - 38
+  13: [s38mm, null],
+  //apple watch - 42
+  14: [s42mm, null],
+  //apple watch - 38
+  15: [s38mm, null],
 };
 
 Display s44mm = Display('44mm', "LTPO Retina OLED", "Standard", [

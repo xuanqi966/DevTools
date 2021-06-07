@@ -33,6 +33,8 @@ Map<String, Device> ipads = {
       '11\" Pro (1st Gen)', '2018', 'assets/images/ipad/ipad-ipro11in1.png'),
   'iPad (6th Gen)':
       Device('iPad (6th Gen)', '2018', 'assets/images/ipad/ipad-i6.png'),
+  '12.9\" Pro (2nd Gen)':
+      Device('12.9\" Pro (2nd Gen)', '2018', 'assets/images/ipad/ipad-i6.png'),
   '10.5\" Pro':
       Device('10.5\" Pro', '2017', 'assets/images/ipad/ipad-ipro105in1.png'),
   'iPad (5th Gen)':
@@ -63,22 +65,79 @@ Map<String, Device> ipads = {
       Device('iPad (1st Gen)', '2010', 'assets/images/ipad/ipad-i1.png'),
 };
 
-Map<String, List<Display>> ipadDisplays = {
-  '12.9 XDR': [twelveNineXdrS, twelveNineXdrZ],
-  '12.9 Liquid Retina': [twelveNineLiquidRetinaS, twelveNineLiquidRetinaZ],
-  '12.9 Display P3': [twelveNineDisplayS, twelveNineDisplayZ],
-  '12.9': [twelveNineS, twelveNineZ],
-  '11': [eleven],
-  '10.9': [tenNine],
-  '10.5': [tenFive],
-  '10.2': [tenTwo],
-  '9.7 Pro': [nineSevenPro],
-  '9.7 Air': [nineSevenAir],
-  '9.7 Retina': [nineSevenRetina],
-  '9.7': [nineSeven],
-  '7.9 Display P3': [sevenNineP3],
-  '7.9 Retina': [sevenNineRetina],
-  '7.9': [sevenNine]
+Map<int, List<Display>> ipadDisplays = {
+  0: [twelveNineXdrS, twelveNineXdrZ],
+  1: [twelveNineLiquidRetinaS, twelveNineLiquidRetinaZ],
+  2: [twelveNineDisplayS, twelveNineDisplayZ],
+  3: [twelveNineS, twelveNineZ],
+  4: [eleven, null],
+  5: [tenNine, null],
+  6: [tenFive, null],
+  7: [tenTwo, null],
+  8: [nineSevenPro, null],
+  9: [nineSevenAir, null],
+  10: [nineSevenRetina, null],
+  11: [nineSeven, null],
+  12: [sevenNineP3, null],
+  13: [sevenNineRetina, null],
+  14: [sevenNine, null]
+};
+
+Map<int, List<Display>> ipadDisplays2 = {
+  //12.9 Pro (5th)
+  0: [twelveNineXdrS, twelveNineXdrZ],
+  //11 pro (3rd)
+  1: [eleven, null],
+  //12.9 pro (4th)
+  2: [twelveNineLiquidRetinaS, twelveNineLiquidRetinaZ],
+  //11 pro (2nd)
+  3: [eleven, null],
+  //Air(4th)
+  4: [tenNine, null],
+  //ipad (8th)
+  5: [tenTwo, null],
+  //air(3rd)
+  6: [tenFive, null],
+  //ipad(7th)
+  7: [tenTwo, null],
+  //mini(5th)
+  8: [sevenNineP3, null],
+  //12.9 pro(3rd)
+  9: [twelveNineLiquidRetinaS, twelveNineLiquidRetinaZ],
+  //11"pro (1st)
+  10: [eleven, null],
+  //ipad(6th)
+  11: [nineSevenAir, null],
+  //12.9 pro (2nd)
+  12: [twelveNineDisplayS, twelveNineDisplayZ],
+  //10.5 pro
+  13: [tenFive, null],
+  //ipad(5th)
+  14: [nineSevenAir, null],
+  //9.7 pro
+  15: [nineSevenPro, null],
+  //12.9 pro(1st)
+  16: [twelveNineS, twelveNineZ],
+  //mini(4th)
+  17: [sevenNineRetina, null],
+  //air(2nd)
+  18: [nineSevenAir, null],
+  //ipad(4th)
+  19: [nineSevenRetina, null],
+  //mini(3rd)
+  20: [sevenNineRetina, null],
+  //air(1st)
+  21: [nineSevenAir, null],
+  //mini(2nd)
+  22: [sevenNineRetina, null],
+  //ipad(3rd)
+  23: [nineSevenRetina, null],
+  //mini(1st)
+  24: [sevenNine, null],
+  //ipad(2nd)
+  25: [nineSeven, null],
+  //ipad(1st)
+  26: [nineSeven, null],
 };
 
 Display twelveNineXdrS =

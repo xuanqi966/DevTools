@@ -11,9 +11,18 @@ Map<String, Device> tvs = {
   "HD (4th Gen)": Device("HD (4th Gen)", "2015", "dummy"),
 };
 
-Map<String, List<Display>> displays = {
-  '4K': [s4k],
-  'HD': [hd],
+Map<int, List<Display>> tvDisplays = {
+  0: [s4k, null],
+  1: [hd, null],
+};
+
+Map<int, List<Display>> tvDisplays2 = {
+  //4k(6th)
+  0: [s4k, null],
+  //4k(5th)
+  1: [s4k, null],
+  //HD(4th)
+  2: [hd, null],
 };
 
 Display s4k = Display('4K', null, "Standard", [
