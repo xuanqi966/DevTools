@@ -146,6 +146,14 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
   }
 
   Widget _buildModelColumn(List<dynamic> _modelData) {
+    String title;
+
+    if (widget.previousPage == "CarPlay") {
+      title = "Supported on";
+    } else {
+      title = "Models";
+    }
+
     if (widget.needModel == false) {
       return SizedBox.shrink();
     } else {
@@ -156,7 +164,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
             height: 10,
           ),
           Text(
-            "Models",
+            title,
             style: Theme.of(context).textTheme.headline2,
           ),
           SizedBox(
