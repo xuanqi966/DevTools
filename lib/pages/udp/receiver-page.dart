@@ -59,42 +59,49 @@ class _ReceiverPageState extends State<ReceiverPage> {
   //========================= Widget building =========================//
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                alignment: Alignment.bottomLeft,
-                child: _buildHeadings("My Port")),
-            Row(
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child: _buildInputField()),
-                (isReceiving)
-                    ? _buildButton("Stop", _terminateHandler)
-                    : _buildButton("Receive", _receiveHandler),
+                Container(
+                    alignment: Alignment.bottomLeft,
+                    child: _buildHeadings("My Port: ")),
+                Row(
+                  children: [
+                    Expanded(child: _buildInputField()),
+                    (isReceiving)
+                        ? _buildButton("Stop", _terminateHandler)
+                        : _buildButton("Receive", _receiveHandler),
+                  ],
+                ),
+                Container(
+                    margin: EdgeInsets.symmetric(vertical: 10),
+                    alignment: Alignment.bottomLeft,
+                    child: Row(
+                      children: [
+                        _buildHeadings("Messages: "),
+                        isReceiving
+                            ? Container(
+                                margin: EdgeInsets.only(left: 10),
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(),
+                              )
+                            : Container()
+                      ],
+                    )),
+                _buildMessageDisplay(),
+                SizedBox(
+                  height: 10,
+                )
               ],
             ),
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                alignment: Alignment.bottomLeft,
-                child: Row(
-                  children: [
-                    _buildHeadings("Messages"),
-                    isReceiving
-                        ? Container(
-                            margin: EdgeInsets.only(left: 10),
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(),
-                          )
-                        : Container()
-                  ],
-                )),
-            _buildMessageDisplay(),
-          ],
+          ),
         ),
       ),
     );
@@ -102,7 +109,7 @@ class _ReceiverPageState extends State<ReceiverPage> {
 
   Widget _buildButton(String text, Function onPressed) {
     return Container(
-      width: 150,
+      width: 130,
       padding: EdgeInsets.all(10),
       child: OutlinedButton(
           onPressed: onPressed,
@@ -112,13 +119,18 @@ class _ReceiverPageState extends State<ReceiverPage> {
 
   Widget _buildInputField() {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: TextFormField(
           decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(20),
+              filled: true,
+              fillColor: Colors.white60,
+              contentPadding: EdgeInsets.all(15.0),
               labelText: 'Port Number',
               hintText: 'My Port Number',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                const Radius.circular(10.0),
+              )),
               labelStyle: TextStyle(fontSize: 16)),
           textInputAction: TextInputAction.done,
           keyboardType: TextInputType.number,
@@ -135,23 +147,35 @@ class _ReceiverPageState extends State<ReceiverPage> {
   }
 
   Widget _buildHeadings(String text) {
-    return Text(text, style: Theme.of(context).textTheme.headline1);
+    return Text(text, style: Theme.of(context).textTheme.headline2);
   }
 
   Widget _buildMessageDisplay() {
-    return Container(
-      height: 300,
-      margin: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey, width: 2),
-          borderRadius: BorderRadius.circular(5)),
-      child: ListView.builder(
-        itemCount: _messages.length,
-        itemBuilder: (ctx, index) {
-          return _buildMessageListTile(_messages[index]);
-        },
-      ),
-    );
+    if (_messages.length == 0) {
+      return SizedBox.shrink();
+    } else {
+      return Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+            color: Colors.white60,
+            border: Border.all(color: Colors.grey[300]),
+            borderRadius: BorderRadius.circular(15)),
+        child: ListView.separated(
+          separatorBuilder: (context, index) {
+            return Divider(
+              thickness: 1.0,
+              color: Colors.grey[300],
+            );
+          },
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: _messages.length,
+          itemBuilder: (ctx, index) {
+            return _buildMessageListTile(_messages[index]);
+          },
+        ),
+      );
+    }
   }
 }
 

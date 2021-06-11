@@ -16,13 +16,24 @@ class ToolItem extends StatelessWidget {
     return InkWell(
       onTap: () => selectTool(context),
       splashColor: Theme.of(context).primaryColor,
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(10),
       child: Container(
         padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+        decoration: BoxDecoration(
+            color: Colors.grey[300], borderRadius: BorderRadius.circular(10)),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [tool.toolIcon, Text(tool.toolName)],
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            tool.toolIcon,
+            SizedBox(
+              height: 15.0,
+            ),
+            Text(
+              tool.toolName,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyText1,
+            )
+          ],
         ),
       ),
     );

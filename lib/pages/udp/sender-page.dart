@@ -20,67 +20,90 @@ class _SenderPageState extends State<SenderPage> {
   // build methods
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).requestFocus(new FocusNode());
-      },
-      child: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 50,
+    return SafeArea(
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildHeadline("Enter an Address: "),
+                  _buildIp(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  _buildHeadline("Enter a Port Number: "),
+                  _buildPort(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  _buildHeadline("Enter a Message: "),
+                  _buildMsg(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    //padding: EdgeInsets.all(20),
+                    child: OutlinedButton(
+                        onPressed: () {
+                          if (!_formKey.currentState.validate()) {
+                            return;
+                          }
+                          _formKey.currentState.save();
+
+                          udpSend(_port, _address, _message);
+
+                          _formKey.currentState.reset();
+
+                          showSentDialog(
+                              context,
+                              (_address == null)
+                                  ? "Message Broadcasted"
+                                  : "Message Sent",
+                              (_address == null)
+                                  ? '255.255.255.255'
+                                  : _address.toString(),
+                              _port.toString(),
+                              _message);
+                        },
+                        child: Text('Send Message',
+                            style: Theme.of(context).textTheme.button)),
+                  )
+                ],
               ),
-              _buildIp(),
-              _buildPort(),
-              _buildMsg(),
-              Container(
-                width: 250,
-                padding: EdgeInsets.all(20),
-                child: OutlinedButton(
-                    onPressed: () {
-                      if (!_formKey.currentState.validate()) {
-                        return;
-                      }
-                      _formKey.currentState.save();
-
-                      udpSend(_port, _address, _message);
-
-                      _formKey.currentState.reset();
-
-                      showSentDialog(
-                          context,
-                          (_address == null)
-                              ? "Message Broadcasted"
-                              : "Message Sent",
-                          (_address == null)
-                              ? '255.255.255.255'
-                              : _address.toString(),
-                          _port.toString(),
-                          _message);
-                    },
-                    child: Text('Send Message',
-                        style: Theme.of(context).textTheme.button)),
-              )
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 
+  Widget _buildHeadline(String title) {
+    return Text(title, style: Theme.of(context).textTheme.headline2);
+  }
+
   Widget _buildIp() {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: TextFormField(
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(20),
+            filled: true,
+            fillColor: Colors.white60,
+            contentPadding: EdgeInsets.all(15.0),
             labelText: 'IP Address',
             hintText: 'Destination IP Address',
-            border: OutlineInputBorder(),
+            border: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(
+              const Radius.circular(10.0),
+            )),
             labelStyle: TextStyle(fontSize: 16)),
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.number,
@@ -106,13 +129,18 @@ class _SenderPageState extends State<SenderPage> {
 
   Widget _buildPort() {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: TextFormField(
           decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(20),
+              filled: true,
+              fillColor: Colors.white60,
+              contentPadding: EdgeInsets.all(15.0),
               labelText: 'Port Number',
               hintText: 'Destination Port Number',
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                const Radius.circular(10.0),
+              )),
               labelStyle: TextStyle(fontSize: 16)),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.number,
@@ -130,13 +158,18 @@ class _SenderPageState extends State<SenderPage> {
 
   Widget _buildMsg() {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: TextFormField(
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(20),
+            filled: true,
+            fillColor: Colors.white60,
+            contentPadding: EdgeInsets.all(15.0),
             labelText: 'Message',
             hintText: 'Your messages',
-            border: OutlineInputBorder(),
+            border: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(
+              const Radius.circular(10.0),
+            )),
             labelStyle: TextStyle(fontSize: 16)),
         validator: (String value) {
           if (value.isEmpty) {

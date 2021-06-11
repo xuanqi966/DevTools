@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
@@ -45,31 +43,36 @@ class _QrScannerPageState extends State<QrScannerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _buildContentSection(),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [_buildScanButton(), _buildCopyButton(context)],
-              ),
-            )
-          ]),
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _buildContentSection(),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [_buildScanButton(), _buildCopyButton(context)],
+                  ),
+                )
+              ]),
+        ),
+      ),
     );
   }
 
   Widget _buildContentSection() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text("Message", style: Theme.of(context).textTheme.headline1),
+          padding: const EdgeInsets.only(top: 30, bottom: 20),
+          child:
+              Text("Message: ", style: Theme.of(context).textTheme.headline2),
         ),
         Container(
             width: 300,
@@ -87,19 +90,26 @@ class _QrScannerPageState extends State<QrScannerPage> {
 
   Widget _buildScanButton() {
     return Container(
-      width: 120,
+      width: 130,
       child: OutlinedButton(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.qr_code_scanner, color: Colors.white),
-            Text("Scan", style: Theme.of(context).textTheme.button)
+            SizedBox(
+              width: 5,
+            ),
+            Text("Scan",
+                style: Theme.of(context)
+                    .textTheme
+                    .button
+                    .copyWith(color: Colors.white))
           ],
         ),
         onPressed: scanQR,
         style: ButtonStyle(
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10))),
+                borderRadius: BorderRadius.circular(20))),
             backgroundColor: MaterialStateProperty.all(
               Colors.black,
             )),
@@ -109,22 +119,19 @@ class _QrScannerPageState extends State<QrScannerPage> {
 
   Widget _buildCopyButton(BuildContext context) {
     return Container(
-      width: 120,
+      width: 130,
       child: OutlinedButton(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.copy, color: Colors.white),
+            Icon(Icons.copy, color: Colors.blueGrey[800]),
+            SizedBox(
+              width: 5,
+            ),
             Text("Copy", style: Theme.of(context).textTheme.button)
           ],
         ),
         onPressed: () => copyContent(context),
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10))),
-            backgroundColor: MaterialStateProperty.all(
-              Colors.grey,
-            )),
       ),
     );
   }

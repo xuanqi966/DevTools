@@ -1,11 +1,11 @@
 import 'package:dev_tools/models/device-attributes/multitasking.dart';
 import 'package:flutter/material.dart';
-import '../../models/device-attributes/iwidget.dart';
-import '../../models/device-attributes/property.dart';
-import '../../models/device-attributes/size-class.dart';
-import '../../models/devices/device.dart';
+import '../../../models/device-attributes/iwidget.dart';
+import '../../../models/device-attributes/property.dart';
+import '../../../models/device-attributes/size-class.dart';
+import '../../../models/devices/device.dart';
 import 'package:dev_tools/models/devices/display.dart';
-import '../../models/device-attributes/safe-area.dart';
+import '../../../models/device-attributes/safe-area.dart';
 
 class DeviceInfoPage extends StatefulWidget {
   final String title;
@@ -58,7 +58,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage>
             _needBuildDivider(),
             // tab bar view here
             _needBuildTabView(),
-            //Spacer(),
           ],
         ),
       ),

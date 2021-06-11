@@ -1,8 +1,7 @@
 import 'package:dev_tools/models/devices/display.dart';
-
-import '../../models/devices/device.dart';
-import '../../models/device-attributes/property.dart';
-import '../../models/device-attributes/safe-area.dart';
+import '../../../models/devices/device.dart';
+import '../../../models/device-attributes/property.dart';
+import '../../../models/device-attributes/safe-area.dart';
 import 'data.dart';
 
 Map<String, Device> tvs = {
