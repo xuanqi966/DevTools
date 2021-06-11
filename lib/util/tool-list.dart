@@ -23,5 +23,12 @@ const TOOLS_LIST = const [
         Icons.qr_code_scanner,
         size: 50,
       ),
-      "/qrcode")
+      "/qrcode"),
+  Tool(
+      "Trendy Repos",
+      Icon(
+        Icons.web,
+        size: 50,
+      ),
+      "/trend-list"),
 ];
