@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../models/devices/device.dart';
+import '../../../models/devices/device.dart';
 import '../infopage/deviceinfo_page.dart';
 import 'package:dev_tools/models/devices/display.dart';
 
@@ -51,7 +51,6 @@ class _DisplayPageState extends State<DisplayPage>
         leadingWidth: 20,
       ),
       body: SafeArea(
-        //bottom: false,
         child: Column(
           children: [
             // give the tab bar a height

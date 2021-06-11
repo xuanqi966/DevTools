@@ -14,11 +14,15 @@ class _TabPageState extends State<TabPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           "UDP Messenger",
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.headline2,
         ),
+        centerTitle: false,
+        leadingWidth: 20,
+        elevation: 2.0,
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

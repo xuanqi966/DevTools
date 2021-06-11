@@ -1,9 +1,9 @@
 import 'package:dev_tools/models/devices/display.dart';
-import '../../models/devices/device.dart';
-import '../../models/device-attributes/property.dart';
-import '../../models/device-attributes/safe-area.dart';
-import '../../models/device-attributes/size-class.dart';
-import '../../models/device-attributes/iwidget.dart';
+import '../../../models/devices/device.dart';
+import '../../../models/device-attributes/property.dart';
+import '../../../models/device-attributes/safe-area.dart';
+import '../../../models/device-attributes/size-class.dart';
+import '../../../models/device-attributes/iwidget.dart';
 import 'data.dart';
 
 Map<String, Device> iphones = {

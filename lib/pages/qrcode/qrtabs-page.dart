@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'qr-scanner-page.dart';
 import 'qr-generate-page.dart';
@@ -25,11 +23,15 @@ class _QrTabPageState extends State<QrTabPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           _pages[_currIndex]["title"],
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.headline2,
         ),
+        centerTitle: false,
+        leadingWidth: 20,
+        elevation: 2.0,
       ),
       body: _pages[_currIndex]["page"],
       bottomNavigationBar: BottomNavigationBar(
