@@ -1,9 +1,5 @@
-import 'package:dev_tools/pages/dateTime/time_tabPage.dart';
 import 'package:dev_tools/util/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:dev_tools/pages/udp/tab-page.dart';
-import 'pages/qrcode/qrtabs-page.dart';
-import 'pages/iphone/homepage/devices_homepage.dart';
 import 'package:dev_tools/pages/home-page.dart';
 
 void main() {
