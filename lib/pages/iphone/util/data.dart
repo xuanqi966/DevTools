@@ -1,12 +1,12 @@
-import 'package:dev_tools/iphone/util/carplay-data.dart';
-import 'package:dev_tools/iphone/util/ipod-data.dart';
-import 'package:dev_tools/iphone/util/tv-data.dart';
-import 'package:dev_tools/iphone/util/watch-data.dart';
+import 'package:dev_tools/pages/iphone/util/carplay-data.dart';
+import 'package:dev_tools/pages/iphone/util/ipod-data.dart';
+import 'package:dev_tools/pages/iphone/util/tv-data.dart';
+import 'package:dev_tools/pages/iphone/util/watch-data.dart';
 import '../homepage/homepage_icon.dart';
 import 'iphone-data.dart';
 import 'ipad-data.dart';
 import 'package:flutter/material.dart';
-import '../../models/devices/device.dart';
+import '../../../models/devices/device.dart';
 
 final homePageIconData = [
   HomePageIcon(

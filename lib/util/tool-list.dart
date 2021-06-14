@@ -7,21 +7,21 @@ const TOOLS_LIST = const [
       "UDP Messenger",
       Icon(
         Icons.send,
-        size: 50,
+        size: 65,
       ),
       "/udp-messenger"),
   Tool(
-      "Apple Device Data",
+      "Apple Devices",
       Icon(
         Icons.phone_iphone,
-        size: 50,
+        size: 65,
       ),
       "/device-data"),
   Tool(
       "QR Code",
       Icon(
         Icons.qr_code_scanner,
-        size: 50,
+        size: 65,
       ),
       "/qrcode"),
   Tool(
@@ -31,4 +31,11 @@ const TOOLS_LIST = const [
         size: 50,
       ),
       "/trend-list"),
+  Tool(
+      "Time Converter",
+      Icon(
+        Icons.access_time,
+        size: 65,
+      ),
+      "/time-converter")
 ];

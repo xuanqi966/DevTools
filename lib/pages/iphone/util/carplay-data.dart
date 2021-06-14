@@ -1,6 +1,6 @@
 import 'package:dev_tools/models/devices/display.dart';
-import '../../models/device-attributes/property.dart';
-import '../../models/device-attributes/safe-area.dart';
+import '../../../models/device-attributes/property.dart';
+import '../../../models/device-attributes/safe-area.dart';
 import 'data.dart';
 import 'iphone-data.dart';
 

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import '../homepage/homepage_icon.dart';
 import '../displaypage/display_page.dart';
 import '../util/data.dart';
-import '../displaypage/devicespage_icon.dart';
 import 'package:dev_tools/models/devices/display.dart';
-import '../../models/devices/device.dart';
+import '../../../models/devices/device.dart';
 
 class DevicesHomePage extends StatelessWidget {
   @override
@@ -14,10 +13,11 @@ class DevicesHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Devices",
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.headline2,
         ),
         centerTitle: false,
         leadingWidth: 20,
+        elevation: 2.0,
       ),
       body: SafeArea(
         child: buildGridView(context),
@@ -41,8 +41,8 @@ class DevicesHomePage extends StatelessWidget {
               icon.displayList2,
               icon.phonesList))
           .toList(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200, crossAxisSpacing: 20, mainAxisSpacing: 20),
     );
   }
 

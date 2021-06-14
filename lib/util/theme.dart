@@ -7,7 +7,7 @@ ThemeData basicTheme() {
     return base.copyWith(
         headline1: base.headline1.copyWith(
             fontFamily: 'Raleway-Bold',
-            fontSize: 24,
+            fontSize: 22,
             color: Colors.black,
             fontWeight: FontWeight.bold),
         headline2: base.headline2.copyWith(
@@ -32,7 +32,7 @@ ThemeData basicTheme() {
             fontSize: 12,
             color: Colors.grey),
         button: base.button.copyWith(
-            fontFamily: 'Raleway-Regular', fontSize: 20, color: Colors.white),
+            fontFamily: 'Raleway-Regular', fontSize: 16, color: Colors.black),
         caption: base.caption.copyWith(
             // pull down list
             fontFamily: 'Raleway-Regular',
@@ -51,19 +51,13 @@ ThemeData basicTheme() {
   OutlinedButtonThemeData _basicOutlinedbuttonTheme() {
     return OutlinedButtonThemeData(
         style: ButtonStyle(
-            padding:
-                MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15)),
-            shape: MaterialStateProperty.all(StadiumBorder()),
-            backgroundColor: MaterialStateProperty.all(Colors.black)));
-  }
-
-  OutlinedButtonThemeData _rectOutlinedbuttonTheme() {
-    return OutlinedButtonThemeData(
-        style: ButtonStyle(
-            padding:
-                MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15)),
-            shape: MaterialStateProperty.all(RoundedRectangleBorder()),
-            backgroundColor: MaterialStateProperty.all(Colors.black)));
+      elevation: MaterialStateProperty.all(0),
+      minimumSize: MaterialStateProperty.all(Size.fromHeight(40)),
+      backgroundColor: MaterialStateProperty.all(Colors.grey[350]),
+      padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15)),
+      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20)))),
+    ));
   }
 
   return base.copyWith(

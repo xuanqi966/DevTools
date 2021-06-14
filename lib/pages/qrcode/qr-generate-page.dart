@@ -94,85 +94,100 @@ class _QrGeneratePageState extends State<QrGeneratePage> {
   }
 
   Widget _buildContentWidget() {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).requestFocus(new FocusNode());
-      },
-      child: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Center(
-                child: RepaintBoundary(
-                    key: globalKey,
-                    child: QrImage(
-                      data: _dataString,
-                      size: 300,
-                      backgroundColor: Colors.white,
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 40,
-                  left: 20.0,
-                  right: 20.0,
-                  bottom: 30,
+    return SafeArea(
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Center(
+                  child: RepaintBoundary(
+                      key: globalKey,
+                      child: QrImage(
+                        data: _dataString,
+                        size: 200,
+                        backgroundColor: Colors.white,
+                      )),
                 ),
-                child: TextField(
-                  keyboardType: TextInputType.multiline,
-                  controller: _controller,
-                  textInputAction: TextInputAction.done,
-                  onChanged: (_) => _generateCode(),
-                  decoration: InputDecoration(
-                      hintText: "Enter a your message",
-                      errorText: _inputErrorText,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40,
+                    left: 20.0,
+                    right: 20.0,
+                    bottom: 30,
+                  ),
+                  child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    controller: _controller,
+                    textInputAction: TextInputAction.done,
+                    onChanged: (_) => _generateCode(),
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white60,
+                        contentPadding: EdgeInsets.all(15.0),
+                        hintText: "Enter a your message",
+                        errorText: _inputErrorText,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                  ),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _buildButton(
-                        "Share",
-                        Icon(Icons.share, color: Colors.white),
-                        Colors.black,
-                        _captureAndSharePng),
-                    _buildButton(
-                        "Save",
-                        Icon(Icons.file_download, color: Colors.white),
-                        Colors.grey,
-                        _captureAndSavePng)
-                  ],
-                ),
-              )
-            ],
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buildButton(
+                          "Share",
+                          Icon(Icons.share, color: Colors.white),
+                          Colors.black,
+                          _captureAndSharePng,
+                          Colors.white),
+                      _buildButton(
+                          "Save",
+                          Icon(Icons.file_download,
+                              color: Colors.blueGrey[800]),
+                          Colors.grey[350],
+                          _captureAndSavePng,
+                          Colors.black)
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildButton(
-      String title, Icon icon, Color bgColor, Function function) {
+  Widget _buildButton(String title, Icon icon, Color bgColor, Function function,
+      Color textColor) {
     return Container(
-      width: 120,
+      width: 130,
       child: OutlinedButton(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             icon,
-            Text(title, style: Theme.of(context).textTheme.button)
+            SizedBox(
+              width: 5,
+            ),
+            Text(title,
+                style: Theme.of(context)
+                    .textTheme
+                    .button
+                    .copyWith(color: textColor))
           ],
         ),
         onPressed: function,
         style: ButtonStyle(
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10))),
+                borderRadius: BorderRadius.circular(20))),
             backgroundColor: MaterialStateProperty.all(bgColor)),
       ),
     );
