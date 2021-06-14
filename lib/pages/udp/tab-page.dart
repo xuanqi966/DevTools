@@ -9,7 +9,19 @@ class TabPage extends StatefulWidget {
 
 class _TabPageState extends State<TabPage> {
   int _currentIndex = 0;
-  List<Widget> _pages = [SenderPage(), ReceiverPage()];
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +36,15 @@ class _TabPageState extends State<TabPage> {
         leadingWidth: 20,
         elevation: 2.0,
       ),
-      body: _pages[_currentIndex],
+      body: SizedBox.expand(
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() => _currentIndex = index);
+          },
+          children: <Widget>[SenderPage(), ReceiverPage()],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         backgroundColor: Colors.white,
@@ -46,6 +66,8 @@ class _TabPageState extends State<TabPage> {
   void _selectPage(int index) {
     setState(() {
       _currentIndex = index;
+      _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     });
   }
 }
