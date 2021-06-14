@@ -18,12 +18,6 @@ class MyApp extends StatelessWidget {
       title: 'DevTools',
       theme: basicTheme(),
       home: HomePage(),
-      routes: {
-        "/udp-messenger": (context) => TabPage(),
-        "/device-data": (context) => DevicesHomePage(),
-        "/qrcode": (context) => QrTabPage(),
-        "/time-converter": (context) => TimeTabPage(),
-      },
     );
   }
 }
