@@ -19,13 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) {
-          final scraper = TrendScraper();
-          scraper.setAddress('https://github.com/trending');
-          return scraper;
-        })
-      ],
+      providers: [ChangeNotifierProvider(create: (context) => TrendScraper())],
       child: MaterialApp(
         title: 'DevTools',
         theme: basicTheme(),

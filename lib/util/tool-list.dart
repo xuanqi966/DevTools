@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_icons/flutter_icons.dart';
 import '../models/tool.dart';
 
 const TOOLS_LIST = const [
@@ -13,7 +13,7 @@ const TOOLS_LIST = const [
   Tool(
       "Apple Devices",
       Icon(
-        Icons.phone_iphone,
+        FontAwesome.apple,
         size: 65,
       ),
       "/device-data"),
@@ -27,7 +27,7 @@ const TOOLS_LIST = const [
   Tool(
       "Trendy Repos",
       Icon(
-        Icons.web,
+        FontAwesome.github,
         size: 50,
       ),
       "/trend-list"),
