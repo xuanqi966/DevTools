@@ -42,7 +42,7 @@ class _TabPageState extends State<TabPage> {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: <Widget>[SenderPage(), ReceiverPage()],
+          children: <Widget>[ReceiverPage(), SenderPage()],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(

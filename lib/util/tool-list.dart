@@ -1,3 +1,4 @@
+import 'package:dev_tools/pages/udp/receiver-page.dart';
 import 'package:dev_tools/pages/udp/tab-page.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_tools/pages/iphone/homepage/devices_homepage.dart';
@@ -12,7 +13,7 @@ final TOOLS_LIST = [
         Icons.send,
         size: 65,
       ),
-      TabPage()),
+      ReceiverPage()),
   Tool(
       "Apple Devices",
       Icon(
