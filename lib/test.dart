@@ -5,24 +5,35 @@ import 'package:http/http.dart' as http;
 main() async {
   final response =
       await http.get(Uri.parse('https://github.com/trending/developers'));
+  print('connecting');
 
   // Web logic begins
   if (response.statusCode == 200) {
     var document = parse(response.body);
+    print('connected');
+    //   var headerElement = document.getElementsByClassName(
+    //       'Box-header d-lg-flex flex-items-center flex-justify-between');
+    //   var menuElements =
+    //       headerElement[0].getElementsByClassName('select-menu-list');
+    //   var languages = menuElements[0].getElementsByClassName('select-menu-item');
+    //   var dateRanges = menuElements[1].getElementsByClassName('select-menu-item');
+    //   dateRanges.forEach((element) {
+    //     print(element.attributes['href'].split('?')[1]);
+    //   });
 
     var boxElements = document.getElementsByClassName('Box-row d-flex');
     boxElements.forEach((element) {
-      var avatarElement =
-          element.getElementsByClassName('rounded avatar-user')[0];
-      String avatorLink = avatarElement.attributes['src'];
-      print(avatorLink);
-      // var titleElement = element.getElementsByClassName('h3 lh-condensed')[0];
+      // var avatarElement =
+      //     element.getElementsByClassName('rounded avatar-user')[0];
+      // String avatorLink = avatarElement.attributes['src'];
+      // print(avatorLink);
+      var titleElement = element.getElementsByClassName('h3 lh-condensed')[0];
       // var nameElement =
       //     element.getElementsByClassName('f4 text-normal mb-1')[0];
-      // var link = titleElement.children[0].attributes['href'];
+      var link = titleElement.children[0].attributes['href'];
       // print(titleElement.text.trim());
       // print(nameElement.text.trim());
-      // print(link);
+      print(link);
 
       // var repoTitleElement = element.getElementsByClassName('h4 lh-condensed');
       // var repoDescElement =
@@ -36,6 +47,7 @@ main() async {
       //     ? 'N.A'
       //     : repoTitleElement[0].text.trim();
       // print(title);
+      //   });
     });
   } else {
     throw Exception();

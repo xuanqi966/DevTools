@@ -6,7 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:dev_tools/pages/udp/tab-page.dart';
 import 'pages/qrcode/qrtabs-page.dart';
 import 'pages/trend-scraper/trend-list-page.dart';
-import './provider/TrendScraper.dart';
+import 'provider/RepoScraper.dart';
+import 'provider/DevScraper.dart';
 import 'pages/iphone/homepage/devices_homepage.dart';
 import 'package:dev_tools/pages/home-page.dart';
 
@@ -19,8 +20,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => TrendScraper())],
+      providers: [
+        ChangeNotifierProvider(create: (context) => RepoScraper()),
+        ChangeNotifierProvider(create: (context) => DevScraper())
+      ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'DevTools',
         theme: basicTheme(),
         home: HomePage(),

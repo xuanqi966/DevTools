@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dev_tools/provider/TrendScraper.dart';
+import 'package:dev_tools/provider/RepoScraper.dart';
 import 'package:provider/provider.dart';
 
 class TrendFilterDrawer extends StatefulWidget {
@@ -18,7 +18,7 @@ class _TrendFilterDrawerState extends State<TrendFilterDrawer> {
 
   @override
   void initState() {
-    final repoData = Provider.of<TrendScraper>(context, listen: false);
+    final repoData = Provider.of<RepoScraper>(context, listen: false);
     _chosenSpoken = repoData.getSpoken();
     _chosenLanguage = repoData.getLanguage();
     _chosenDate = repoData.getDate();
@@ -32,7 +32,7 @@ class _TrendFilterDrawerState extends State<TrendFilterDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    final repoData = Provider.of<TrendScraper>(context, listen: false);
+    final repoData = Provider.of<RepoScraper>(context, listen: false);
     return Drawer(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -71,10 +71,11 @@ class _TrendFilterDrawerState extends State<TrendFilterDrawer> {
             ),
             OutlinedButton(
                 onPressed: () {
+                  repoData.clearRepos();
                   repoData.updateSpoken(_chosenSpoken);
                   repoData.updateLanguage(_chosenLanguage);
                   repoData.updateDate(_chosenDate);
-                  repoData.loadAddress();
+                  repoData.applyFilter();
                   Navigator.of(context).pop();
                 },
                 child: Text("Confirm"))

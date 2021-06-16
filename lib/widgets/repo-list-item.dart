@@ -1,6 +1,6 @@
 import 'package:dev_tools/models/trend-scrapper/Repository.dart';
 import 'package:dev_tools/pages/trend-scraper/web-page.dart';
-import 'package:dev_tools/provider/TrendScraper.dart';
+import 'package:dev_tools/provider/RepoScraper.dart';
 import 'package:flutter/material.dart';
 import '../models/trend-scrapper/Repository.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -19,7 +19,7 @@ class RepoListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => _openPage(TrendScraper.rootAddress + repo.url, context),
+      onTap: () => _openPage(RepoScraper.gitHubAddress + repo.url, context),
       child: Card(
         margin: EdgeInsets.all(5),
         child: Padding(

@@ -1,11 +1,8 @@
-import 'package:dev_tools/provider/TrendScraper.dart';
 import 'package:dev_tools/widgets/trend-filter-drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../widgets/repo-list-item.dart';
 import '../../widgets/repo-list.dart';
-import '../../widgets/filter-dropdown-button.dart';
+import '../../widgets/dev-list.dart';
 
 class TrendListPage extends StatefulWidget {
   static final routeName = '/trend-list';
@@ -30,7 +27,7 @@ class _TrendListPageState extends State<TrendListPage> {
         ),
         endDrawer: TrendFilterDrawer(),
         body: Column(
-          children: [RepoList()],
+          children: [DevList()],
         ));
   }
 }

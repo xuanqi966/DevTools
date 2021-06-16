@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:html/parser.dart';
 import 'package:html/dom.dart';
 import 'package:http/http.dart' as http;
@@ -6,15 +7,18 @@ import 'package:http/http.dart' as http;
 import '../models/trend-scrapper/Repository.dart';
 import '../models/trend-scrapper/Contributor.dart';
 
-class TrendScraper with ChangeNotifier {
+class RepoScraper with ChangeNotifier {
   // global constant declarations
-  static final rootAddress = 'https://github.com/trending';
+  static final gitHubAddress = 'https://github.com';
+  var rootAddress;
   static final trendingAddress = 'https://github.com/trending';
+
+  var pref;
 
   // local variable declarations
   bool _isInit =
       true; // Tracks whether app is loading the website for the first time
-  String _baseAddress = rootAddress;
+  String _baseAddress;
 
   // Repositories are loaded everytime the page rebuilds
   List<Repository> _trendyRepos = [];
@@ -25,11 +29,31 @@ class TrendScraper with ChangeNotifier {
   Map<String, String> _dateMap = {};
 
   // Variables keeping track of the state of filter selections
-  String _spoken = 'Any';
-  String _language = 'Any';
-  String _date = 'Today';
+  String _spoken;
+  String _language;
+  String _date;
 
   // Helper function declarations
+  Future<void> getStoredData() async {
+    pref = await SharedPreferences.getInstance();
+    _spoken = pref.getString('Spoken') ?? 'Any';
+    _language = pref.getString('Language') ?? 'Any';
+    _date = pref.getString('Date') ?? 'Today';
+    rootAddress = pref.getString('Address') ?? trendingAddress;
+  }
+
+  void storeData() {
+    pref.setString('Spoken', _spoken);
+    pref.setString('Language', _language);
+    pref.setString('Date', _date);
+    pref.setString('Address', _baseAddress);
+  }
+
+  void clearRepos() {
+    _trendyRepos = [];
+    notifyListeners();
+  }
+
   List<Repository> get getRepos {
     return _trendyRepos;
   }
@@ -71,9 +95,9 @@ class TrendScraper with ChangeNotifier {
   }
 
   // This function sets baseAddress and loads repositories
-  Future<void> loadAddress() async {
-    _baseAddress =
-        (_isInit) ? rootAddress : getFilteredUrl(_spoken, _language, _date);
+  Future<void> initScraper() async {
+    await getStoredData();
+    _baseAddress = rootAddress;
     await loadRepos();
     notifyListeners();
   }
@@ -88,7 +112,7 @@ class TrendScraper with ChangeNotifier {
       if (_isInit) {
         // Loading Maps of filter information ONLY at the initial round
         _isInit = false;
-        loadFilterData(document);
+        loadFilterData();
       }
 
       var elements = document.getElementsByClassName('Box-row');
@@ -124,7 +148,9 @@ class TrendScraper with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> loadFilterData(Document document) {
+  Future<void> loadFilterData() async {
+    final response = await http.get(Uri.parse(trendingAddress));
+    var document = parse(response.body);
     var elements = document.getElementsByClassName('select-menu-list');
 
     Element spokenElement = elements[0];
@@ -153,6 +179,12 @@ class TrendScraper with ChangeNotifier {
       String url = getDateUrl(element.attributes['href']);
       _dateMap[title] = url;
     });
+  }
+
+  Future<void> applyFilter() async {
+    _baseAddress = getFilteredUrl(_spoken, _language, _date);
+    await loadRepos();
+    storeData();
   }
 
   // ======================== Helper functions ============================== //

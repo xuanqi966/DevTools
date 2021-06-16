@@ -1,4 +1,3 @@
-import 'package:dev_tools/provider/TrendScraper.dart';
 import 'package:flutter/material.dart';
 
 class FilterDropDownButton extends StatelessWidget {
