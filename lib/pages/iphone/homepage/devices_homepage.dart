@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import '../homepage/homepage_icon.dart';
 import '../displaypage/display_page.dart';
@@ -55,35 +56,43 @@ class DevicesHomePage extends StatelessWidget {
       Map<int, List<Display>> displayList,
       Map<int, List<Display>> displayList2,
       Map<String, Device> phonesList) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(new MaterialPageRoute(
-            builder: (BuildContext context) => new DisplayPage(
-                  title: "$title",
-                  devicesList: devicesList,
-                  displayList: displayList,
-                  phonesList: phonesList,
-                  displayList2: displayList2,
-                )));
-      },
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        color: Colors.grey[300],
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                "$imageName",
-                height: 80,
+    return OpenContainer(
+        transitionType: ContainerTransitionType.fade,
+        transitionDuration: Duration(milliseconds: 400),
+        closedElevation: 0,
+        closedColor: Colors.white,
+        openBuilder: (context, _) {
+          return new DisplayPage(
+            title: "$title",
+            devicesList: devicesList,
+            displayList: displayList,
+            phonesList: phonesList,
+            displayList2: displayList2,
+          );
+        },
+        closedBuilder: (context, openContainer) {
+          return GestureDetector(
+            onTap: openContainer,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Text("$title", style: Theme.of(context).textTheme.bodyText1),
-            ]),
-      ),
-    );
+              color: Colors.grey[300],
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      "$imageName",
+                      height: 80,
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text("$title",
+                        style: Theme.of(context).textTheme.bodyText1),
+                  ]),
+            ),
+          );
+        });
   }
 }

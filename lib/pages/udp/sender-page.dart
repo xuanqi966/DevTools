@@ -20,64 +20,94 @@ class _SenderPageState extends State<SenderPage> {
   // build methods
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildHeadline("Enter an Address: "),
-                  _buildIp(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  _buildHeadline("Enter a Port Number: "),
-                  _buildPort(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  _buildHeadline("Enter a Message: "),
-                  _buildMsg(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    //padding: EdgeInsets.all(20),
-                    child: OutlinedButton(
-                        onPressed: () {
-                          if (!_formKey.currentState.validate()) {
-                            return;
-                          }
-                          _formKey.currentState.save();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "UDP Sender",
+          style: Theme.of(context).textTheme.headline2,
+        ),
+        centerTitle: false,
+        leadingWidth: 20,
+        elevation: 2.0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          iconSize: 20.0,
+          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.email),
+            iconSize: 25.0,
+            color: Colors.black,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildHeadline("Enter an Address: "),
+                    _buildIp(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    _buildHeadline("Enter a Port Number: "),
+                    _buildPort(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    _buildHeadline("Enter a Message: "),
+                    _buildMsg(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      //padding: EdgeInsets.all(20),
+                      child: OutlinedButton(
+                          onPressed: () {
+                            if (!_formKey.currentState.validate()) {
+                              return;
+                            }
+                            _formKey.currentState.save();
 
-                          udpSend(_port, _address, _message);
+                            udpSend(_port, _address, _message);
 
-                          _formKey.currentState.reset();
+                            _formKey.currentState.reset();
 
-                          showSentDialog(
-                              context,
-                              (_address == null)
-                                  ? "Message Broadcasted"
-                                  : "Message Sent",
-                              (_address == null)
-                                  ? '255.255.255.255'
-                                  : _address.toString(),
-                              _port.toString(),
-                              _message);
-                        },
-                        child: Text('Send Message',
-                            style: Theme.of(context).textTheme.button)),
-                  )
-                ],
+                            showSentDialog(
+                                context,
+                                (_address == null)
+                                    ? "Message Broadcasted"
+                                    : "Message Sent",
+                                (_address == null)
+                                    ? '255.255.255.255'
+                                    : _address.toString(),
+                                _port.toString(),
+                                _message);
+                          },
+                          child: Text('Send Message',
+                              style: Theme.of(context).textTheme.button)),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -192,15 +222,40 @@ class _SenderPageState extends State<SenderPage> {
     Widget okButton = TextButton(
         onPressed: () => Navigator.of(context).pop(), child: Text("OK"));
     AlertDialog sentDialog = AlertDialog(
-      title: Text(title),
+      backgroundColor: Colors.grey[800],
+      title: Text(title,
+          style: Theme.of(context)
+              .textTheme
+              .headline2
+              .copyWith(color: Colors.white)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
       content: SizedBox(
         height: 150,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Dest IP: " + ip),
-            Text("Dest port: " + port),
-            Text("Message: " + msg)
+            _buildMessageTitleText("Dest IP: ", context),
+            SizedBox(
+              height: 5.0,
+            ),
+            _buildMessageText(ip, context),
+            SizedBox(
+              height: 10.0,
+            ),
+            _buildMessageTitleText("Dest Port: ", context),
+            SizedBox(
+              height: 5.0,
+            ),
+            _buildMessageText(port, context),
+            SizedBox(
+              height: 10.0,
+            ),
+            _buildMessageTitleText("Message: ", context),
+            SizedBox(
+              height: 5.0,
+            ),
+            _buildMessageText(msg, context)
           ],
         ),
       ),
@@ -212,6 +267,20 @@ class _SenderPageState extends State<SenderPage> {
           return sentDialog;
         });
   }
+
+  Widget _buildMessageText(String msg, BuildContext context) {
+    return Text(msg,
+        style: Theme.of(context)
+            .textTheme
+            .bodyText1
+            .copyWith(color: Colors.white70));
+  }
+}
+
+Widget _buildMessageTitleText(String msg, BuildContext context) {
+  return Text(msg,
+      style:
+          Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white));
 }
 
 bool isNumeric(String s) {

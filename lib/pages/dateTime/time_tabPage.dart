@@ -12,7 +12,19 @@ class TimeTabPage extends StatefulWidget {
 
 class _TimeTabPageState extends State<TimeTabPage> {
   int _currentIndex = 0;
-  List<Widget> _pages = [TimeConverter(), TimeStamp(), DateTimeToTS()];
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +39,15 @@ class _TimeTabPageState extends State<TimeTabPage> {
         leadingWidth: 20,
         elevation: 2.0,
       ),
-      body: _pages[_currentIndex],
+      body: SizedBox.expand(
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() => _currentIndex = index);
+          },
+          children: <Widget>[TimeConverter(), TimeStamp(), DateTimeToTS()],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         backgroundColor: Colors.white,
@@ -73,6 +93,8 @@ class _TimeTabPageState extends State<TimeTabPage> {
   void _selectPage(int index) {
     setState(() {
       _currentIndex = index;
+      _pageController.animateToPage(index,
+          duration: Duration(milliseconds: 300), curve: Curves.easeOut);
     });
   }
 }
