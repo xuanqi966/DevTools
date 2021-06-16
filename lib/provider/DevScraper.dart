@@ -26,15 +26,17 @@ class DevScraper with ChangeNotifier {
 
   Future<void> initScraper() async {
     await getFilterData();
-    updateCurrAddress();
     await loadFilters();
+    updateCurrAddress();
     await loadScraper();
     notifyListeners();
   }
 
   Future<void> loadScraper() async {
     _developers = [];
-    final response = await http.get(Uri.parse(_currAddress));
+    final response = await http
+        .get(Uri.parse(_currAddress))
+        .catchError((e) => print(e.error));
 
     if (response.statusCode == 200) {
       var document = parse(response.body);
@@ -68,7 +70,9 @@ class DevScraper with ChangeNotifier {
   }
 
   Future<void> loadFilters() async {
-    final response = await http.get(Uri.parse(_rootAddress));
+    final response = await http
+        .get(Uri.parse(_rootAddress))
+        .catchError((e) => print(e.error));
     if (response.statusCode == 200) {
       var document = parse(response.body);
       var headerElement = document.getElementsByClassName(
@@ -188,6 +192,7 @@ class DevScraper with ChangeNotifier {
 
   void clearDevelopers() {
     _developers = [];
+    notifyListeners();
   }
 
   //================================ Getters =================================//
@@ -203,7 +208,7 @@ class DevScraper with ChangeNotifier {
     return _dateRange;
   }
 
-  Map get getLanguageMa {
+  Map get getLanguageMap {
     return _languageMap;
   }
 

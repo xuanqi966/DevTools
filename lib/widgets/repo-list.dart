@@ -30,15 +30,71 @@ class _RepoListState extends State<RepoList> {
       return Expanded(child: Center(child: CircularProgressIndicator()));
     } else {
       return Expanded(
-        child: RefreshIndicator(
-          onRefresh: () => _onRefreshHandler(context),
-          child: ListView.builder(
-            itemCount: repoData.getRepos.length,
-            itemBuilder: (ctx, index) {
-              print(repoData.getRepos.length);
-              return RepoListItem(repoData.getRepos[index]);
-            },
-          ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Row(
+                    children: [
+                      Text(
+                        'Spoken: ',
+                      ),
+                      Text(
+                        repoData.getSpoken(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline3
+                            .copyWith(fontSize: 12),
+                      ),
+                    ],
+                  )),
+                  Expanded(
+                      child: Row(
+                    children: [
+                      Text(
+                        'Language: ',
+                      ),
+                      Text(
+                        repoData.getLanguage(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline3
+                            .copyWith(fontSize: 12),
+                      ),
+                    ],
+                  )),
+                  Expanded(
+                      child: Row(
+                    children: [
+                      Text('Date Range: '),
+                      Text(
+                        repoData.getDate(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline3
+                            .copyWith(fontSize: 12),
+                      ),
+                    ],
+                  )),
+                ],
+              ),
+            ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () => _onRefreshHandler(context),
+                child: ListView.builder(
+                  itemCount: repoData.getRepos.length,
+                  itemBuilder: (ctx, index) {
+                    print(repoData.getRepos.length);
+                    return RepoListItem(repoData.getRepos[index]);
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       );
     }

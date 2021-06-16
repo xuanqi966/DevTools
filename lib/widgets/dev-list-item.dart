@@ -53,38 +53,49 @@ class DevListItem extends StatelessWidget {
               children: [
                 Divider(),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20),
+                  padding: const EdgeInsets.only(left: 10),
                   child: Row(
                     children: [
                       Icon(
-                        FontAwesome.fire,
+                        MaterialCommunityIcons.fire,
                         color: Colors.orange,
                         size: 20,
                       ),
                       Text(
                         'POPULAR REPO',
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 16, color: Colors.orange),
                       )
                     ],
                   ),
                 ),
                 ListTile(
-                  leading: Icon(MaterialCommunityIcons.source_repository),
-                  title: Text(
-                    developer.repository.title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline1
-                        .copyWith(fontSize: 20),
+                  //leading: Icon(MaterialCommunityIcons.source_repository),
+                  title: Row(
+                    children: [
+                      Icon(MaterialCommunityIcons.source_repository),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          developer.repository.title,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline1
+                              .copyWith(fontSize: 18, color: Colors.blue),
+                        ),
+                      ),
+                    ],
                   ),
                   subtitle: (developer.repository.descriptions == 'N.A')
                       ? null
-                      : Text(
-                          developer.repository.descriptions,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              .copyWith(fontSize: 16),
+                      : Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(
+                            developer.repository.descriptions,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4
+                                .copyWith(fontSize: 16),
+                          ),
                         ),
                   trailing: IconButton(
                     icon: Icon(Icons.chevron_right),

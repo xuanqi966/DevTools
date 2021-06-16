@@ -1,4 +1,5 @@
 import 'package:dev_tools/widgets/trend-filter-drawer.dart';
+import 'package:dev_tools/widgets/dev-filter-drawer.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/repo-list.dart';
@@ -12,6 +13,8 @@ class TrendListPage extends StatefulWidget {
 }
 
 class _TrendListPageState extends State<TrendListPage> {
+  bool _isShowingRepo = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +28,9 @@ class _TrendListPageState extends State<TrendListPage> {
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
-        endDrawer: TrendFilterDrawer(),
+        endDrawer: _isShowingRepo ? TrendFilterDrawer() : DevFilterDrawer(),
         body: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [DevList()],
         ));
   }
