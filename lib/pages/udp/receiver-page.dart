@@ -1,4 +1,6 @@
+import 'package:dev_tools/pages/udp/sender-page.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../models/message.dart';
 
 import 'package:udp/udp.dart';
@@ -30,7 +32,8 @@ class _ReceiverPageState extends State<ReceiverPage> {
 
   void _updateMsgList(String senderAddress, String message) {
     setState(() {
-      _messages.add(Message(senderAddress, message, DateTime.now()));
+      _messages.add(Message(senderAddress, message,
+          DateFormat("dd/MM/yyyy, hh:mm aa").format(DateTime.now())));
     });
   }
 
@@ -59,47 +62,70 @@ class _ReceiverPageState extends State<ReceiverPage> {
   //========================= Widget building =========================//
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                    alignment: Alignment.bottomLeft,
-                    child: _buildHeadings("My Port: ")),
-                Row(
-                  children: [
-                    Expanded(child: _buildInputField()),
-                    (isReceiving)
-                        ? _buildButton("Stop", _terminateHandler)
-                        : _buildButton("Receive", _receiveHandler),
-                  ],
-                ),
-                Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    alignment: Alignment.bottomLeft,
-                    child: Row(
-                      children: [
-                        _buildHeadings("Messages: "),
-                        isReceiving
-                            ? Container(
-                                margin: EdgeInsets.only(left: 10),
-                                height: 20,
-                                width: 20,
-                                child: CircularProgressIndicator(),
-                              )
-                            : Container()
-                      ],
-                    )),
-                _buildMessageDisplay(),
-                SizedBox(
-                  height: 10,
-                )
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "UDP Receiver",
+          style: Theme.of(context).textTheme.headline2,
+        ),
+        centerTitle: false,
+        leadingWidth: 20,
+        elevation: 2.0,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.send),
+            iconSize: 25.0,
+            color: Colors.black,
+            tooltip: "Send",
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => SenderPage()));
+            },
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      alignment: Alignment.bottomLeft,
+                      child: _buildHeadings("My Port: ")),
+                  Row(
+                    children: [
+                      Expanded(child: _buildInputField()),
+                      (isReceiving)
+                          ? _buildButton("Stop", _terminateHandler)
+                          : _buildButton("Receive", _receiveHandler),
+                    ],
+                  ),
+                  Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      alignment: Alignment.bottomLeft,
+                      child: Row(
+                        children: [
+                          _buildHeadings("Messages: "),
+                          isReceiving
+                              ? Container(
+                                  margin: EdgeInsets.only(left: 10),
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(),
+                                )
+                              : Container()
+                        ],
+                      )),
+                  _buildMessageDisplay(),
+                  SizedBox(
+                    height: 10,
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -168,6 +194,7 @@ class _ReceiverPageState extends State<ReceiverPage> {
             );
           },
           shrinkWrap: true,
+          reverse: true,
           physics: NeverScrollableScrollPhysics(),
           itemCount: _messages.length,
           itemBuilder: (ctx, index) {
@@ -182,7 +209,7 @@ class _ReceiverPageState extends State<ReceiverPage> {
 Widget _buildMessageListTile(Message msg) {
   return ListTile(
     title: Text(msg.data),
-    subtitle: Text(msg.senderAddress + "   " + msg.dateTime.toString()),
+    subtitle: Text("IP: " + msg.senderAddress + "   Date: " + msg.dateTime),
   );
 }
 
