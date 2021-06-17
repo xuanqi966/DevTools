@@ -14,7 +14,7 @@ class WebPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Page",
+          "Web Page",
           style: Theme.of(context).textTheme.headline1,
         ),
       ),

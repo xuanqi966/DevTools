@@ -44,6 +44,7 @@ dependencies:
   flutter_icons: ^1.1.0
   webview_flutter: ^2.0.8
   shared_preferences: ^2.0.6
+  logger: ^1.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:dev_tools/provider/DevScraper.dart';
 import './dev-list-item.dart';
+import '../util/my-logger.dart';
 
 class DevList extends StatefulWidget {
   @override
@@ -10,9 +12,12 @@ class DevList extends StatefulWidget {
 }
 
 class _DevListState extends State<DevList> {
+  final logger = getLogger('DevList');
+
   Future<void> _onRefreshHandler(BuildContext context) async {
+    Provider.of<DevScraper>(context, listen: false).clearDevelopers();
     await Provider.of<DevScraper>(context, listen: false).updateScraper();
-    print("Refreshed!");
+    logger.i('onRefreshHandler | Refreshed');
   }
 
   @override
@@ -20,54 +25,94 @@ class _DevListState extends State<DevList> {
     Provider.of<DevScraper>(context, listen: false)
         .initScraper()
         .catchError((e) => print(e.error));
+    logger.i('initState | Initialisation complete!');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    logger.i('build | building DevList...');
     final devData = Provider.of<DevScraper>(context);
-    if (devData.getDevelopers.isEmpty) {
-      return Expanded(child: Center(child: CircularProgressIndicator()));
+    if (devData.isError) {
+      return Expanded(
+          child: Center(
+        child: Text(
+          'Connection error occured. Please try again.',
+          style: Theme.of(context).textTheme.headline1,
+          textAlign: TextAlign.center,
+        ),
+      ));
+    } else if (devData.getDevelopers.isEmpty) {
+      if (devData.isNothingFound) {
+        return Expanded(
+            child: Center(
+                child: Text(
+          'No developers found.',
+          style: Theme.of(context).textTheme.headline1,
+        )));
+      }
+      return Expanded(
+          child: Center(
+              child: CupertinoActivityIndicator(
+        radius: 20,
+      )));
     } else {
-      print(devData.getDevelopers.length);
+      logger.i('build | Developers: ${devData.getDevelopers.length}');
       return Expanded(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: Row(
-                    children: [
-                      Text(
-                        'Language: ',
-                      ),
-                      Text(
-                        devData.getLanguage,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline3
-                            .copyWith(fontSize: 12),
-                      ),
-                    ],
-                  )),
-                  Expanded(
-                      child: Row(
-                    children: [
-                      Text('Date Range: '),
-                      Text(
-                        devData.getDateRange,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline3
-                            .copyWith(fontSize: 12),
-                      ),
-                    ],
-                  )),
-                ],
-              ),
+            Row(
+              children: [
+                Expanded(
+                    child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Language: ',
+                        ),
+                        Text(
+                          devData.getLanguage,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline3
+                              .copyWith(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                )),
+                Expanded(
+                    child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Date Range: '),
+                        Text(
+                          devData.getDateRange,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline3
+                              .copyWith(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                )),
+              ],
             ),
             Expanded(
               child: RefreshIndicator(
@@ -75,7 +120,6 @@ class _DevListState extends State<DevList> {
                 child: ListView.builder(
                   itemCount: devData.getDevelopers.length,
                   itemBuilder: (ctx, index) {
-                    print(devData.getDevelopers.length);
                     return DevListItem(devData.getDevelopers[index]);
                   },
                 ),

@@ -19,13 +19,13 @@ class _TrendFilterDrawerState extends State<TrendFilterDrawer> {
   @override
   void initState() {
     final repoData = Provider.of<RepoScraper>(context, listen: false);
-    _chosenSpoken = repoData.getSpoken();
-    _chosenLanguage = repoData.getLanguage();
-    _chosenDate = repoData.getDate();
+    _chosenSpoken = repoData.getSpoken;
+    _chosenLanguage = repoData.getLanguage;
+    _chosenDate = repoData.getDate;
 
-    spokenMap = repoData.getSpokenMap();
-    languageMap = repoData.getLanMap();
-    dateMap = repoData.getDateMap();
+    spokenMap = repoData.getSpokenMap;
+    languageMap = repoData.getLanMap;
+    dateMap = repoData.getDateMap;
 
     super.initState();
   }
@@ -34,51 +34,111 @@ class _TrendFilterDrawerState extends State<TrendFilterDrawer> {
   Widget build(BuildContext context) {
     final repoData = Provider.of<RepoScraper>(context, listen: false);
     return Drawer(
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(20.0),
+        color: Colors.grey[300],
         child: Column(
           children: [
             Text(
               'Settings',
               style: Theme.of(context).textTheme.headline1,
             ),
-            SizedBox(
-              height: 20,
+            Divider(
+              color: Colors.grey[900],
             ),
+            Spacer(),
             Text(
               'Spoken Language',
               style: Theme.of(context).textTheme.headline3,
             ),
-            _buildSpokenButton(context, repoData.getSpokenMap()),
-            SizedBox(
-              height: 30,
-            ),
+            Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white70,
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _buildSpokenButton(context, spokenMap)),
+            Spacer(),
             Text(
               'Language',
               style: Theme.of(context).textTheme.headline3,
             ),
-            _buildLanguageButton(context, repoData.getLanMap()),
-            SizedBox(
-              height: 30,
-            ),
+            Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white70,
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _buildLanguageButton(context, languageMap)),
+            Spacer(),
             Text(
               'Date Range',
               style: Theme.of(context).textTheme.headline3,
             ),
-            _buildDateButton(context, repoData.getDateMap()),
+            Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white70,
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _buildDateButton(context, dateMap)),
+            Spacer(
+              flex: 2,
+            ),
+            OutlinedButton(
+              onPressed: () {
+                repoData.clearRepos();
+                repoData.updateSpoken(_chosenSpoken);
+                repoData.updateLanguage(_chosenLanguage);
+                repoData.updateDate(_chosenDate);
+                repoData.updateScraper();
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                "Confirm",
+                style: Theme.of(context)
+                    .textTheme
+                    .button
+                    .copyWith(color: Colors.white, fontSize: 20),
+              ),
+              style: Theme.of(context).outlinedButtonTheme.style.copyWith(
+                  backgroundColor: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.pressed)) {
+                  return Colors.blueAccent;
+                } else {
+                  return Colors.blue;
+                }
+              })),
+            ),
             SizedBox(
-              height: 50,
+              height: 20,
             ),
             OutlinedButton(
                 onPressed: () {
                   repoData.clearRepos();
-                  repoData.updateSpoken(_chosenSpoken);
-                  repoData.updateLanguage(_chosenLanguage);
-                  repoData.updateDate(_chosenDate);
-                  repoData.applyFilter();
+                  repoData.setDefaultFilter();
+                  repoData.updateScraper();
                   Navigator.of(context).pop();
                 },
-                child: Text("Confirm"))
+                child: Text(
+                  "Clear",
+                  style: Theme.of(context)
+                      .textTheme
+                      .button
+                      .copyWith(color: Colors.black, fontSize: 20),
+                ),
+                style: Theme.of(context).outlinedButtonTheme.style.copyWith(
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.grey;
+                  } else {
+                    return Colors.grey[350];
+                  }
+                }))),
+            Spacer(
+              flex: 4,
+            ),
           ],
         ),
       ),

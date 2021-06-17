@@ -1,193 +1,186 @@
+import 'package:dev_tools/util/my-logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:html/parser.dart';
 import 'package:html/dom.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 import '../models/trend-scrapper/Repository.dart';
 import '../models/trend-scrapper/Contributor.dart';
 
 class RepoScraper with ChangeNotifier {
-  // global constant declarations
+  final logger = getLogger('RepoScraper');
+
   static final gitHubAddress = 'https://github.com';
-  var rootAddress;
-  static final trendingAddress = 'https://github.com/trending';
+  final _rootAddress = 'https://github.com/trending';
 
-  var pref;
+  SharedPreferences _localStorage;
 
-  // local variable declarations
-  bool _isInit =
-      true; // Tracks whether app is loading the website for the first time
-  String _baseAddress;
+  bool _isNothingFound = false;
 
-  // Repositories are loaded everytime the page rebuilds
-  List<Repository> _trendyRepos = [];
+  String _defaultSpoken = 'Any';
+  String _defaultLanguage = 'Any';
+  String _defaultDateRange = 'Today';
 
-  // Maps containing filter information are ONLY loaded when page builds for the first time
-  Map<String, String> _spokenMap = {'Any': ''};
-  Map<String, String> _languageMap = {'Any': ''};
-  Map<String, String> _dateMap = {};
-
-  // Variables keeping track of the state of filter selections
+  String _currAddress;
   String _spoken;
   String _language;
   String _date;
 
-  // Helper function declarations
-  Future<void> getStoredData() async {
-    pref = await SharedPreferences.getInstance();
-    _spoken = pref.getString('Spoken') ?? 'Any';
-    _language = pref.getString('Language') ?? 'Any';
-    _date = pref.getString('Date') ?? 'Today';
-    rootAddress = pref.getString('Address') ?? trendingAddress;
-  }
+  Map<String, String> _spokenMap = {'Any': ''};
+  Map<String, String> _languageMap = {'Any': ''};
+  Map<String, String> _dateMap = {};
 
-  void storeData() {
-    pref.setString('Spoken', _spoken);
-    pref.setString('Language', _language);
-    pref.setString('Date', _date);
-    pref.setString('Address', _baseAddress);
-  }
+  List<Repository> _repositories = [];
 
-  void clearRepos() {
-    _trendyRepos = [];
-    notifyListeners();
-  }
+  bool _isError = false;
 
-  List<Repository> get getRepos {
-    return _trendyRepos;
-  }
+  // ======================= Main Functions =============================== //
 
-  Map<String, String> getSpokenMap() {
-    return {..._spokenMap};
-  }
-
-  Map<String, String> getLanMap() {
-    return {..._languageMap};
-  }
-
-  Map<String, String> getDateMap() {
-    return {..._dateMap};
-  }
-
-  String getSpoken() {
-    return _spoken;
-  }
-
-  String getLanguage() {
-    return _language;
-  }
-
-  String getDate() {
-    return _date;
-  }
-
-  void updateSpoken(String spoken) {
-    _spoken = spoken;
-  }
-
-  void updateLanguage(String language) {
-    _language = language;
-  }
-
-  void updateDate(String date) {
-    _date = date;
-  }
-
-  // This function sets baseAddress and loads repositories
   Future<void> initScraper() async {
-    await getStoredData();
-    _baseAddress = rootAddress;
-    await loadRepos();
+    logger.i('initScraper | Started initialising...');
+    await getFilterData();
+    await loadFilters();
+    updateCurrAddress();
+    await loadScraper();
     notifyListeners();
+    logger.i('initScraper | Initalisation complete!');
   }
 
-  Future<void> loadRepos() async {
-    _trendyRepos = [];
+  Future<void> loadScraper() async {
+    logger.i('loadScraper | Started loading with address $_currAddress');
+    _repositories = [];
 
-    final response = await http.get(Uri.parse(_baseAddress));
+    try {
+      final response = await http.get(Uri.parse(_currAddress));
+      logger.i(
+          'loadScraper | HTTP request returned with status ${response.statusCode}');
 
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
-      if (_isInit) {
-        // Loading Maps of filter information ONLY at the initial round
-        _isInit = false;
-        loadFilterData();
+      if (response.statusCode == 200) {
+        var document = parse(response.body);
+        var elements = document.getElementsByClassName('Box-row');
+
+        logger.i(
+            'loadScraper | ${elements.length} elements retrieved from web page');
+
+        if (elements.length == 0) {
+          _isNothingFound = true;
+        } else {
+          _isNothingFound = false;
+          elements.forEach((element) {
+            var nameElement = element
+                .getElementsByClassName('h3 lh-condensed')[0]
+                .children[0];
+            var infoElement = element
+                .getElementsByClassName('f6 color-text-secondary mt-2')[0];
+
+            String title = getRepoName(nameElement);
+            String url = getRepoUrl(nameElement);
+            String langauge = getRepoLang(infoElement);
+            String stars = getRepoStar(infoElement);
+            String forks = getRepoFork(infoElement);
+            String starsNow = getStarsTdy(infoElement);
+            String descriptions = getRepoDescriptions(element);
+            List<Contributor> contributors = getContributors(infoElement);
+
+            Repository repo = Repository(
+                title: title,
+                url: url,
+                language: langauge,
+                stars: stars,
+                forks: forks,
+                starsNow: starsNow,
+                descriptions: descriptions,
+                contributors: contributors);
+
+            _repositories.add(repo);
+          });
+        }
       }
-
-      var elements = document.getElementsByClassName('Box-row');
-
-      elements.forEach((element) {
-        var nameElement =
-            element.getElementsByClassName('h3 lh-condensed')[0].children[0];
-        var infoElement =
-            element.getElementsByClassName('f6 color-text-secondary mt-2')[0];
-
-        String title = getRepoName(nameElement);
-        String url = getRepoUrl(nameElement);
-        String langauge = getRepoLang(infoElement);
-        String stars = getRepoStar(infoElement);
-        String forks = getRepoFork(infoElement);
-        String starsNow = getStarsTdy(infoElement);
-        String descriptions = getRepoDescriptions(element);
-        List<Contributor> contributors = getContributors(infoElement);
-
-        Repository repo = Repository(
-            title: title,
-            url: url,
-            language: langauge,
-            stars: stars,
-            forks: forks,
-            starsNow: starsNow,
-            descriptions: descriptions,
-            contributors: contributors);
-
-        _trendyRepos.add(repo);
-      });
+      _isError = false;
+      notifyListeners();
+      logger.i('loadScraper | Loading complete!');
+    } catch (_) {
+      _isError = true;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
-  Future<void> loadFilterData() async {
-    final response = await http.get(Uri.parse(trendingAddress));
-    var document = parse(response.body);
-    var elements = document.getElementsByClassName('select-menu-list');
-
-    Element spokenElement = elements[0];
-    Element languageElement = elements[1];
-    Element durationElement = elements[2];
-
-    List<Element> spokenLanguages =
-        spokenElement.getElementsByClassName('select-menu-item');
-    List<Element> languages =
-        languageElement.getElementsByClassName('select-menu-item');
-    List<Element> durations =
-        durationElement.getElementsByClassName('select-menu-item');
-
-    spokenLanguages.forEach((element) {
-      String title = element.text.trim();
-      String url = getSpokenUrl(element.attributes['href']);
-      _spokenMap[title] = url;
-    });
-    languages.forEach((element) {
-      String title = element.text.trim();
-      String url = getLangUrl(element.attributes['href']);
-      _languageMap[title] = url;
-    });
-    durations.forEach((element) {
-      String title = element.text.trim();
-      String url = getDateUrl(element.attributes['href']);
-      _dateMap[title] = url;
-    });
+  Future<void> updateScraper() async {
+    logger.i('updateScraper | Started to update...');
+    updateCurrAddress();
+    storeFilterData();
+    await loadScraper();
+    logger.i('updateScraper | Updating complete!');
   }
 
-  Future<void> applyFilter() async {
-    _baseAddress = getFilteredUrl(_spoken, _language, _date);
-    await loadRepos();
-    storeData();
+  Future<void> loadFilters() async {
+    logger
+        .i('loadFilters | Started to load filters with address $_rootAddress');
+    try {
+      final response = await http.get(Uri.parse(_rootAddress));
+      logger.i(
+          'loadFilters | HTTP request returned with status ${response.statusCode}');
+
+      if (response.statusCode == 200) {
+        var document = parse(response.body);
+        var elements = document.getElementsByClassName('select-menu-list');
+
+        Element spokenElement = elements[0];
+        Element languageElement = elements[1];
+        Element durationElement = elements[2];
+
+        List<Element> spokenLanguages =
+            spokenElement.getElementsByClassName('select-menu-item');
+        List<Element> languages =
+            languageElement.getElementsByClassName('select-menu-item');
+        List<Element> durations =
+            durationElement.getElementsByClassName('select-menu-item');
+
+        spokenLanguages.forEach((element) {
+          String title = element.text.trim();
+          String url = getSpokenUrl(element.attributes['href']);
+          _spokenMap[title] = url;
+        });
+        languages.forEach((element) {
+          String title = element.text.trim();
+          String url = getLangUrl(element.attributes['href']);
+          _languageMap[title] = url;
+        });
+        durations.forEach((element) {
+          String title = element.text.trim();
+          String url = getDateUrl(element.attributes['href']);
+          _dateMap[title] = url;
+        });
+      }
+      _isError = false;
+      notifyListeners();
+      logger.i('loadFilters | Loading complete!');
+    } catch (_) {
+      _isError = true;
+      notifyListeners();
+    }
   }
 
-  // ======================== Helper functions ============================== //
+  Future<void> getFilterData() async {
+    _localStorage = await SharedPreferences.getInstance();
+    _spoken = _localStorage.getString('Spoken') ?? 'Any';
+    _language = _localStorage.getString('Language') ?? 'Any';
+    _date = _localStorage.getString('Date') ?? 'Today';
+    logger.i(
+        'getFilterData | Loading complete. Spoken: $_spoken, Language: $_language, DateRange: $_date');
+  }
+
+  void storeFilterData() {
+    _localStorage.setString('Spoken', _spoken);
+    _localStorage.setString('Language', _language);
+    _localStorage.setString('Date', _date);
+    logger.i(
+        'storeFilterData | Storing complete. Spoken: $_spoken, Language: $_language, DateRange: $_date');
+  }
+
+  // ======================== Scrapping-related helper functions ============== //
 
   String getRepoDescriptions(Element element) {
     var descriptionElement =
@@ -221,6 +214,10 @@ class RepoScraper with ChangeNotifier {
         .firstWhere((element) => element.text.trim() == 'Built by',
             orElse: () => null);
 
+    if (contributorBlock == null) {
+      return [];
+    }
+
     var contributors = contributorBlock.children;
 
     return contributors.length == 0
@@ -250,42 +247,6 @@ class RepoScraper with ChangeNotifier {
         .replaceAll('/', ' / ');
   }
 
-  String getFilteredUrl(String spoken, String lang, String date) {
-    String baseAddress = trendingAddress;
-
-    if (lang == 'Any') {
-      if (date == 'Any') {
-        if (spoken == 'Any') {
-          return baseAddress;
-        } else {
-          return baseAddress + '?' + _spokenMap[spoken];
-        }
-      } else {
-        if (spoken == 'Any') {
-          return baseAddress + '?' + _dateMap[date];
-        } else {
-          return baseAddress + '?' + _dateMap[date] + '&' + _spokenMap[spoken];
-        }
-      }
-    } else {
-      if (spoken == 'Any') {
-        return baseAddress +
-            '/' +
-            _languageMap[lang] +
-            '?' +
-            (date == 'Any' ? 'since=daily' : _dateMap[date]);
-      } else {
-        return baseAddress +
-            '/' +
-            _languageMap[lang] +
-            '?' +
-            (date == 'Any' ? 'since=daily' : _dateMap[date]) +
-            '&' +
-            _spokenMap[spoken];
-      }
-    }
-  }
-
   String getSpokenUrl(String url) {
     return url.split('?')[1];
   }
@@ -298,53 +259,104 @@ class RepoScraper with ChangeNotifier {
     return url.split('?')[1];
   }
 
-  // =================== Helper functions for testing ====================== //
-  void printRepoTitle() {
-    _trendyRepos.forEach((repo) {
-      print(repo.title);
-    });
+  // ======================== Helper functions ============================== //
+
+  void updateCurrAddress() {
+    logger.i(
+        'updateCurrAddress | Starting... Address: $_currAddress, Spoken: $_spoken, Language: $_language, DateRange: $_date');
+
+    if (_language == 'Any') {
+      if (_date == 'Any') {
+        if (_spoken == 'Any') {
+          _currAddress = _rootAddress;
+        } else {
+          _currAddress = _rootAddress + '?' + _spokenMap[_spoken];
+        }
+      } else {
+        if (_spoken == 'Any') {
+          _currAddress = _rootAddress + '?' + _dateMap[_date];
+        } else {
+          _currAddress =
+              _rootAddress + '?' + _dateMap[_date] + '&' + _spokenMap[_spoken];
+        }
+      }
+    } else {
+      if (_spoken == 'Any') {
+        _currAddress = _rootAddress +
+            '/' +
+            _languageMap[_language] +
+            '?' +
+            (_date == 'Any' ? 'since=daily' : _dateMap[_date]);
+      } else {
+        _currAddress = _rootAddress +
+            '/' +
+            _languageMap[_language] +
+            '?' +
+            (_date == 'Any' ? 'since=daily' : _dateMap[_date]) +
+            '&' +
+            _spokenMap[_spoken];
+      }
+    }
+    logger.i('updateCurrAddress | Complete! Address: $_currAddress');
   }
 
-  void printRepoUrl() {
-    _trendyRepos.forEach((repo) {
-      print(repo.url);
-    });
+  void updateSpoken(String spoken) {
+    _spoken = spoken;
   }
 
-  void printRepoLanguage() {
-    _trendyRepos.forEach((repo) {
-      print(repo.language);
-    });
+  void updateLanguage(String language) {
+    _language = language;
   }
 
-  void printRepoStars() {
-    print(_trendyRepos.length);
-    _trendyRepos.forEach((repo) {
-      print(repo.stars);
-    });
+  void updateDate(String date) {
+    _date = date;
   }
 
-  void printRepoForks() {
-    _trendyRepos.forEach((repo) {
-      print(repo.forks);
-    });
+  void setDefaultFilter() {
+    _spoken = _defaultSpoken;
+    _language = _defaultLanguage;
+    _date = _defaultDateRange;
   }
 
-  void printRepoDesc() {
-    _trendyRepos.forEach((repo) {
-      print(repo.descriptions);
-    });
+  void clearRepos() {
+    _repositories = [];
+    notifyListeners();
   }
 
-  void printRepoStarsNow() {
-    _trendyRepos.forEach((repo) {
-      print(repo.starsNow);
-    });
+  // ======================== getters ============== //
+  List<Repository> get getRepos {
+    return _repositories;
   }
 
-  void printRepoContributors() {
-    _trendyRepos.forEach((repo) {
-      print(repo.contributors);
-    });
+  Map<String, String> get getSpokenMap {
+    return {..._spokenMap};
+  }
+
+  Map<String, String> get getLanMap {
+    return {..._languageMap};
+  }
+
+  Map<String, String> get getDateMap {
+    return {..._dateMap};
+  }
+
+  String get getSpoken {
+    return _spoken;
+  }
+
+  String get getLanguage {
+    return _language;
+  }
+
+  String get getDate {
+    return _date;
+  }
+
+  bool get isNothingFound {
+    return _isNothingFound;
+  }
+
+  bool get isError {
+    return _isError;
   }
 }

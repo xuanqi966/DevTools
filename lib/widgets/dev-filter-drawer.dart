@@ -30,42 +30,98 @@ class _DevFilterDrawerState extends State<DevFilterDrawer> {
   Widget build(BuildContext context) {
     final devData = Provider.of<DevScraper>(context, listen: false);
     return Drawer(
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(20.0),
+        color: Colors.grey[300],
         child: Column(
           children: [
             Text(
               'Settings',
               style: Theme.of(context).textTheme.headline1,
             ),
-            SizedBox(
-              height: 20,
+            Divider(
+              color: Colors.grey[900],
             ),
+            Spacer(),
             Text(
               'Language',
               style: Theme.of(context).textTheme.headline3,
             ),
-            _buildLanguageButton(context, _languageMap),
-            SizedBox(
-              height: 30,
-            ),
+            Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white70,
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _buildLanguageButton(context, _languageMap)),
+            Spacer(),
             Text(
               'Date Range',
               style: Theme.of(context).textTheme.headline3,
             ),
-            _buildDateButton(context, _dateMap),
+            Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white70,
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _buildDateButton(context, _dateMap)),
+            Spacer(
+              flex: 2,
+            ),
+            OutlinedButton(
+              onPressed: () {
+                devData.clearDevelopers();
+                devData.updateLanguage(_chosenLanguage);
+                devData.updateDateRange(_chosenDate);
+                devData.updateScraper();
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                "Confirm",
+                style: Theme.of(context)
+                    .textTheme
+                    .button
+                    .copyWith(color: Colors.white, fontSize: 20),
+              ),
+              style: Theme.of(context).outlinedButtonTheme.style.copyWith(
+                  backgroundColor: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.pressed)) {
+                  return Colors.blueAccent;
+                } else {
+                  return Colors.blue;
+                }
+              })),
+            ),
             SizedBox(
-              height: 50,
+              height: 20,
             ),
             OutlinedButton(
                 onPressed: () {
                   devData.clearDevelopers();
-                  devData.updateLanguage(_chosenLanguage);
-                  devData.updateDateRange(_chosenDate);
+                  devData.setDefaultFilter();
                   devData.updateScraper();
                   Navigator.of(context).pop();
                 },
-                child: Text("Confirm"))
+                child: Text(
+                  "Clear",
+                  style: Theme.of(context)
+                      .textTheme
+                      .button
+                      .copyWith(color: Colors.black, fontSize: 20),
+                ),
+                style: Theme.of(context).outlinedButtonTheme.style.copyWith(
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.grey;
+                  } else {
+                    return Colors.grey[350];
+                  }
+                }))),
+            Spacer(
+              flex: 4,
+            ),
           ],
         ),
       ),
