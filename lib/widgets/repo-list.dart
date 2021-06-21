@@ -57,106 +57,102 @@ class _RepoListState extends State<RepoList> {
     } else {
       logger.i('build | Developers: ${repoData.getRepos.length}');
       return SafeArea(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 5, vertical: 8),
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Spoken: ',
-                            ),
-                            Expanded(
-                              child: Text(
-                                repoData.getSpoken,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline3
-                                    .copyWith(fontSize: 12),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )),
-                Expanded(
-                    flex: 2,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
                     child: Container(
+                      padding: EdgeInsets.all(8),
+                      margin: EdgeInsets.all(3),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'Language: ',
+                            'Spoken: ',
                           ),
-                          Expanded(
-                            child: Text(
-                              repoData.getLanguage,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline3
-                                  .copyWith(fontSize: 12),
-                            ),
+                          Text(
+                            repoData.getSpoken,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline3
+                                .copyWith(fontSize: 12),
                           ),
                         ],
                       ),
-                    )),
-                Expanded(
-                    flex: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 5, vertical: 8),
+                    ),
+                  ),
+                  Expanded(
                       child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Date Range: '),
-                            Expanded(
-                              child: Text(
-                                repoData.getDate,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline3
-                                    .copyWith(fontSize: 12),
-                              ),
-                            ),
-                          ],
+                    padding: EdgeInsets.all(8),
+                    margin: EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Language: ',
                         ),
-                      ),
-                    )),
-              ],
-            ),
-            Expanded(
-              child: RefreshIndicator(
-                onRefresh: () => _onRefreshHandler(context),
-                child: ListView.builder(
-                  itemCount: repoData.getRepos.length,
-                  itemBuilder: (ctx, index) {
-                    return RepoListItem(repoData.getRepos[index]);
-                  },
+                        Text(
+                          repoData.getLanguage,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline3
+                              .copyWith(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  )),
+                  Expanded(
+                      child: Container(
+                    padding: EdgeInsets.all(8),
+                    margin: EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Date Range: '),
+                        Text(
+                          repoData.getDate,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline3
+                              .copyWith(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  )),
+                ],
+              ),
+              Expanded(
+                child: RefreshIndicator(
+                  onRefresh: () => _onRefreshHandler(context),
+                  child: ListView.builder(
+                    itemCount: repoData.getRepos.length,
+                    itemBuilder: (ctx, index) {
+                      return RepoListItem(repoData.getRepos[index]);
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }

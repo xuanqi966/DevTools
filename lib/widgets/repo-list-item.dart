@@ -136,21 +136,21 @@ class RepoListItem extends StatelessWidget {
                             Text(repo.forks)
                           ],
                         ),
-                      if (repo.starsNow != 'N.A')
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Icon(Icons.star_border),
-                              Text(
-                                repo.starsNow,
-                              )
-                            ],
-                          ),
-                        )
                     ],
                   ),
                 ),
+                if (repo.starsNow != 'N.A')
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.star_border),
+                        Text(
+                          repo.starsNow,
+                        )
+                      ],
+                    ),
+                  )
               ],
             ),
           ),
