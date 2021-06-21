@@ -35,111 +35,110 @@ class _TrendFilterDrawerState extends State<TrendFilterDrawer> {
     final repoData = Provider.of<RepoScraper>(context, listen: false);
     return Drawer(
       child: Container(
-        padding: const EdgeInsets.all(20.0),
         color: Colors.grey[300],
-        child: Column(
-          children: [
-            Text(
-              'Settings',
-              style: Theme.of(context).textTheme.headline1,
-            ),
-            Divider(
-              color: Colors.grey[900],
-            ),
-            Spacer(),
-            Text(
-              'Spoken Language',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white70,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: _buildSpokenButton(context, spokenMap)),
-            Spacer(),
-            Text(
-              'Language',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white70,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: _buildLanguageButton(context, languageMap)),
-            Spacer(),
-            Text(
-              'Date Range',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                    color: Colors.white70,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: _buildDateButton(context, dateMap)),
-            Spacer(
-              flex: 2,
-            ),
-            OutlinedButton(
-              onPressed: () {
-                repoData.clearRepos();
-                repoData.updateSpoken(_chosenSpoken);
-                repoData.updateLanguage(_chosenLanguage);
-                repoData.updateDate(_chosenDate);
-                repoData.updateScraper();
-                Navigator.of(context).pop();
-              },
-              child: Text(
-                "Confirm",
-                style: Theme.of(context)
-                    .textTheme
-                    .button
-                    .copyWith(color: Colors.white, fontSize: 20),
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(20.0),
+            children: [
+              Text(
+                'Settings',
+                style: Theme.of(context).textTheme.headline1,
               ),
-              style: Theme.of(context).outlinedButtonTheme.style.copyWith(
-                  backgroundColor: MaterialStateProperty.resolveWith((states) {
-                if (states.contains(MaterialState.pressed)) {
-                  return Colors.blueAccent;
-                } else {
-                  return Colors.blue;
-                }
-              })),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            OutlinedButton(
+              Divider(
+                height: 20,
+                color: Colors.grey[900],
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Spoken Language',
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white70,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: _buildSpokenButton(context, spokenMap)),
+              SizedBox(height: 20),
+              Text(
+                'Language',
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white70,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: _buildLanguageButton(context, languageMap)),
+              SizedBox(height: 20),
+              Text(
+                'Date Range',
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white70,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: _buildDateButton(context, dateMap)),
+              SizedBox(height: 30),
+              OutlinedButton(
                 onPressed: () {
                   repoData.clearRepos();
-                  repoData.setDefaultFilter();
+                  repoData.updateSpoken(_chosenSpoken);
+                  repoData.updateLanguage(_chosenLanguage);
+                  repoData.updateDate(_chosenDate);
                   repoData.updateScraper();
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  "Clear",
+                  "Confirm",
                   style: Theme.of(context)
                       .textTheme
                       .button
-                      .copyWith(color: Colors.black, fontSize: 20),
+                      .copyWith(color: Colors.white, fontSize: 20),
                 ),
                 style: Theme.of(context).outlinedButtonTheme.style.copyWith(
                     backgroundColor:
                         MaterialStateProperty.resolveWith((states) {
                   if (states.contains(MaterialState.pressed)) {
-                    return Colors.grey;
+                    return Colors.black;
                   } else {
-                    return Colors.grey[350];
+                    return Colors.black87;
                   }
-                }))),
-            Spacer(
-              flex: 4,
-            ),
-          ],
+                })),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              OutlinedButton(
+                  onPressed: () {
+                    repoData.clearRepos();
+                    repoData.setDefaultFilter();
+                    repoData.updateScraper();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "Clear",
+                    style: Theme.of(context)
+                        .textTheme
+                        .button
+                        .copyWith(color: Colors.black, fontSize: 20),
+                  ),
+                  style: Theme.of(context).outlinedButtonTheme.style.copyWith(
+                      backgroundColor:
+                          MaterialStateProperty.resolveWith((states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return Colors.grey[600];
+                    } else {
+                      return Colors.grey[400];
+                    }
+                  }))),
+            ],
+          ),
         ),
       ),
     );

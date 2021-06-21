@@ -33,31 +33,30 @@ class _RepoListState extends State<RepoList> {
     logger.i('build | building DevList...');
     final repoData = Provider.of<RepoScraper>(context);
     if (repoData.isError) {
-      return Expanded(
-          child: Center(
+      return Center(
         child: Text(
           'Connection error occured. Please try again.',
           style: Theme.of(context).textTheme.headline1,
           textAlign: TextAlign.center,
         ),
-      ));
+      );
     } else if (repoData.getRepos.isEmpty) {
       if (repoData.isNothingFound) {
-        return Expanded(
-            child: Center(
-                child: Text(
-          'No repositories found.',
-          style: Theme.of(context).textTheme.headline1,
-        )));
-      }
-      return Expanded(
+        return Container(
           child: Center(
-              child: CupertinoActivityIndicator(
+              child: Text(
+            'No repositories found.',
+            style: Theme.of(context).textTheme.headline1,
+          )),
+        );
+      }
+      return Center(
+          child: CupertinoActivityIndicator(
         radius: 20,
-      )));
+      ));
     } else {
       logger.i('build | Developers: ${repoData.getRepos.length}');
-      return Expanded(
+      return SafeArea(
         child: Column(
           children: [
             Row(

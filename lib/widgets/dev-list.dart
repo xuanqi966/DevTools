@@ -34,31 +34,28 @@ class _DevListState extends State<DevList> {
     logger.i('build | building DevList...');
     final devData = Provider.of<DevScraper>(context);
     if (devData.isError) {
-      return Expanded(
-          child: Center(
+      return Center(
         child: Text(
           'Connection error occured. Please try again.',
           style: Theme.of(context).textTheme.headline1,
           textAlign: TextAlign.center,
         ),
-      ));
+      );
     } else if (devData.getDevelopers.isEmpty) {
       if (devData.isNothingFound) {
-        return Expanded(
-            child: Center(
-                child: Text(
+        return Center(
+            child: Text(
           'No developers found.',
           style: Theme.of(context).textTheme.headline1,
-        )));
+        ));
       }
-      return Expanded(
-          child: Center(
-              child: CupertinoActivityIndicator(
+      return Center(
+          child: CupertinoActivityIndicator(
         radius: 20,
-      )));
+      ));
     } else {
       logger.i('build | Developers: ${devData.getDevelopers.length}');
-      return Expanded(
+      return SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

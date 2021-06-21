@@ -15,12 +15,16 @@ class WebPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Web Page",
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.headline2,
         ),
+        centerTitle: false,
+        leadingWidth: 20,
       ),
-      body: WebView(
-        initialUrl: url,
-        javascriptMode: JavascriptMode.unrestricted,
+      body: SafeArea(
+        child: WebView(
+          initialUrl: url,
+          javascriptMode: JavascriptMode.unrestricted,
+        ),
       ),
     );
   }
