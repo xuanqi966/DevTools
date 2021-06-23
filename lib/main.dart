@@ -1,3 +1,4 @@
+import 'package:dev_tools/pages/base64/base64_converter.dart';
 import 'package:dev_tools/pages/dateTime/time_tabPage.dart';
 import 'package:dev_tools/util/theme.dart';
 import 'package:flutter/material.dart';
