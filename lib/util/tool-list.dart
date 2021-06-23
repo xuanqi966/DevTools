@@ -1,3 +1,4 @@
+import 'package:dev_tools/pages/base64/base64_converter.dart';
 import 'package:dev_tools/pages/trend-scraper/trend-list-page.dart';
 import 'package:dev_tools/pages/udp/receiver-page.dart';
 import 'package:dev_tools/pages/udp/tab-page.dart';
@@ -43,5 +44,12 @@ final TOOLS_LIST = [
         Icons.access_time,
         size: 65,
       ),
-      TimeTabPage())
+      TimeTabPage()),
+  Tool(
+      "Base64 Converter",
+      Icon(
+        Icons.compare_arrows,
+        size: 65,
+      ),
+      Base64Converter())
 ];
