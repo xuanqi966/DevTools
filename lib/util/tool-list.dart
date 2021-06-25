@@ -1,4 +1,5 @@
 import 'package:dev_tools/pages/base64/base64_converter.dart';
+import 'package:dev_tools/pages/number-base/base-converter-page.dart';
 import 'package:dev_tools/pages/trend-scraper/trend-list-page.dart';
 import 'package:dev_tools/pages/udp/receiver-page.dart';
 import 'package:dev_tools/pages/udp/tab-page.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:dev_tools/pages/iphone/homepage/devices_homepage.dart';
 import 'package:dev_tools/pages/qrcode/qrtabs-page.dart';
 import 'package:dev_tools/pages/dateTime/time_tabPage.dart';
+import 'package:dev_tools/pages/urlprocessing/url-page.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import '../models/tool.dart';
 
@@ -54,10 +56,26 @@ final TOOLS_LIST = [
       ),
       Base64Converter()),
   Tool(
+
       "UUID Generator",
       Icon(
         Icons.data_saver_off,
         size: 65,
       ),
       UUIDConverter())
+Tool(
+      "URL encoder/decoder",
+      Icon(
+        Icons.link,
+        size: 65,
+      ),
+      UrlPage()),
+  Tool(
+      "Number base converter",
+      Icon(
+        FontAwesome.calculator,
+        size: 65,
+      ),
+      BaseConverterPage()),
+
 ];
