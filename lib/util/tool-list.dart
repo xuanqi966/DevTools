@@ -56,14 +56,13 @@ final TOOLS_LIST = [
       ),
       Base64Converter()),
   Tool(
-
       "UUID Generator",
       Icon(
         Icons.data_saver_off,
         size: 65,
       ),
-      UUIDConverter())
-Tool(
+      UUIDConverter()),
+  Tool(
       "URL encoder/decoder",
       Icon(
         Icons.link,
@@ -77,5 +76,4 @@ Tool(
         size: 65,
       ),
       BaseConverterPage()),
-
 ];
