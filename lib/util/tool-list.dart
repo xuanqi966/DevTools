@@ -2,6 +2,7 @@ import 'package:dev_tools/pages/base64/base64_converter.dart';
 import 'package:dev_tools/pages/trend-scraper/trend-list-page.dart';
 import 'package:dev_tools/pages/udp/receiver-page.dart';
 import 'package:dev_tools/pages/udp/tab-page.dart';
+import 'package:dev_tools/pages/uuid/uuid_tabpage.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_tools/pages/iphone/homepage/devices_homepage.dart';
 import 'package:dev_tools/pages/qrcode/qrtabs-page.dart';
@@ -51,5 +52,12 @@ final TOOLS_LIST = [
         Icons.compare_arrows,
         size: 65,
       ),
-      Base64Converter())
+      Base64Converter()),
+  Tool(
+      "UUID Generator",
+      Icon(
+        Icons.data_saver_off,
+        size: 65,
+      ),
+      UUIDConverter())
 ];
