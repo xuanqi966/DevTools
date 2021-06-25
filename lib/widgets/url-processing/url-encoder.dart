@@ -27,37 +27,56 @@ class _UrlEncoderState extends State<UrlEncoder> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).requestFocus(new FocusNode());
-      },
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'URL Input',
-                  style: Theme.of(context).textTheme.headline2,
-                ),
-                _buildInputBox(),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'Encoded URL',
-                  style: Theme.of(context).textTheme.headline2,
-                ),
-                _buildDisplayBox(),
-                SizedBox(
-                  height: 20,
-                ),
-                _buildEncodeButton(context),
-                _buildCopyButton(context)
-              ],
+    return SafeArea(
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "URL Encoder",
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  Divider(
+                    thickness: 1.0,
+                    height: 30.0,
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    'URL Input:',
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  _buildInputBox(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Encoded URL:',
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  _buildDisplayBox(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  _buildEncodeButton(context),
+                  _buildCopyButton(context)
+                ],
+              ),
             ),
           ),
         ),
@@ -71,6 +90,11 @@ class _UrlEncoderState extends State<UrlEncoder> {
       margin: EdgeInsets.all(8),
       child: TextFormField(
         decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue),
+                borderRadius: const BorderRadius.all(
+                  const Radius.circular(10.0),
+                )),
             filled: true,
             fillColor: Colors.white60,
             contentPadding: EdgeInsets.all(15.0),
@@ -116,15 +140,20 @@ class _UrlEncoderState extends State<UrlEncoder> {
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: OutlinedButton(
         child: Text("Copy to Clipboard",
-            style: Theme.of(context).textTheme.button),
+            style: Theme.of(context)
+                .textTheme
+                .button
+                .copyWith(color: Colors.blue[600])),
         style: ButtonStyle(
+            side:
+                MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),
             backgroundColor: MaterialStateProperty.resolveWith((states) {
               if (states.contains(MaterialState.pressed)) {
                 return Colors.grey;
               } else {
-                return Colors.grey[300];
+                return Colors.white30;
               }
             })),
         onPressed: () => copyContent(context),
@@ -150,16 +179,6 @@ class _UrlEncoderState extends State<UrlEncoder> {
                 .button
                 .copyWith(color: Colors.white),
           ),
-          style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20))),
-              backgroundColor: MaterialStateProperty.resolveWith((states) {
-                if (states.contains(MaterialState.pressed)) {
-                  return Colors.blueAccent;
-                } else {
-                  return Colors.blue;
-                }
-              })),
         ));
   }
 }

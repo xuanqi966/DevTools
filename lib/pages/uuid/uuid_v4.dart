@@ -25,6 +25,17 @@ class _UUIDV4State extends State<UUIDV4> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Text(
+                  "V4 UUID Generator",
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+                Divider(
+                  thickness: 1.0,
+                  height: 30.0,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
                 _buildHeadline("Generate Random ID:"),
                 SizedBox(
                   height: 20,

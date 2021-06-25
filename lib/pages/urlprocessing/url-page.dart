@@ -11,8 +11,6 @@ class _UrlPageState extends State<UrlPage> {
   int _currIndex = 0;
   PageController _pageController;
 
-  List<String> _titles = ['URL Encoder', 'URL Decoder'];
-
   void _selectPage(int index) {
     setState(() {
       _currIndex = index;
@@ -36,15 +34,8 @@ class _UrlPageState extends State<UrlPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          _titles[_currIndex],
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        centerTitle: false,
-        leadingWidth: 20,
-        elevation: 2.0,
-      ),
+      appBar:
+          PreferredSize(preferredSize: Size.fromHeight(30.0), child: AppBar()),
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,

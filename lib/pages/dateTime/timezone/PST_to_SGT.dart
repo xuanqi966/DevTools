@@ -46,10 +46,7 @@ class _TimeConverterState extends State<TimeConverter> {
         firstDate: DateTime(DateTime.now().year - 5),
         lastDate: DateTime(DateTime.now().year + 5),
         builder: (context, child) {
-          return Theme(
-            data: ThemeData.dark(),
-            child: child,
-          );
+          return child;
         });
 
     if (newDate == null) return null;
@@ -65,10 +62,7 @@ class _TimeConverterState extends State<TimeConverter> {
             ? TimeOfDay(hour: dateTime.hour, minute: dateTime.minute)
             : initialTime,
         builder: (context, child) {
-          return Theme(
-            data: ThemeData.dark(),
-            child: child,
-          );
+          return child;
         });
 
     if (newTime == null) return null;
@@ -87,6 +81,17 @@ class _TimeConverterState extends State<TimeConverter> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Text(
+                "PST to SGT",
+                style: Theme.of(context).textTheme.headline1,
+              ),
+              Divider(
+                thickness: 1.0,
+                height: 30.0,
+              ),
+              SizedBox(
+                height: 15,
+              ),
               ButtonHeaderWidget(
                 title: "Time in PST: ",
                 text: getText(),

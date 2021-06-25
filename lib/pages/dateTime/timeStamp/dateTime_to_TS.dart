@@ -31,10 +31,7 @@ class _DateTimeToTSState extends State<DateTimeToTS> {
         firstDate: DateTime(DateTime.now().year - 5),
         lastDate: DateTime(DateTime.now().year + 5),
         builder: (context, child) {
-          return Theme(
-            data: ThemeData.dark(),
-            child: child,
-          );
+          return child;
         });
 
     if (newDate == null) return;
@@ -59,6 +56,17 @@ class _DateTimeToTSState extends State<DateTimeToTS> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    Text(
+                      "DT to TS",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    Divider(
+                      thickness: 1.0,
+                      height: 30.0,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     ButtonHeaderWidget(
                       title: "Enter a Date: ",
                       text: getText(),
@@ -162,6 +170,11 @@ class _DateTimeToTSState extends State<DateTimeToTS> {
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                  borderRadius: const BorderRadius.all(
+                    const Radius.circular(10.0),
+                  )),
               border: OutlineInputBorder(
                   borderRadius: const BorderRadius.all(
                 const Radius.circular(10.0),

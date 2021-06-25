@@ -30,15 +30,8 @@ class _UUIDConverterState extends State<UUIDConverter> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          "UUID Generator",
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        centerTitle: false,
-        leadingWidth: 20,
-        elevation: 2.0,
-      ),
+      appBar:
+          PreferredSize(preferredSize: Size.fromHeight(30.0), child: AppBar()),
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,

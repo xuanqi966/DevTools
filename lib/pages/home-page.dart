@@ -7,13 +7,17 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("DevTools", style: Theme.of(context).textTheme.headline1),
-        elevation: 2.0,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.0),
+        child: AppBar(
+          title: Text("DevTools", style: Theme.of(context).textTheme.headline1),
+          centerTitle: false,
+        ),
       ),
       body: SafeArea(
+        bottom: false,
         child: GridView(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.fromLTRB(15, 10, 15, 40),
           children: TOOLS_LIST.map((tool) => ToolItem(tool)).toList(),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200,

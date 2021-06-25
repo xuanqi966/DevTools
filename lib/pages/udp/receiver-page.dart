@@ -63,26 +63,25 @@ class _ReceiverPageState extends State<ReceiverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "UDP Receiver",
-          style: Theme.of(context).textTheme.headline2,
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30.0),
+        child: AppBar(
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.send,
+                color: Colors.blue[600],
+              ),
+              iconSize: 25.0,
+              tooltip: "Send",
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => SenderPage()));
+              },
+            ),
+          ],
         ),
-        centerTitle: false,
-        leadingWidth: 20,
-        elevation: 2.0,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.send),
-            iconSize: 25.0,
-            color: Colors.black,
-            tooltip: "Send",
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => SenderPage()));
-            },
-          ),
-        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -93,6 +92,14 @@ class _ReceiverPageState extends State<ReceiverPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    "UDP Receiver",
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  Divider(
+                    thickness: 1.0,
+                    height: 30.0,
+                  ),
                   Container(
                       alignment: Alignment.bottomLeft,
                       child: _buildHeadings("My Port: ")),
@@ -148,6 +155,11 @@ class _ReceiverPageState extends State<ReceiverPage> {
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: TextFormField(
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                  borderRadius: const BorderRadius.all(
+                    const Radius.circular(10.0),
+                  )),
               filled: true,
               fillColor: Colors.white60,
               contentPadding: EdgeInsets.all(15.0),

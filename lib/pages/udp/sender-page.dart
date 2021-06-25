@@ -1,5 +1,6 @@
 import 'dart:io';
-
+import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:regexed_validator/regexed_validator.dart';
 import '../../models/udpSender.dart';
@@ -21,33 +22,36 @@ class _SenderPageState extends State<SenderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "UDP Sender",
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        centerTitle: false,
-        leadingWidth: 20,
-        elevation: 2.0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          iconSize: 20.0,
-          color: Colors.black,
-          onPressed: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.email),
-            iconSize: 25.0,
-            color: Colors.black,
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30.0),
+        child: AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(
+              defaultTargetPlatform == TargetPlatform.iOS
+                  ? Icons.arrow_back_ios
+                  : Icons.arrow_back,
+              size: 25,
+            ),
+            color: Colors.blue[600],
             onPressed: () {
+              Navigator.pop(context);
               Navigator.pop(context);
             },
           ),
-        ],
+          actions: [
+            IconButton(
+              icon: Icon(Icons.email),
+              iconSize: 25.0,
+              tooltip: "Receive",
+              color: Colors.blue[600],
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: SafeArea(
         child: GestureDetector(
@@ -63,6 +67,14 @@ class _SenderPageState extends State<SenderPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Text(
+                      "UDP Sender",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    Divider(
+                      thickness: 1.0,
+                      height: 30.0,
+                    ),
                     _buildHeadline("Enter an Address: "),
                     _buildIp(),
                     SizedBox(
@@ -95,8 +107,8 @@ class _SenderPageState extends State<SenderPage> {
                             showSentDialog(
                                 context,
                                 (_address == null)
-                                    ? "Message Broadcasted"
-                                    : "Message Sent",
+                                    ? "Message Broadcasted!"
+                                    : "Message Sent!",
                                 (_address == null)
                                     ? '255.255.255.255'
                                     : _address.toString(),
@@ -125,6 +137,11 @@ class _SenderPageState extends State<SenderPage> {
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: TextFormField(
         decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue),
+                borderRadius: const BorderRadius.all(
+                  const Radius.circular(10.0),
+                )),
             filled: true,
             fillColor: Colors.white60,
             contentPadding: EdgeInsets.all(15.0),
@@ -162,6 +179,11 @@ class _SenderPageState extends State<SenderPage> {
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: TextFormField(
           decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                  borderRadius: const BorderRadius.all(
+                    const Radius.circular(10.0),
+                  )),
               filled: true,
               fillColor: Colors.white60,
               contentPadding: EdgeInsets.all(15.0),
@@ -191,6 +213,11 @@ class _SenderPageState extends State<SenderPage> {
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: TextFormField(
         decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue),
+                borderRadius: const BorderRadius.all(
+                  const Radius.circular(10.0),
+                )),
             filled: true,
             fillColor: Colors.white60,
             contentPadding: EdgeInsets.all(15.0),
@@ -220,46 +247,53 @@ class _SenderPageState extends State<SenderPage> {
   void showSentDialog(
       BuildContext context, String title, String ip, String port, String msg) {
     Widget okButton = TextButton(
-        onPressed: () => Navigator.of(context).pop(), child: Text("OK"));
-    AlertDialog sentDialog = AlertDialog(
-      backgroundColor: Colors.grey[800],
-      title: Text(title,
+        style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all(Size.fromHeight(20))),
+        onPressed: () => Navigator.of(context).pop(),
+        child: Text(
+          "OK",
           style: Theme.of(context)
               .textTheme
-              .headline2
-              .copyWith(color: Colors.white)),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              .bodyText1
+              .copyWith(color: Colors.blue),
+        ));
+    Widget sentDialog = CupertinoAlertDialog(
+      title: Text(title, style: Theme.of(context).textTheme.headline2),
       content: SizedBox(
-        height: 150,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildMessageTitleText("Dest IP: ", context),
-            SizedBox(
-              height: 5.0,
-            ),
-            _buildMessageText(ip, context),
-            SizedBox(
-              height: 10.0,
-            ),
-            _buildMessageTitleText("Dest Port: ", context),
-            SizedBox(
-              height: 5.0,
-            ),
-            _buildMessageText(port, context),
-            SizedBox(
-              height: 10.0,
-            ),
-            _buildMessageTitleText("Message: ", context),
-            SizedBox(
-              height: 5.0,
-            ),
-            _buildMessageText(msg, context)
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 12.0,
+              ),
+              _buildMessageTitleText("Dest IP: ", context),
+              SizedBox(
+                height: 5.0,
+              ),
+              _buildMessageText(ip, context),
+              SizedBox(
+                height: 10.0,
+              ),
+              _buildMessageTitleText("Dest Port: ", context),
+              SizedBox(
+                height: 5.0,
+              ),
+              _buildMessageText(port, context),
+              SizedBox(
+                height: 10.0,
+              ),
+              _buildMessageTitleText("Message: ", context),
+              SizedBox(
+                height: 5.0,
+              ),
+              _buildMessageText(msg, context),
+            ],
+          ),
         ),
       ),
-      actions: [okButton],
+      actions: [Center(child: okButton)],
     );
     showDialog(
         context: context,
@@ -273,14 +307,16 @@ class _SenderPageState extends State<SenderPage> {
         style: Theme.of(context)
             .textTheme
             .bodyText1
-            .copyWith(color: Colors.white70));
+            .copyWith(color: Colors.black54));
   }
 }
 
 Widget _buildMessageTitleText(String msg, BuildContext context) {
   return Text(msg,
-      style:
-          Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white));
+      style: Theme.of(context)
+          .textTheme
+          .bodyText1
+          .copyWith(fontWeight: FontWeight.w600));
 }
 
 bool isNumeric(String s) {

@@ -30,15 +30,8 @@ class _Base64ConverterState extends State<Base64Converter> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          titles[_currentIndex],
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        centerTitle: false,
-        leadingWidth: 20,
-        elevation: 2.0,
-      ),
+      appBar:
+          PreferredSize(preferredSize: Size.fromHeight(30.0), child: AppBar()),
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,

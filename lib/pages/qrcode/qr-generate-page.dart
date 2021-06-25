@@ -101,10 +101,25 @@ class _QrGeneratePageState extends State<QrGeneratePage> {
         },
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    "QR Code Generator",
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20.0, right: 20.0, bottom: 15.0),
+                  child: Divider(
+                    thickness: 1.0,
+                    height: 30.0,
+                  ),
+                ),
                 Center(
                   child: RepaintBoundary(
                       key: globalKey,
@@ -127,33 +142,40 @@ class _QrGeneratePageState extends State<QrGeneratePage> {
                     textInputAction: TextInputAction.done,
                     onChanged: (_) => _generateCode(),
                     decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white60,
-                        contentPadding: EdgeInsets.all(15.0),
-                        hintText: "Enter a your message",
-                        errorText: _inputErrorText,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                      filled: true,
+                      fillColor: Colors.white60,
+                      contentPadding: EdgeInsets.all(15.0),
+                      hintText: "Enter a your message",
+                      errorText: _inputErrorText,
+                      border: OutlineInputBorder(
+                          borderRadius: const BorderRadius.all(
+                        const Radius.circular(10.0),
+                      )),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                          borderRadius: const BorderRadius.all(
+                            const Radius.circular(10.0),
+                          )),
+                    ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  padding: EdgeInsets.only(left: 30, right: 30.0, bottom: 30.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _buildButton(
                           "Share",
-                          Icon(Icons.share, color: Colors.white),
-                          Colors.black,
+                          Icon(Icons.share, color: Colors.blue[600]),
+                          Colors.white30,
                           _captureAndSharePng,
-                          Colors.white),
+                          Colors.blue[600]),
                       _buildButton(
                           "Save",
-                          Icon(Icons.file_download,
-                              color: Colors.blueGrey[800]),
-                          Colors.grey[350],
+                          Icon(Icons.file_download, color: Colors.white),
+                          Colors.blue[600],
                           _captureAndSavePng,
-                          Colors.black)
+                          Colors.white)
                     ],
                   ),
                 )
@@ -186,6 +208,8 @@ class _QrGeneratePageState extends State<QrGeneratePage> {
         ),
         onPressed: function,
         style: ButtonStyle(
+            side:
+                MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),
             backgroundColor: MaterialStateProperty.all(bgColor)),

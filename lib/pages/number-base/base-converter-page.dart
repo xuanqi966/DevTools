@@ -64,14 +64,9 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Number Base Converter',
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        centerTitle: false,
-        leadingWidth: 20,
-        elevation: 2.0,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(30.0),
+        child: AppBar(),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -81,7 +76,18 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Enter Number',
+                "Number Base Converter",
+                style: Theme.of(context).textTheme.headline1,
+              ),
+              Divider(
+                thickness: 1.0,
+                height: 30.0,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Enter Number:',
                 style: Theme.of(context).textTheme.headline2,
               ),
               _buildDropdownContainer(_buildNumberInput()),
@@ -89,7 +95,7 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
                 height: 20,
               ),
               Text(
-                'From Base',
+                'From Base:',
                 style: Theme.of(context).textTheme.headline2,
               ),
               _buildDropdownContainer(_buildFromBase()),
@@ -97,7 +103,7 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
                 height: 20,
               ),
               Text(
-                'To Base',
+                'To Base:',
                 style: Theme.of(context).textTheme.headline2,
               ),
               _buildDropdownContainer(_buildToBase()),
@@ -105,7 +111,7 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
                 height: 20,
               ),
               Text(
-                'Result Number',
+                'Result Number:',
                 style: Theme.of(context).textTheme.headline2,
               ),
               _buildNumberOutput(),
@@ -116,11 +122,16 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   _buildButton(
-                      'Convert', _convertHandler, Icon(Icons.functions)),
-                  _buildButton(
-                      'Reset', _resetHandler, Icon(FontAwesome.remove)),
+                      'Convert',
+                      _convertHandler,
+                      Icon(
+                        Icons.functions,
+                        color: Colors.white,
+                      )),
+                  _buildButton('Reset', _resetHandler,
+                      Icon(FontAwesome.remove, color: Colors.white)),
                   _buildButton('Copy', () => _copyHandler(context),
-                      Icon(Icons.content_copy))
+                      Icon(Icons.content_copy, color: Colors.white))
                 ],
               )
             ],
@@ -145,7 +156,15 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
       controller: _inputController,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.blue),
+            borderRadius: const BorderRadius.all(
+              const Radius.circular(10.0),
+            )),
+        border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+          const Radius.circular(10.0),
+        )),
         labelText: 'Number',
         hintText: 'Enter Number',
       ),
@@ -217,16 +236,6 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
               Text(title, style: Theme.of(context).textTheme.button),
             ],
           ),
-          style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
-              backgroundColor: MaterialStateProperty.resolveWith((states) {
-                if (states.contains(MaterialState.pressed)) {
-                  return Colors.grey;
-                } else {
-                  return Colors.grey[300];
-                }
-              })),
           onPressed: onPressed,
         ),
       ),

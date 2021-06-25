@@ -11,15 +11,8 @@ class DevicesHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          "Devices",
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        centerTitle: false,
-        leadingWidth: 20,
-        elevation: 2.0,
-      ),
+      appBar:
+          PreferredSize(preferredSize: Size.fromHeight(33.0), child: AppBar()),
       body: SafeArea(
         child: buildGridView(context),
       ),
@@ -29,21 +22,41 @@ class DevicesHomePage extends StatelessWidget {
   Widget buildGridView(BuildContext context) {
     List<HomePageIcon> _homePageIcons = homePageIconData;
 
-    return GridView(
-      padding: EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
-      children: _homePageIcons
-          .map((icon) => buildCard(
-              context,
-              icon.iconImageVal,
-              icon.imageName,
-              icon.nextPage,
-              icon.devicesList,
-              icon.displayList,
-              icon.displayList2,
-              icon.phonesList))
-          .toList(),
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200, crossAxisSpacing: 20, mainAxisSpacing: 20),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Text(
+              "Devices",
+              style: Theme.of(context).textTheme.headline1,
+              textAlign: TextAlign.start,
+            ),
+          ),
+          GridView(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            padding: EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 20),
+            children: _homePageIcons
+                .map((icon) => buildCard(
+                    context,
+                    icon.iconImageVal,
+                    icon.imageName,
+                    icon.nextPage,
+                    icon.devicesList,
+                    icon.displayList,
+                    icon.displayList2,
+                    icon.phonesList))
+                .toList(),
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20),
+          ),
+        ],
+      ),
     );
   }
 

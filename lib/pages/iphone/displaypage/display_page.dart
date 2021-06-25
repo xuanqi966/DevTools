@@ -41,18 +41,18 @@ class _DisplayPageState extends State<DisplayPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(widget.title,
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1
-                .copyWith(fontWeight: FontWeight.bold)),
-        centerTitle: false,
-        leadingWidth: 20,
-      ),
+      appBar:
+          PreferredSize(preferredSize: Size.fromHeight(33.0), child: AppBar()),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+              child: Text(widget.title,
+                  style: Theme.of(context).textTheme.headline1),
+            ),
             // give the tab bar a height
             _buildTabBar(),
             _buildDivider(),

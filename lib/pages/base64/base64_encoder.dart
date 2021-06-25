@@ -29,6 +29,17 @@ class _EncoderState extends State<Encoder> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      "Base64 Encoder",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    Divider(
+                      thickness: 1.0,
+                      height: 30.0,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
                     _buildHeadline("Enter Message: "),
                     SizedBox(
                       height: 20,
@@ -66,6 +77,11 @@ class _EncoderState extends State<Encoder> {
   Widget _buildMsg() {
     return TextFormField(
       decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue),
+              borderRadius: const BorderRadius.all(
+                const Radius.circular(10.0),
+              )),
           filled: true,
           fillColor: Colors.white60,
           contentPadding: EdgeInsets.all(15.0),

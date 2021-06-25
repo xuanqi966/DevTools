@@ -39,6 +39,17 @@ class _TimeStampState extends State<TimeStamp> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    Text(
+                      "TS to DT",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    Divider(
+                      thickness: 1.0,
+                      height: 30.0,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
                     _buildHeadline("Enter a Timestamp: "),
                     SizedBox(
                       height: 20,
@@ -122,6 +133,11 @@ class _TimeStampState extends State<TimeStamp> {
     return TextFormField(
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue),
+              borderRadius: const BorderRadius.all(
+                const Radius.circular(10.0),
+              )),
           border: OutlineInputBorder(
               borderRadius: const BorderRadius.all(
             const Radius.circular(10.0),

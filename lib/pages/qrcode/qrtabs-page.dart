@@ -36,15 +36,7 @@ class _QrTabPageState extends State<QrTabPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          _pages[_currIndex],
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        centerTitle: false,
-        leadingWidth: 20,
-        elevation: 2.0,
-      ),
+      appBar: AppBar(),
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,
