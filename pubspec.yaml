@@ -31,6 +31,7 @@ dependencies:
   regexed_validator: ^1.0.4
   udp: ^3.0.3
   flutter_barcode_scanner: ^2.0.0
+  font_awesome_flutter: ^9.1.0
   qr_flutter: ^4.0.0
   path_provider: ^2.0.2
   share_plus: ^2.1.2
@@ -46,6 +47,7 @@ dependencies:
   webview_flutter: ^2.0.8
   shared_preferences: ^2.0.6
   logger: ^1.0.0
+  baseconvert: ^1.0.2
 
 dev_dependencies:
   flutter_test:
