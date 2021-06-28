@@ -35,7 +35,7 @@ class _TrendFilterDrawerState extends State<TrendFilterDrawer> {
     final repoData = Provider.of<RepoScraper>(context, listen: false);
     return Drawer(
       child: Container(
-        color: Colors.grey[300],
+        color: Colors.grey[200],
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.all(20.0),
@@ -94,22 +94,9 @@ class _TrendFilterDrawerState extends State<TrendFilterDrawer> {
                   repoData.updateScraper();
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  "Confirm",
-                  style: Theme.of(context)
-                      .textTheme
-                      .button
-                      .copyWith(color: Colors.white, fontSize: 20),
-                ),
-                style: Theme.of(context).outlinedButtonTheme.style.copyWith(
-                    backgroundColor:
-                        MaterialStateProperty.resolveWith((states) {
-                  if (states.contains(MaterialState.pressed)) {
-                    return Colors.black;
-                  } else {
-                    return Colors.black87;
-                  }
-                })),
+                child:
+                    Text("Confirm", style: Theme.of(context).textTheme.button),
+                style: Theme.of(context).outlinedButtonTheme.style.copyWith(),
               ),
               SizedBox(
                 height: 20,
@@ -126,17 +113,19 @@ class _TrendFilterDrawerState extends State<TrendFilterDrawer> {
                     style: Theme.of(context)
                         .textTheme
                         .button
-                        .copyWith(color: Colors.black, fontSize: 20),
+                        .copyWith(color: Colors.blue[600]),
                   ),
                   style: Theme.of(context).outlinedButtonTheme.style.copyWith(
+                      side: MaterialStateProperty.all(
+                          BorderSide(color: Colors.blue[600])),
                       backgroundColor:
                           MaterialStateProperty.resolveWith((states) {
-                    if (states.contains(MaterialState.pressed)) {
-                      return Colors.grey[600];
-                    } else {
-                      return Colors.grey[400];
-                    }
-                  }))),
+                        if (states.contains(MaterialState.pressed)) {
+                          return Colors.grey;
+                        } else {
+                          return Colors.white30;
+                        }
+                      }))),
             ],
           ),
         ),

@@ -34,6 +34,7 @@ class _UrlPageState extends State<UrlPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar:
           PreferredSize(preferredSize: Size.fromHeight(30.0), child: AppBar()),
       body: SizedBox.expand(

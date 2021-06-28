@@ -60,7 +60,22 @@ class _RepoListState extends State<RepoList> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  "GitHub Trending",
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Divider(
+                  thickness: 1.0,
+                  height: 30.0,
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +85,7 @@ class _RepoListState extends State<RepoList> {
                       padding: EdgeInsets.all(8),
                       margin: EdgeInsets.all(3),
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.blue[400],
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -78,6 +93,7 @@ class _RepoListState extends State<RepoList> {
                         children: [
                           Text(
                             'Spoken: ',
+                            style: TextStyle(color: Colors.white),
                           ),
                           Text(
                             repoData.getSpoken,
@@ -85,7 +101,7 @@ class _RepoListState extends State<RepoList> {
                             style: Theme.of(context)
                                 .textTheme
                                 .headline3
-                                .copyWith(fontSize: 12),
+                                .copyWith(fontSize: 12, color: Colors.white),
                           ),
                         ],
                       ),
@@ -96,7 +112,7 @@ class _RepoListState extends State<RepoList> {
                     padding: EdgeInsets.all(8),
                     margin: EdgeInsets.all(3),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.blue[400],
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -104,6 +120,7 @@ class _RepoListState extends State<RepoList> {
                       children: [
                         Text(
                           'Language: ',
+                          style: TextStyle(color: Colors.white),
                         ),
                         Text(
                           repoData.getLanguage,
@@ -111,7 +128,7 @@ class _RepoListState extends State<RepoList> {
                           style: Theme.of(context)
                               .textTheme
                               .headline3
-                              .copyWith(fontSize: 12),
+                              .copyWith(fontSize: 12, color: Colors.white),
                         ),
                       ],
                     ),
@@ -121,19 +138,22 @@ class _RepoListState extends State<RepoList> {
                     padding: EdgeInsets.all(8),
                     margin: EdgeInsets.all(3),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.blue[400],
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Date Range: '),
+                        Text(
+                          'Date Range: ',
+                          style: TextStyle(color: Colors.white),
+                        ),
                         Text(
                           repoData.getDate,
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
                               .headline3
-                              .copyWith(fontSize: 12),
+                              .copyWith(fontSize: 12, color: Colors.white),
                         ),
                       ],
                     ),

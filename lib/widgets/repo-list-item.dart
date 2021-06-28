@@ -29,6 +29,7 @@ class RepoListItem extends StatelessWidget {
         onTap: () => _openPage(RepoScraper.gitHubAddress + repo.url, context),
         focusColor: Colors.black,
         child: Card(
+          elevation: 5.0,
           clipBehavior: Clip.antiAlias,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

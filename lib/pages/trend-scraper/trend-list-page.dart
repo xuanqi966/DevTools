@@ -44,20 +44,16 @@ class _TrendListPageState extends State<TrendListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        title: Text(
-          "GitHub Trending",
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        centerTitle: false,
-        leadingWidth: 20,
-        elevation: 2.0,
-        leading: IconButton(
-          icon: defaultTargetPlatform == TargetPlatform.iOS
-              ? Icon(Icons.arrow_back_ios)
-              : Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(40.0),
+        child: AppBar(
+          leading: IconButton(
+            icon: defaultTargetPlatform == TargetPlatform.iOS
+                ? Icon(Icons.arrow_back_ios)
+                : Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
         ),
       ),
       endDrawer: _drawers[_currIndex],

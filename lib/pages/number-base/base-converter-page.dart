@@ -64,77 +64,80 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(30.0),
+        preferredSize: Size.fromHeight(40.0),
         child: AppBar(),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "Number Base Converter",
-                style: Theme.of(context).textTheme.headline1,
-              ),
-              Divider(
-                thickness: 1.0,
-                height: 30.0,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Enter Number:',
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              _buildDropdownContainer(_buildNumberInput()),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'From Base:',
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              _buildDropdownContainer(_buildFromBase()),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'To Base:',
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              _buildDropdownContainer(_buildToBase()),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Result Number:',
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              _buildNumberOutput(),
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildButton(
-                      'Convert',
-                      _convertHandler,
-                      Icon(
-                        Icons.functions,
-                        color: Colors.white,
-                      )),
-                  _buildButton('Reset', _resetHandler,
-                      Icon(FontAwesome.remove, color: Colors.white)),
-                  _buildButton('Copy', () => _copyHandler(context),
-                      Icon(Icons.content_copy, color: Colors.white))
-                ],
-              )
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Number Base Converter",
+                  style: Theme.of(context).textTheme.headline1,
+                ),
+                Divider(
+                  thickness: 1.0,
+                  height: 30.0,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Enter Number:',
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                _buildDropdownContainer(_buildNumberInput()),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'From Base:',
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                _buildDropdownContainer(_buildFromBase()),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'To Base:',
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                _buildDropdownContainer(_buildToBase()),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Result Number:',
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                _buildNumberOutput(),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildButton(
+                        'Convert',
+                        _convertHandler,
+                        Icon(
+                          Icons.functions,
+                          color: Colors.white,
+                        )),
+                    _buildButton('Reset', _resetHandler,
+                        Icon(FontAwesome.remove, color: Colors.white)),
+                    _buildButton('Copy', () => _copyHandler(context),
+                        Icon(Icons.content_copy, color: Colors.white))
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
