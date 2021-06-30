@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:dev_tools/pages/base64/base64_converter.dart';
+import 'package:dev_tools/pages/json-validator/json-validator-page.dart';
 import 'package:dev_tools/pages/number-base/base-converter-page.dart';
 import 'package:dev_tools/pages/trend-scraper/trend-list-page.dart';
 import 'package:dev_tools/pages/udp/receiver-page.dart';
@@ -76,4 +79,11 @@ final TOOLS_LIST = [
         size: 65,
       ),
       BaseConverterPage()),
+  Tool(
+      "JSON Validator",
+      Icon(
+        MaterialCommunityIcons.json,
+        size: 65,
+      ),
+      JsonValidatorPage()),
 ];
