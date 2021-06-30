@@ -49,6 +49,7 @@ dependencies:
   logger: ^1.0.0
   uuid: ^3.0.4
   baseconvert: ^1.0.2
+  csv: ^5.0.0
 
 
 dev_dependencies:
