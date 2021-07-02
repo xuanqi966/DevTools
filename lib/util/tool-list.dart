@@ -86,6 +86,7 @@ final TOOLS_LIST = [
         size: 65,
       ),
       CSVConverter()),
+  Tool(
       "JSON Validator",
       Icon(
         MaterialCommunityIcons.json,
