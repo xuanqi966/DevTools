@@ -80,7 +80,7 @@ final TOOLS_LIST = [
   Tool(
       "Json to CSV Converter",
       Icon(
-        FontAwesome.calculator,
+        FontAwesome.file_excel_o,
         size: 65,
       ),
       CSVConverter()),

@@ -1,8 +1,10 @@
 import 'dart:convert';
-import 'dart:ffi';
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:csv/csv.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:ext_storage/ext_storage.dart';
 
 class CSVConverter extends StatefulWidget {
   const CSVConverter({Key key}) : super(key: key);
@@ -14,6 +16,9 @@ class CSVConverter extends StatefulWidget {
 class _CSVConverterState extends State<CSVConverter> {
   final _formKey = GlobalKey<FormState>();
   String text = "";
+  String csv = "";
+
+  String containerText = "";
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +122,7 @@ class _CSVConverterState extends State<CSVConverter> {
   Widget _buildContainer() {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10.0),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -128,68 +133,87 @@ class _CSVConverterState extends State<CSVConverter> {
   }
 
   Widget convertToCSV(String text) {
-    List<List<dynamic>> list = [];
+    List<List<dynamic>> rows = [];
     Map<String, dynamic> jsonArr;
+    List<dynamic> row = [];
     List<dynamic> title = [];
+    List<dynamic> emptyLine = [];
+    List heading = [];
 
     if (text != "") {
       try {
+        csv = "";
+        rows = [];
+
         jsonArr = decodeJSON(text);
+
+        jsonArr.forEach((key, value) {
+          title = [];
+          title.add(key);
+          rows.add(title);
+          row = [];
+
+          //add heading for each key
+          for (int i = 0; i < value.length; i++) {
+            List newList = value[i].keys.toList();
+
+            for (int j = 0; j < newList.length; j++) {
+              if (!row.contains(newList[j])) {
+                row.add(newList[j]);
+              }
+            }
+          }
+
+          heading = row;
+
+          rows.add(row);
+
+          //add the respective sub elements for each heading
+          for (int i = 0; i < value.length; i++) {
+            row = [];
+            row.length = heading.length;
+            List newList = value[i].keys.toList();
+
+            for (int j = 0; j < newList.length; j++) {
+              for (int k = 0; k < heading.length; k++) {
+                if (newList[j] == heading[k]) {
+                  row[k] = value[i][newList[j]];
+                } else if (row[k] == null) {
+                  row[k] = "";
+                }
+              }
+            }
+            rows.add(row);
+          }
+
+          heading = [];
+          emptyLine.add("");
+          rows.add(emptyLine);
+        });
+
+        setState(() {
+          csv = const ListToCsvConverter().convert(rows);
+        });
+
+        Platform.isIOS ? _getCSV() : _generateCsvFile();
       } catch (e) {
-        return Text("Please key in valid JSON code");
+        return Text("Please key in valid JSON code",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyText1);
       }
 
-      jsonArr.forEach((key, value) {
-        title = [];
-        title.add(key);
-        list.add(title);
-        list.add(value);
-      });
-
-      String csv = const ListToCsvConverter().convert(list);
-
-      return _buildTable(csv, title) ?? Text("loading..");
+      return Platform.isIOS
+          ? Text("Converted!\n Please go to Files > Browse > On my iPhone",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyText1)
+          : Text("Converted!\n Please go to Downloads Folder",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyText1);
     } else {
       return Text("Please key in JSON text above",
+          textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyText1);
     }
-  }
-
-  Widget _buildTable(String csv, List<dynamic> title) {
-    List<List<dynamic>> csvTable = CsvToListConverter().convert(csv) ?? [];
-    List<String> wordsArr = [];
-
-    return Column(
-      children: csvTable.map((item) {
-        return Container(
-          width: double.infinity,
-          child: Column(
-              children: item.map((row) {
-            row = row.replaceAll("{", "");
-            row = row.replaceAll("}", "");
-            wordsArr = row.split(",");
-            return Column(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: wordsArr.map((element) {
-                    return Container(
-                      padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                      child: Text(element.toString(),
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodyText1),
-                    );
-                  }).toList(),
-                ),
-                Divider(
-                  thickness: 1.0,
-                ),
-              ],
-            );
-          }).toList()),
-        );
-      }).toList(),
-    );
   }
 
   Map<String, dynamic> decodeJSON(String jsonString) {
@@ -220,5 +244,28 @@ class _CSVConverterState extends State<CSVConverter> {
             style: Theme.of(context).textTheme.button,
           ),
         ));
+  }
+
+  void _getCSV() async {
+    /// Write to a file
+    final directory = await getApplicationDocumentsDirectory();
+    final pathOfTheFileToWrite = directory.path + "/myCsvFile.csv";
+    print(pathOfTheFileToWrite);
+    File file = await File(pathOfTheFileToWrite);
+    file.writeAsString(csv);
+  }
+
+  void _generateCsvFile() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.storage,
+    ].request();
+    String dir = await ExtStorage.getExternalStoragePublicDirectory(
+        ExtStorage.DIRECTORY_DOWNLOADS);
+    print("dir $dir");
+    String file = "$dir";
+
+    File f = File(file + "/filename.csv");
+
+    f.writeAsString(csv);
   }
 }
