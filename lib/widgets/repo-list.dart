@@ -30,7 +30,7 @@ class _RepoListState extends State<RepoList> {
 
   @override
   Widget build(BuildContext context) {
-    logger.i('build | building DevList...');
+    logger.i('build | building RepoList...');
     final repoData = Provider.of<RepoScraper>(context);
     if (repoData.isError) {
       return Center(

@@ -104,6 +104,7 @@ class RepoScraper with ChangeNotifier {
     } catch (_) {
       _isError = true;
       notifyListeners();
+      logger.i('loadScraper | Connection failed.');
     }
   }
 
@@ -159,6 +160,7 @@ class RepoScraper with ChangeNotifier {
       logger.i('loadFilters | Loading complete!');
     } catch (_) {
       _isError = true;
+      logger.i('loadFilters | Connection error occured.');
       notifyListeners();
     }
   }

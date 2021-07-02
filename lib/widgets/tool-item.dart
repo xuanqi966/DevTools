@@ -34,10 +34,14 @@ class ToolItem extends StatelessWidget {
                   SizedBox(
                     height: 15.0,
                   ),
-                  Text(
-                    tool.toolName,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyText1,
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      tool.toolName,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                   )
                 ],
               ),
