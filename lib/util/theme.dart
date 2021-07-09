@@ -7,7 +7,7 @@ ThemeData basicTheme() {
     return base.copyWith(
         headline1: base.headline1.copyWith(
             fontFamily: 'Raleway-Bold',
-            fontSize: 28,
+            fontSize: 24,
             color: Colors.black,
             fontWeight: FontWeight.bold),
         headline2: base.headline2.copyWith(

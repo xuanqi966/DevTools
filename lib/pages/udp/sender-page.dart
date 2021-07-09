@@ -92,7 +92,6 @@ class _SenderPageState extends State<SenderPage> {
                     ),
                     Container(
                       width: double.infinity,
-                      //padding: EdgeInsets.all(20),
                       child: OutlinedButton(
                           onPressed: () {
                             if (!_formKey.currentState.validate()) {

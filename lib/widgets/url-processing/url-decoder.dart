@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:async';
 
 class UrlDecoder extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class UrlDecoder extends StatefulWidget {
 
 class _UrlDecoderState extends State<UrlDecoder> {
   final _formKey = GlobalKey<FormState>();
+  Timer _timer;
 
   String _text = '';
 
@@ -16,13 +18,24 @@ class _UrlDecoderState extends State<UrlDecoder> {
     showDialog(
         context: context,
         builder: (context) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
           });
           return AlertDialog(
-            content: Text("Decoded URL copied to clipboard!"),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: _text == ""
+                ? Text(
+                    "Nothing is copied to clipboard",
+                    textAlign: TextAlign.center,
+                  )
+                : Text("Decoded URL copied to clipboard!"),
           );
-        });
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
   }
 
   @override

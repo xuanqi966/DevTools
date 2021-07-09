@@ -2,6 +2,8 @@ import 'package:dev_tools/pages/udp/sender-page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:dev_tools/pages/dateTime/timezone/button_picker.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
 
 class DateTimeToTS extends StatefulWidget {
   const DateTimeToTS({Key key}) : super(key: key);
@@ -13,6 +15,8 @@ class DateTimeToTS extends StatefulWidget {
 class _DateTimeToTSState extends State<DateTimeToTS> {
   DateTime date;
   int hour, minutes, seconds;
+  Timer _timer;
+  String convertedDateTime;
   final _formKey = GlobalKey<FormState>();
 
   String getText() {
@@ -21,6 +25,37 @@ class _DateTimeToTSState extends State<DateTimeToTS> {
     } else {
       return DateFormat('dd MMMM yyyy').format(date);
     }
+  }
+
+  void copyContent(BuildContext context) {
+    Clipboard.setData(ClipboardData(
+        text: convertedDateTime == "Please key in date and time above"
+            ? ""
+            : convertedDateTime));
+    showDialog(
+        context: context,
+        builder: (context) {
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
+          });
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: convertedDateTime == "Please key in date and time above"
+                ? Text(
+                    "Nothing is copied to clipboard",
+                    textAlign: TextAlign.center,
+                  )
+                : Text(
+                    "TimeStamp copied to clipboard!",
+                    textAlign: TextAlign.center,
+                  ),
+          );
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
   }
 
   Future pickDate(BuildContext context) async {
@@ -98,7 +133,11 @@ class _DateTimeToTSState extends State<DateTimeToTS> {
                     ),
                     _buildSGTContainer(),
                     SizedBox(
-                      height: 10,
+                      height: 20,
+                    ),
+                    _buildCopyButton(context),
+                    SizedBox(
+                      height: 30,
                     ),
                   ],
                 ),
@@ -140,16 +179,16 @@ class _DateTimeToTSState extends State<DateTimeToTS> {
   }
 
   Widget _findSGDateTime(DateTime date, int hour, int minutes, int seconds) {
-    String convertedDateTime;
-
-    if (date == null || hour == null || minutes == null || seconds == null) {
-      convertedDateTime = "Please key in date and time above";
-    } else {
-      DateTime newDateTime =
-          DateTime(date.year, date.month, date.day, hour, minutes, seconds);
-      int timeStamp = newDateTime.millisecondsSinceEpoch ~/ 1000;
-      convertedDateTime = timeStamp.toString();
-    }
+    setState(() {
+      if (date == null || hour == null || minutes == null || seconds == null) {
+        convertedDateTime = "Please key in date and time above";
+      } else {
+        DateTime newDateTime =
+            DateTime(date.year, date.month, date.day, hour, minutes, seconds);
+        int timeStamp = newDateTime.millisecondsSinceEpoch ~/ 1000;
+        convertedDateTime = timeStamp.toString();
+      }
+    });
 
     return Text(convertedDateTime,
         style: Theme.of(context).textTheme.bodyText1);
@@ -218,6 +257,28 @@ class _DateTimeToTSState extends State<DateTimeToTS> {
           height: 10,
         ),
       ],
+    );
+  }
+
+  Widget _buildCopyButton(BuildContext context) {
+    return OutlinedButton(
+      child: Text("Copy to Clipboard",
+          style: Theme.of(context)
+              .textTheme
+              .button
+              .copyWith(color: Colors.blue[600])),
+      style: ButtonStyle(
+          side: MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.grey;
+            } else {
+              return Colors.white30;
+            }
+          })),
+      onPressed: () => copyContent(context),
     );
   }
 }

@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class Encoder extends StatefulWidget {
   const Encoder({Key key}) : super(key: key);
@@ -11,6 +14,37 @@ class Encoder extends StatefulWidget {
 class _EncoderState extends State<Encoder> {
   final _formKey = GlobalKey<FormState>();
   String text = "";
+  String encoded = "";
+  Timer _timer;
+
+  void copyContent(BuildContext context) {
+    Clipboard.setData(ClipboardData(
+        text: encoded == "Please key in message above" ? "" : encoded));
+    showDialog(
+        context: context,
+        builder: (context) {
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
+          });
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: encoded == "Please key in message above"
+                ? Text(
+                    "Nothing is copied to clipboard",
+                    textAlign: TextAlign.center,
+                  )
+                : Text(
+                    "Encoded message copied to clipboard!",
+                    textAlign: TextAlign.center,
+                  ),
+          );
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +91,10 @@ class _EncoderState extends State<Encoder> {
                       height: 20,
                     ),
                     _buildContainer(),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    _buildCopyButton(context),
                     SizedBox(
                       height: 30,
                     ),
@@ -123,14 +161,14 @@ class _EncoderState extends State<Encoder> {
   }
 
   Widget _findEncodedText(String message) {
-    String encoded;
-
-    if (message == "") {
-      encoded = "Please key in message above";
-    } else {
-      Codec<String, String> stringToBase64 = utf8.fuse(base64);
-      encoded = stringToBase64.encode(message);
-    }
+    setState(() {
+      if (message == "") {
+        encoded = "Please key in message above";
+      } else {
+        Codec<String, String> stringToBase64 = utf8.fuse(base64);
+        encoded = stringToBase64.encode(message);
+      }
+    });
 
     return Text(encoded, style: Theme.of(context).textTheme.bodyText1);
   }
@@ -151,5 +189,27 @@ class _EncoderState extends State<Encoder> {
             style: Theme.of(context).textTheme.button,
           ),
         ));
+  }
+
+  Widget _buildCopyButton(BuildContext context) {
+    return OutlinedButton(
+      child: Text("Copy to Clipboard",
+          style: Theme.of(context)
+              .textTheme
+              .button
+              .copyWith(color: Colors.blue[600])),
+      style: ButtonStyle(
+          side: MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.grey;
+            } else {
+              return Colors.white30;
+            }
+          })),
+      onPressed: () => copyContent(context),
+    );
   }
 }

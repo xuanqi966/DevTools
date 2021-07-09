@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +10,7 @@ class UrlEncoder extends StatefulWidget {
 
 class _UrlEncoderState extends State<UrlEncoder> {
   final _formKey = GlobalKey<FormState>();
+  Timer _timer;
 
   String _text = '';
 
@@ -16,13 +19,24 @@ class _UrlEncoderState extends State<UrlEncoder> {
     showDialog(
         context: context,
         builder: (context) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
           });
           return AlertDialog(
-            content: Text("Encoded URL copied to clipboard!"),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: _text == ""
+                ? Text(
+                    "Nothing is copied to clipboard",
+                    textAlign: TextAlign.center,
+                  )
+                : Text("Encoded URL copied to clipboard!"),
           );
-        });
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
   }
 
   @override

@@ -1,6 +1,8 @@
 import 'package:dev_tools/pages/udp/sender-page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
 
 class TimeStamp extends StatefulWidget {
   const TimeStamp({Key key}) : super(key: key);
@@ -12,6 +14,8 @@ class TimeStamp extends StatefulWidget {
 class _TimeStampState extends State<TimeStamp> {
   String text = "";
   DateTime date;
+  String convertedDateTime = "";
+  Timer _timer;
   final _formKey = GlobalKey<FormState>();
 
   String getText() {
@@ -20,6 +24,37 @@ class _TimeStampState extends State<TimeStamp> {
     } else {
       return DateFormat('dd MMMM yyyy').format(date);
     }
+  }
+
+  void copyContent(BuildContext context) {
+    Clipboard.setData(ClipboardData(
+        text: convertedDateTime == "Please key in time stamp above"
+            ? ""
+            : convertedDateTime));
+    showDialog(
+        context: context,
+        builder: (context) {
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
+          });
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: convertedDateTime == "Please key in time stamp above"
+                ? Text(
+                    "Nothing is copied to clipboard",
+                    textAlign: TextAlign.center,
+                  )
+                : Text(
+                    "Converted time copied to clipboard!",
+                    textAlign: TextAlign.center,
+                  ),
+          );
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
   }
 
   @override
@@ -68,6 +103,10 @@ class _TimeStampState extends State<TimeStamp> {
                     ),
                     _buildSGTContainer(),
                     SizedBox(
+                      height: 20,
+                    ),
+                    _buildCopyButton(context),
+                    SizedBox(
                       height: 30,
                     ),
                   ],
@@ -96,16 +135,16 @@ class _TimeStampState extends State<TimeStamp> {
   }
 
   Widget _findSGDateTime(String timeStamp) {
-    String convertedDateTime;
-
-    if (timeStamp == "") {
-      convertedDateTime = "Please key in time stamp above";
-    } else {
-      DateTime newDateTime =
-          DateTime.fromMillisecondsSinceEpoch(int.parse(timeStamp) * 1000);
-      convertedDateTime =
-          DateFormat("EEE, dd MMMM yyyy, hh:mm:ss aa").format(newDateTime);
-    }
+    setState(() {
+      if (timeStamp == "") {
+        convertedDateTime = "Please key in time stamp above";
+      } else {
+        DateTime newDateTime =
+            DateTime.fromMillisecondsSinceEpoch(int.parse(timeStamp) * 1000);
+        convertedDateTime =
+            DateFormat("EEE, dd MMMM yyyy, hh:mm:ss aa").format(newDateTime);
+      }
+    });
 
     return Text(convertedDateTime,
         style: Theme.of(context).textTheme.bodyText1);
@@ -160,5 +199,27 @@ class _TimeStampState extends State<TimeStamp> {
             text = value;
           });
         });
+  }
+
+  Widget _buildCopyButton(BuildContext context) {
+    return OutlinedButton(
+      child: Text("Copy to Clipboard",
+          style: Theme.of(context)
+              .textTheme
+              .button
+              .copyWith(color: Colors.blue[600])),
+      style: ButtonStyle(
+          side: MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.grey;
+            } else {
+              return Colors.white30;
+            }
+          })),
+      onPressed: () => copyContent(context),
+    );
   }
 }

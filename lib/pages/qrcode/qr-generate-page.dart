@@ -52,40 +52,40 @@ class _QrGeneratePageState extends State<QrGeneratePage> {
   }
 
   Future<void> _captureAndSavePng() async {
-    try {
-      RenderRepaintBoundary boundary =
-          globalKey.currentContext.findRenderObject();
-      var image = await boundary.toImage();
+    //try {
+    RenderRepaintBoundary boundary =
+        globalKey.currentContext.findRenderObject();
+    var image = await boundary.toImage();
 
-      PermissionStatus storageStatus = await Permission.storage.status;
+    PermissionStatus storageStatus = await Permission.storage.status;
+    if (storageStatus != PermissionStatus.granted) {
+      storageStatus = await Permission.storage.request();
+      print(storageStatus);
       if (storageStatus != PermissionStatus.granted) {
-        storageStatus = await Permission.storage.request();
-        print(storageStatus);
-        if (storageStatus != PermissionStatus.granted) {
-          throw "Permission denied. Storage access not granted.";
-        }
+        throw "Permission denied. Storage access not granted.";
       }
-
-      ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
-      Uint8List pngBytes = byteData.buffer.asUint8List();
-      final result =
-          await ImageGallerySaver.saveImage(pngBytes.buffer.asUint8List());
-
-      if (result == null || result == '') throw 'Saving failed.';
-
-      showDialog(
-          context: context,
-          builder: (context) {
-            Future.delayed(Duration(seconds: 2), () {
-              Navigator.of(context).pop(true);
-            });
-            return AlertDialog(
-              content: Text("QR Code saved to gallery!"),
-            );
-          });
-    } catch (e) {
-      print(e.toString());
     }
+
+    ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
+    Uint8List pngBytes = byteData.buffer.asUint8List();
+    final result =
+        await ImageGallerySaver.saveImage(pngBytes.buffer.asUint8List());
+
+    if (result == null || result == '') throw 'Saving failed.';
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          Future.delayed(Duration(seconds: 2), () {
+            Navigator.of(context).pop(true);
+          });
+          return AlertDialog(
+            content: Text("QR Code saved to gallery!"),
+          );
+        });
+    //} catch (e) {
+    //print(e.toString());
+    //}
   }
 
   @override
