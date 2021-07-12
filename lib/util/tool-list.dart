@@ -1,5 +1,6 @@
 import 'package:dev_tools/pages/base64/base64_converter.dart';
 import 'package:dev_tools/pages/csv/csv_converter.dart';
+import 'package:dev_tools/pages/json-validator/json-page.dart';
 import 'package:dev_tools/pages/json-validator/json-validator-page.dart';
 import 'package:dev_tools/pages/number-base/base-converter-page.dart';
 import 'package:dev_tools/pages/trend-scraper/trend-list-page.dart';
@@ -90,5 +91,5 @@ final TOOLS_LIST = [
         MaterialCommunityIcons.json,
         size: 65,
       ),
-      JsonValidatorPage()),
+      JsonPage()),
 ];

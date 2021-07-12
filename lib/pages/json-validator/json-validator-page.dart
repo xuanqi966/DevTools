@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 
@@ -69,55 +70,46 @@ class _JsonValidatorPageState extends State<JsonValidatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          "JSON Validator",
-          style: Theme.of(context).textTheme.headline1,
-        ),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraint) => SafeArea(
-          child: GestureDetector(
-            onTap: () {
-              FocusScope.of(context).requestFocus(new FocusNode());
-            },
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Form(
-                key: _formKey,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'JSON Input:',
-                        style: Theme.of(context).textTheme.headline2,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      _buildInputBox(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Decoded JSON:',
-                        style: Theme.of(context).textTheme.headline2,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      _buildDisplayBox(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      _buildDecodeButton(context),
-                      _buildCopyButton(context)
-                    ],
-                  ),
+    return LayoutBuilder(
+      builder: (context, constraint) => SafeArea(
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'JSON Input:',
+                      style: Theme.of(context).textTheme.headline2,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    _buildInputBox(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Decoded JSON:',
+                      style: Theme.of(context).textTheme.headline2,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    _buildDisplayBox(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _buildDecodeButton(context),
+                    _buildCopyButton(context)
+                  ],
                 ),
               ),
             ),
