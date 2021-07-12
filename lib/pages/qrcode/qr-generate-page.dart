@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
@@ -20,6 +21,7 @@ class _QrGeneratePageState extends State<QrGeneratePage> {
   GlobalKey globalKey = new GlobalKey();
   String _dataString = "";
   String _inputErrorText;
+  Timer _timer;
   final TextEditingController _controller = TextEditingController();
 
   void _generateCode() {
@@ -76,16 +78,68 @@ class _QrGeneratePageState extends State<QrGeneratePage> {
     showDialog(
         context: context,
         builder: (context) {
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).pop(true);
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
           });
           return AlertDialog(
-            content: Text("QR Code saved to gallery!"),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: Text(
+              "QR Code saved to gallery!",
+              textAlign: TextAlign.center,
+            ),
           );
-        });
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
     //} catch (e) {
     //print(e.toString());
-    //}
+    // //}
+  }
+
+  Future<void> _captureandSavePngIOS() async {
+    try {
+      RenderRepaintBoundary boundary =
+          globalKey.currentContext.findRenderObject();
+      var image = await boundary.toImage();
+
+      ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
+
+      Uint8List pngBytes = byteData.buffer
+          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
+
+      final directory = await getApplicationDocumentsDirectory();
+      final pathOfTheFileToWrite = directory.path;
+
+      final file = await new File('/${pathOfTheFileToWrite}/${_dataString}.png')
+          .create();
+
+      await file.writeAsBytes(pngBytes);
+
+      showDialog(
+          context: context,
+          builder: (context) {
+            _timer = Timer(Duration(seconds: 2), () {
+              Navigator.of(context).pop();
+            });
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              content: Text(
+                "QR Code saved to Files!",
+                textAlign: TextAlign.center,
+              ),
+            );
+          }).then((val) {
+        if (_timer.isActive) {
+          _timer.cancel();
+        }
+      });
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   @override
@@ -159,26 +213,37 @@ class _QrGeneratePageState extends State<QrGeneratePage> {
                     ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.only(left: 30, right: 30.0, bottom: 30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _buildButton(
-                          "Share",
-                          Icon(Icons.share, color: Colors.blue[600]),
-                          Colors.white30,
-                          _captureAndSharePng,
-                          Colors.blue[600]),
-                      _buildButton(
-                          "Save",
-                          Icon(Icons.file_download, color: Colors.white),
-                          Colors.blue[600],
-                          _captureAndSavePng,
-                          Colors.white)
-                    ],
-                  ),
-                )
+                !Platform.isIOS
+                    ? Container(
+                        padding: EdgeInsets.only(
+                            left: 30, right: 30.0, bottom: 30.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            _buildButton(
+                                "Share",
+                                Icon(Icons.share, color: Colors.blue[600]),
+                                Colors.white30,
+                                _captureAndSharePng,
+                                Colors.blue[600]),
+                            _buildButton(
+                                "Save",
+                                Icon(Icons.file_download, color: Colors.white),
+                                Colors.blue[600],
+                                _captureAndSavePng,
+                                Colors.white)
+                          ],
+                        ))
+                    : Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        width: double.infinity,
+                        child: _buildButton(
+                            "Save to Files",
+                            Icon(Icons.file_download, color: Colors.white),
+                            Colors.blue[600],
+                            _captureandSavePngIOS,
+                            Colors.white),
+                      ),
               ],
             ),
           ),

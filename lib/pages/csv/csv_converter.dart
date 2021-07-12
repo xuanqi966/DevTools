@@ -18,7 +18,7 @@ class _CSVConverterState extends State<CSVConverter> {
   String text = "";
   String csv = "";
 
-  String containerText = "";
+  String fileName = "";
 
   @override
   Widget build(BuildContext context) {
@@ -144,10 +144,14 @@ class _CSVConverterState extends State<CSVConverter> {
       try {
         csv = "";
         rows = [];
+        fileName = "";
 
         jsonArr = decodeJSON(text);
 
         jsonArr.forEach((key, value) {
+          setState(() {
+            fileName += key + " ";
+          });
           title = [];
           title.add(key);
           rows.add(title);
@@ -197,6 +201,7 @@ class _CSVConverterState extends State<CSVConverter> {
 
         Platform.isIOS ? _getCSV() : _generateCsvFile();
       } catch (e) {
+        print(e.toString());
         return Text("Please key in valid JSON code",
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyText1);
@@ -249,8 +254,7 @@ class _CSVConverterState extends State<CSVConverter> {
   void _getCSV() async {
     /// Write to a file
     final directory = await getApplicationDocumentsDirectory();
-    final pathOfTheFileToWrite = directory.path + "/myCsvFile.csv";
-    print(pathOfTheFileToWrite);
+    final pathOfTheFileToWrite = directory.path + "/${fileName}.csv";
     File file = await File(pathOfTheFileToWrite);
     file.writeAsString(csv);
   }
