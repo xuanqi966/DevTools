@@ -54,10 +54,9 @@ class _TabPageState extends State<TabPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.send),
-            title: Text("Send"),
+            label: "Send",
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.email), title: Text("Receive"))
+          BottomNavigationBarItem(icon: Icon(Icons.email), label: "Receive")
         ],
       ),
     );

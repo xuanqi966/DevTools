@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
 
 class UUIDV1 extends StatefulWidget {
   const UUIDV1({Key key}) : super(key: key);
@@ -10,7 +12,36 @@ class UUIDV1 extends StatefulWidget {
 
 class _UUIDV1State extends State<UUIDV1> {
   var uuid = Uuid();
-  var v1 = null;
+  var v1 = "";
+  Timer _timer;
+
+  void copyContent(BuildContext context) {
+    Clipboard.setData(ClipboardData(text: v1));
+    showDialog(
+        context: context,
+        builder: (context) {
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
+          });
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: v1 == ""
+                ? Text(
+                    "Nothing is copied to clipboard",
+                    textAlign: TextAlign.center,
+                  )
+                : Text(
+                    "UUID copied to clipboard!",
+                    textAlign: TextAlign.center,
+                  ),
+          );
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +75,10 @@ class _UUIDV1State extends State<UUIDV1> {
                 ),
                 _buildContainer(),
                 SizedBox(
+                  height: 20,
+                ),
+                _buildCopyButton(context),
+                SizedBox(
                   height: 30,
                 ),
               ],
@@ -67,7 +102,7 @@ class _UUIDV1State extends State<UUIDV1> {
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Center(
         child: Text(
-          v1 == null ? "Please click button above!" : v1.toString(),
+          v1 == "" ? "Please click button above!" : v1.toString(),
           style: Theme.of(context).textTheme.bodyText1,
           textAlign: TextAlign.center,
         ),
@@ -89,5 +124,27 @@ class _UUIDV1State extends State<UUIDV1> {
             style: Theme.of(context).textTheme.button,
           ),
         ));
+  }
+
+  Widget _buildCopyButton(BuildContext context) {
+    return OutlinedButton(
+      child: Text("Copy to Clipboard",
+          style: Theme.of(context)
+              .textTheme
+              .button
+              .copyWith(color: Colors.blue[600])),
+      style: ButtonStyle(
+          side: MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.grey;
+            } else {
+              return Colors.white30;
+            }
+          })),
+      onPressed: () => copyContent(context),
+    );
   }
 }

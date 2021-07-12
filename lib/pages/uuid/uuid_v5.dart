@@ -1,6 +1,8 @@
 import 'package:dev_tools/pages/udp/receiver-page.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
 
 class UUIDV5 extends StatefulWidget {
   const UUIDV5({Key key}) : super(key: key);
@@ -13,7 +15,36 @@ class _UUIDV5State extends State<UUIDV5> {
   final _formKey = GlobalKey<FormState>();
   String text = "";
   var uuid = Uuid();
-  var v5 = null;
+  var v5 = "";
+  Timer _timer;
+
+  void copyContent(BuildContext context) {
+    Clipboard.setData(ClipboardData(text: v5));
+    showDialog(
+        context: context,
+        builder: (context) {
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
+          });
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: v5 == ""
+                ? Text(
+                    "Nothing is copied to clipboard",
+                    textAlign: TextAlign.center,
+                  )
+                : Text(
+                    "UUID copied to clipboard!",
+                    textAlign: TextAlign.center,
+                  ),
+          );
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +87,10 @@ class _UUIDV5State extends State<UUIDV5> {
                       height: 30,
                     ),
                     _buildContainer(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _buildCopyButton(context),
                     SizedBox(
                       height: 30,
                     ),
@@ -122,7 +157,7 @@ class _UUIDV5State extends State<UUIDV5> {
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Center(
         child: Text(
-          v5 == null ? "Please enter URL above!" : v5.toString(),
+          v5 == "" ? "Please enter URL above!" : v5.toString(),
           style: Theme.of(context).textTheme.bodyText1,
           textAlign: TextAlign.center,
         ),
@@ -142,7 +177,7 @@ class _UUIDV5State extends State<UUIDV5> {
               _formKey.currentState.save();
               _formKey.currentState.reset();
 
-              v5 = uuid.v5obj(Uuid.NAMESPACE_URL, text);
+              v5 = uuid.v5obj(Uuid.NAMESPACE_URL, text).toString();
             });
           },
           child: Text(
@@ -150,5 +185,27 @@ class _UUIDV5State extends State<UUIDV5> {
             style: Theme.of(context).textTheme.button,
           ),
         ));
+  }
+
+  Widget _buildCopyButton(BuildContext context) {
+    return OutlinedButton(
+      child: Text("Copy to Clipboard",
+          style: Theme.of(context)
+              .textTheme
+              .button
+              .copyWith(color: Colors.blue[600])),
+      style: ButtonStyle(
+          side: MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.grey;
+            } else {
+              return Colors.white30;
+            }
+          })),
+      onPressed: () => copyContent(context),
+    );
   }
 }

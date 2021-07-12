@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:flutter/services.dart';
 
 class Decoder extends StatefulWidget {
   const Decoder({Key key}) : super(key: key);
@@ -11,6 +14,37 @@ class Decoder extends StatefulWidget {
 class _DecoderState extends State<Decoder> {
   final _formKey = GlobalKey<FormState>();
   String text = "";
+  String decoded = "";
+  Timer _timer;
+
+  void copyContent(BuildContext context) {
+    Clipboard.setData(ClipboardData(
+        text: decoded == "Please key in Base64 message above" ? "" : decoded));
+    showDialog(
+        context: context,
+        builder: (context) {
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
+          });
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: decoded == "Please key in Base64 message above"
+                ? Text(
+                    "Nothing is copied to clipboard",
+                    textAlign: TextAlign.center,
+                  )
+                : Text(
+                    "Decoded message copied to clipboard!",
+                    textAlign: TextAlign.center,
+                  ),
+          );
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +91,10 @@ class _DecoderState extends State<Decoder> {
                       height: 20,
                     ),
                     _buildContainer(),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    _buildCopyButton(context),
                     SizedBox(
                       height: 30,
                     ),
@@ -123,20 +161,20 @@ class _DecoderState extends State<Decoder> {
   }
 
   Widget _findDecodedText(String message) {
-    String encoded;
-
-    if (message == "") {
-      encoded = "Please key in Base64 message above";
-    } else {
-      try {
-        Codec<String, String> stringToBase64 = utf8.fuse(base64);
-        encoded = stringToBase64.decode(message);
-      } catch (e) {
-        encoded = "Please enter valid message!";
+    setState(() {
+      if (message == "") {
+        decoded = "Please key in Base64 message above";
+      } else {
+        try {
+          Codec<String, String> stringToBase64 = utf8.fuse(base64);
+          decoded = stringToBase64.decode(message);
+        } catch (e) {
+          decoded = "Please enter valid message!";
+        }
       }
-    }
+    });
 
-    return Text(encoded, style: Theme.of(context).textTheme.bodyText1);
+    return Text(decoded, style: Theme.of(context).textTheme.bodyText1);
   }
 
   Widget _buildConvertButton(context) {
@@ -155,5 +193,27 @@ class _DecoderState extends State<Decoder> {
             style: Theme.of(context).textTheme.button,
           ),
         ));
+  }
+
+  Widget _buildCopyButton(BuildContext context) {
+    return OutlinedButton(
+      child: Text("Copy to Clipboard",
+          style: Theme.of(context)
+              .textTheme
+              .button
+              .copyWith(color: Colors.blue[600])),
+      style: ButtonStyle(
+          side: MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.grey;
+            } else {
+              return Colors.white30;
+            }
+          })),
+      onPressed: () => copyContent(context),
+    );
   }
 }

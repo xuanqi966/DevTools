@@ -47,25 +47,16 @@ class _Base64ConverterState extends State<Base64Converter> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
         currentIndex: _currentIndex,
+        selectedLabelStyle: TextStyle(fontSize: 13, height: 1.4),
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.app_registration_rounded, size: 30),
-              title: SizedBox(
-                child: Text(
-                  "Encoder",
-                  style: TextStyle(fontSize: 13, height: 1.4),
-                  textAlign: TextAlign.center,
-                ),
-              )),
+            icon: Icon(Icons.app_registration_rounded, size: 30),
+            label: "Encoder",
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.manage_search_rounded, size: 30),
-              title: SizedBox(
-                child: Text(
-                  "Decoder",
-                  style: TextStyle(fontSize: 13, height: 1.4),
-                  textAlign: TextAlign.center,
-                ),
-              ))
+            icon: Icon(Icons.manage_search_rounded, size: 30),
+            label: "Decoder",
+          )
         ],
       ),
     );

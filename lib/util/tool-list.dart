@@ -1,11 +1,9 @@
-import 'dart:convert';
 import 'package:dev_tools/pages/base64/base64_converter.dart';
 import 'package:dev_tools/pages/csv/csv_converter.dart';
 import 'package:dev_tools/pages/json-validator/json-validator-page.dart';
 import 'package:dev_tools/pages/number-base/base-converter-page.dart';
 import 'package:dev_tools/pages/trend-scraper/trend-list-page.dart';
 import 'package:dev_tools/pages/udp/receiver-page.dart';
-import 'package:dev_tools/pages/udp/tab-page.dart';
 import 'package:dev_tools/pages/uuid/uuid_tabpage.dart';
 import 'package:flutter/material.dart';
 import 'package:dev_tools/pages/iphone/homepage/devices_homepage.dart';
@@ -41,7 +39,7 @@ final TOOLS_LIST = [
       "Trendy Repos",
       Icon(
         FontAwesome.github,
-        size: 50,
+        size: 65,
       ),
       TrendListPage()),
   Tool(

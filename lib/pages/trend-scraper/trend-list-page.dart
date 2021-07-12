@@ -14,11 +14,9 @@ class TrendListPage extends StatefulWidget {
 }
 
 class _TrendListPageState extends State<TrendListPage> {
-  bool _isShowingRepo = true;
   PageController _pageController;
 
   int _currIndex = 0;
-  List<Object> _pages = [RepoList(), DevList()];
   List<Object> _drawers = [TrendFilterDrawer(), DevFilterDrawer()];
 
   void _selectPage(int index) {
@@ -74,17 +72,19 @@ class _TrendListPageState extends State<TrendListPage> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
         currentIndex: _currIndex,
+        selectedLabelStyle: TextStyle(height: 1.8),
         items: [
           BottomNavigationBarItem(
-              icon: Icon(MaterialCommunityIcons.source_repository_multiple,
-                  size: 23),
-              title: Text('Repositories', style: TextStyle(height: 1.5))),
+            icon: Icon(MaterialCommunityIcons.source_repository_multiple,
+                size: 23),
+            label: "Repositories",
+          ),
           BottomNavigationBarItem(
               icon: Icon(
                 Zocial.github,
                 size: 25,
               ),
-              title: Text('Developers', style: TextStyle(height: 1.8))),
+              label: "Developers"),
         ],
       ),
     );

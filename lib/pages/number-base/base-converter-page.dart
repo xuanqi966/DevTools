@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -9,6 +11,7 @@ class BaseConverterPage extends StatefulWidget {
 }
 
 class _BaseConverterPageState extends State<BaseConverterPage> {
+  Timer _timer;
   Map<String, int> _baseMap = {
     '2 (Binary)': 2,
     '8 (Octal)': 8,
@@ -19,7 +22,7 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
   TextEditingController _inputController = TextEditingController();
   String _chosenFromBase;
   String _chosenToBase;
-  String _resultNumber;
+  String _resultNumber = "";
 
   void _convertHandler() {
     setState(() {
@@ -44,13 +47,24 @@ class _BaseConverterPageState extends State<BaseConverterPage> {
     showDialog(
         context: context,
         builder: (context) {
-          Future.delayed(Duration(seconds: 1), () {
-            Navigator.of(context).pop(true);
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
           });
           return AlertDialog(
-            content: Text("Number copied to clipboard!"),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            content: _resultNumber == ""
+                ? Text(
+                    "Nothing is copied to clipboard",
+                    textAlign: TextAlign.center,
+                  )
+                : Text("Number copied to clipboard!"),
           );
-        });
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
   }
 
   @override

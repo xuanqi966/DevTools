@@ -10,7 +10,6 @@ class QrTabPage extends StatefulWidget {
 class _QrTabPageState extends State<QrTabPage> {
   int _currIndex = 0;
   PageController _pageController;
-  List<String> _pages = ["QR Code Scanner", "QR Code Generator"];
 
   @override
   void initState() {
@@ -55,10 +54,12 @@ class _QrTabPageState extends State<QrTabPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code_scanner),
-            title: Text("Scanner"),
+            label: "Scanner",
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.qr_code), title: Text("Generator"))
+            icon: Icon(Icons.qr_code),
+            label: "Generator",
+          )
         ],
       ),
     );

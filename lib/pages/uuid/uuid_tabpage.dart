@@ -47,34 +47,16 @@ class _UUIDConverterState extends State<UUIDConverter> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
         currentIndex: _currentIndex,
+        selectedLabelStyle: TextStyle(fontSize: 13, height: 1.4),
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.data_saver_off, size: 30),
-              title: SizedBox(
-                child: Text(
-                  "V1",
-                  style: TextStyle(fontSize: 13, height: 1.4),
-                  textAlign: TextAlign.center,
-                ),
-              )),
+            icon: Icon(Icons.data_saver_off, size: 30),
+            label: "V1",
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.data_saver_off, size: 30),
-              title: SizedBox(
-                child: Text(
-                  "V4",
-                  style: TextStyle(fontSize: 13, height: 1.4),
-                  textAlign: TextAlign.center,
-                ),
-              )),
+              icon: Icon(Icons.data_saver_off, size: 30), label: "V4"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.data_saver_off, size: 30),
-              title: SizedBox(
-                child: Text(
-                  "V5",
-                  style: TextStyle(fontSize: 13, height: 1.4),
-                  textAlign: TextAlign.center,
-                ),
-              ))
+              icon: Icon(Icons.data_saver_off, size: 30), label: "V5")
         ],
       ),
     );

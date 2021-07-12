@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:uuid/uuid_util.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
 
 class UUIDV4 extends StatefulWidget {
   const UUIDV4({Key key}) : super(key: key);
@@ -11,8 +13,46 @@ class UUIDV4 extends StatefulWidget {
 
 class _UUIDV4State extends State<UUIDV4> {
   var uuid = Uuid();
-  var v4 = null;
-  var v4_crypto = null;
+  var v4 = "";
+  var v4_crypto = "";
+  Timer _timer;
+
+  void copyContent(BuildContext context, bool isCrypto) {
+    Clipboard.setData(ClipboardData(text: isCrypto ? v4_crypto : v4));
+    showDialog(
+        context: context,
+        builder: (context) {
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
+          });
+          return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              content: isCrypto
+                  ? (v4_crypto == ""
+                      ? Text(
+                          "Nothing is copied to clipboard",
+                          textAlign: TextAlign.center,
+                        )
+                      : Text(
+                          "V4 Crypto UUID copied to clipboard!",
+                          textAlign: TextAlign.center,
+                        ))
+                  : (v4 == ""
+                      ? Text(
+                          "Nothing is copied to clipboard",
+                          textAlign: TextAlign.center,
+                        )
+                      : Text(
+                          "V4 UUID copied to clipboard!",
+                          textAlign: TextAlign.center,
+                        )));
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +85,13 @@ class _UUIDV4State extends State<UUIDV4> {
                   height: 30,
                 ),
                 _buildContainer(
-                    v4 == null ? "Please click button above!" : v4.toString()),
+                    v4 == "" ? "Please click button above!" : v4.toString()),
                 SizedBox(
-                  height: 50,
+                  height: 20,
+                ),
+                _buildCopyButton(context, false),
+                SizedBox(
+                  height: 30,
                 ),
                 _buildHeadline("Generate Crypto-Random ID:"),
                 SizedBox(
@@ -57,9 +101,13 @@ class _UUIDV4State extends State<UUIDV4> {
                 SizedBox(
                   height: 30,
                 ),
-                _buildContainer(v4_crypto == null
+                _buildContainer(v4_crypto == ""
                     ? "Please click button above!"
                     : v4_crypto.toString()),
+                SizedBox(
+                  height: 20,
+                ),
+                _buildCopyButton(context, true),
                 SizedBox(
                   height: 30,
                 ),
@@ -110,5 +158,27 @@ class _UUIDV4State extends State<UUIDV4> {
             style: Theme.of(context).textTheme.button,
           ),
         ));
+  }
+
+  Widget _buildCopyButton(BuildContext context, bool isCrypto) {
+    return OutlinedButton(
+      child: Text("Copy to Clipboard",
+          style: Theme.of(context)
+              .textTheme
+              .button
+              .copyWith(color: Colors.blue[600])),
+      style: ButtonStyle(
+          side: MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.grey;
+            } else {
+              return Colors.white30;
+            }
+          })),
+      onPressed: () => copyContent(context, isCrypto),
+    );
   }
 }

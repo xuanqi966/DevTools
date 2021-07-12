@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import './button_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/services.dart';
 
 class TimeConverter extends StatefulWidget {
   const TimeConverter({Key key}) : super(key: key);
@@ -11,6 +13,8 @@ class TimeConverter extends StatefulWidget {
 
 class _TimeConverterState extends State<TimeConverter> {
   DateTime dateTime;
+  String convertedDateTime = "";
+  Timer _timer;
 
   String getText() {
     if (dateTime == null) {
@@ -70,13 +74,43 @@ class _TimeConverterState extends State<TimeConverter> {
     return newTime;
   }
 
+  void copyContent(BuildContext context) {
+    Clipboard.setData(ClipboardData(
+        text: convertedDateTime == "Please key in date and time above"
+            ? ""
+            : convertedDateTime));
+    showDialog(
+        context: context,
+        builder: (context) {
+          _timer = Timer(Duration(seconds: 2), () {
+            Navigator.of(context).pop();
+          });
+          return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              content: convertedDateTime == "Please key in date and time above"
+                  ? Text(
+                      "Nothing is copied to clipboard",
+                      textAlign: TextAlign.center,
+                    )
+                  : Text(
+                      "Converted time copied to clipboard!",
+                      textAlign: TextAlign.center,
+                    ));
+        }).then((val) {
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
+        padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,6 +140,13 @@ class _TimeConverterState extends State<TimeConverter> {
                 height: 20,
               ),
               _buildSGTContainer(),
+              SizedBox(
+                height: 20,
+              ),
+              _buildCopyButton(context),
+              SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ),
@@ -125,17 +166,39 @@ class _TimeConverterState extends State<TimeConverter> {
   }
 
   Widget _findSGDateTime(DateTime dateTime) {
-    String convertedDateTime;
-
-    if (dateTime == null) {
-      convertedDateTime = "Please key in date and time above";
-    } else {
-      DateTime newDateTime = dateTime.add(Duration(hours: 15));
-      convertedDateTime =
-          DateFormat("dd MMMM yyyy hh:mm aa").format(newDateTime);
-    }
+    setState(() {
+      if (dateTime == null) {
+        convertedDateTime = "Please key in date and time above";
+      } else {
+        DateTime newDateTime = dateTime.add(Duration(hours: 15));
+        convertedDateTime =
+            DateFormat("dd MMMM yyyy hh:mm aa").format(newDateTime);
+      }
+    });
 
     return Text(convertedDateTime,
         style: Theme.of(context).textTheme.bodyText1);
+  }
+
+  Widget _buildCopyButton(BuildContext context) {
+    return OutlinedButton(
+      child: Text("Copy to Clipboard",
+          style: Theme.of(context)
+              .textTheme
+              .button
+              .copyWith(color: Colors.blue[600])),
+      style: ButtonStyle(
+          side: MaterialStateProperty.all(BorderSide(color: Colors.blue[600])),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+          backgroundColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.grey;
+            } else {
+              return Colors.white30;
+            }
+          })),
+      onPressed: () => copyContent(context),
+    );
   }
 }

@@ -4,8 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:html/parser.dart';
 import 'package:html/dom.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
-
 import '../models/trend-scrapper/Repository.dart';
 import '../models/trend-scrapper/Contributor.dart';
 

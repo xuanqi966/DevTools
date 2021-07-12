@@ -1,6 +1,5 @@
 import 'package:dev_tools/models/trend-scrapper/Repository.dart';
 import 'package:dev_tools/util/my-logger.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:html/parser.dart';
 import 'package:html/dom.dart';
