@@ -92,7 +92,7 @@ class _DateTimeToTSState extends State<DateTimeToTS> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "DT to TS",
+                      "DateTime to TimeStamp",
                       style: Theme.of(context).textTheme.headline1,
                     ),
                     Divider(

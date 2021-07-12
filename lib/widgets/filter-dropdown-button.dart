@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class FilterDropDownButton extends StatelessWidget {
   final _onUpdateHandler;
-  Map<String, String> map;
+  final Map<String, String> map;
 
   FilterDropDownButton(this._onUpdateHandler, this.map);
 

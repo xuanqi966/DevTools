@@ -110,7 +110,7 @@ class _TimeConverterState extends State<TimeConverter> {
       backgroundColor: Colors.white,
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
+        padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -2,7 +2,6 @@ import 'package:dev_tools/pages/udp/sender-page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../models/message.dart';
-
 import 'package:udp/udp.dart';
 
 class ReceiverPage extends StatefulWidget {
@@ -163,8 +162,8 @@ class _ReceiverPageState extends State<ReceiverPage> {
               filled: true,
               fillColor: Colors.white60,
               contentPadding: EdgeInsets.all(15.0),
-              labelText: 'Port Number',
-              hintText: 'My Port Number',
+              labelText: "Port Number",
+              hintText: "My Port Number",
               border: OutlineInputBorder(
                   borderRadius: const BorderRadius.all(
                 const Radius.circular(10.0),
@@ -174,7 +173,7 @@ class _ReceiverPageState extends State<ReceiverPage> {
           keyboardType: TextInputType.number,
           validator: (String value) {
             if (!isNumeric(value)) {
-              return 'Please enter a numerical Port Number';
+              return "Please enter a numerical Port Number";
             }
             return null;
           },
@@ -229,5 +228,5 @@ bool isNumeric(String s) {
   if (s == null) {
     return false;
   }
-  return double.parse(s, (e) => null) != null;
+  return double.tryParse(s) != null;
 }

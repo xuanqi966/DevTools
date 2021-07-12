@@ -75,7 +75,7 @@ class _TimeStampState extends State<TimeStamp> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "TS to DT",
+                      "TimeStamp to DateTime",
                       style: Theme.of(context).textTheme.headline1,
                     ),
                     Divider(

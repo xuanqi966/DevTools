@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class Message {
   final String senderAddress;
   final String data;

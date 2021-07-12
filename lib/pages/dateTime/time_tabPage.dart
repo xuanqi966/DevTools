@@ -47,37 +47,18 @@ class _TimeTabPageState extends State<TimeTabPage> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
         currentIndex: _currentIndex,
+        selectedLabelStyle: TextStyle(fontSize: 12, height: 1.4),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.access_time),
-            title: SizedBox(
-                child: Text(
-              "PST to \n SGT",
-              style: TextStyle(fontSize: 12, height: 1.4),
-              maxLines: 2,
-              textAlign: TextAlign.center,
-            )),
+              icon: Icon(Icons.access_time), label: "PST to SGT"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.arrow_forward),
+            label: "TS to DT",
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.arrow_forward),
-              title: SizedBox(
-                child: Text(
-                  "TimeStamp to DateTime",
-                  style: TextStyle(fontSize: 12, height: 1.4),
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                ),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.arrow_back),
-              title: SizedBox(
-                child: Text(
-                  "DateTime to TimeStamp",
-                  style: TextStyle(fontSize: 12, height: 1.4),
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                ),
-              ))
+            icon: Icon(Icons.arrow_back),
+            label: "DT to TS",
+          )
         ],
       ),
     );

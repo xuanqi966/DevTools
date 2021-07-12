@@ -54,13 +54,14 @@ class _UrlPageState extends State<UrlPage> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
         currentIndex: _currIndex,
+        selectedLabelStyle: TextStyle(height: 1.8),
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.app_registration_rounded, size: 30),
-              title: Text('URL Encoder', style: TextStyle(height: 1.5))),
+              label: "URL Encoder"),
           BottomNavigationBarItem(
               icon: Icon(Icons.manage_search_rounded, size: 30),
-              title: Text('URL Decoder', style: TextStyle(height: 1.8))),
+              label: "URL Decoder"),
         ],
       ),
     );

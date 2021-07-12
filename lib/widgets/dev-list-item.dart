@@ -1,8 +1,6 @@
 import 'package:dev_tools/pages/trend-scraper/web-page.dart';
-import 'package:dev_tools/provider/DevScraper.dart';
 import 'package:dev_tools/provider/RepoScraper.dart';
 import 'package:flutter/material.dart';
-import '../models/trend-scrapper/Repository.dart';
 import '../models/trend-scrapper/Developer.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import '../util/my-logger.dart';

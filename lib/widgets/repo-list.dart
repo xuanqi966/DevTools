@@ -2,9 +2,7 @@ import 'package:dev_tools/provider/RepoScraper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import './repo-list-item.dart';
-import './filter-dropdown-button.dart';
 import '../util/my-logger.dart';
 
 class RepoList extends StatefulWidget {
