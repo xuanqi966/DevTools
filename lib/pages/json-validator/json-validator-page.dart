@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 
@@ -47,7 +46,7 @@ class _JsonValidatorPageState extends State<JsonValidatorPage> {
       decodedJSON.keys.forEach((key) {
         output += key + " : " + decodedJSON[key].toString() + "\n";
       });
-    } on FormatException catch (e) {
+    } on FormatException catch (_) {
       showDialog(
           context: context,
           builder: (context) {

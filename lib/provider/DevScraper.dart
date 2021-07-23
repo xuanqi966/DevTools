@@ -50,9 +50,7 @@ class DevScraper with ChangeNotifier {
     _developers = [];
 
     try {
-      final response = await http
-          .get(Uri.parse(_currAddress))
-          .catchError((e) => print(e.error));
+      final response = await http.get(Uri.parse(_currAddress));
       log.i(
           'loadScraper | HTTP request returned with status ${response.statusCode}');
       if (response.statusCode == 200) {
@@ -105,9 +103,7 @@ class DevScraper with ChangeNotifier {
     log.i('loadFilters | Started to load filters with address $_rootAddress');
 
     try {
-      final response = await http
-          .get(Uri.parse(_rootAddress))
-          .catchError((e) => print(e.error));
+      final response = await http.get(Uri.parse(_rootAddress));
       log.i(
           'loadFilters | HTTP request returned with status ${response.statusCode}');
       if (response.statusCode == 200) {

@@ -260,7 +260,8 @@ class _CSVConverterState extends State<CSVConverter> {
   }
 
   void _generateCsvFile() async {
-    Map<Permission, PermissionStatus> statuses = await [
+    // Map<Permission, PermissionStatus> statuses =
+    await [
       Permission.storage,
     ].request();
     String dir = await ExtStorage.getExternalStoragePublicDirectory(

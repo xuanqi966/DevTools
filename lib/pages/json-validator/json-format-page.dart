@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:pretty_json/pretty_json.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
@@ -46,7 +45,7 @@ class _JsonFormatPageState extends State<JsonFormatPage> {
     try {
       var decodedJSON = json.decode(jsonString) as Map<String, dynamic>;
       output = prettyJson(decodedJSON, indent: 2);
-    } on FormatException catch (e) {
+    } on FormatException catch (_) {
       showDialog(
           context: context,
           builder: (context) {
