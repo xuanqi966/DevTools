@@ -265,10 +265,10 @@ class _CSVConverterState extends State<CSVConverter> {
     ].request();
     String dir = await ExtStorage.getExternalStoragePublicDirectory(
         ExtStorage.DIRECTORY_DOWNLOADS);
-    print("dir $dir");
+    //print("dir $dir");
     String file = "$dir";
 
-    File f = File(file + "/filename.csv");
+    File f = File(file + "/${fileName}.csv");
 
     f.writeAsString(csv);
   }
