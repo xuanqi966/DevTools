@@ -222,13 +222,13 @@ class _CSVConverterState extends State<CSVConverter> {
   }
 
   Map<String, dynamic> decodeJSON(String jsonString) {
-    String output = "";
+    // String output = "";
 
     var decodedJSON = json.decode(jsonString) as Map<String, dynamic>;
 
-    decodedJSON.keys.forEach((element) {
-      output += element + ":" + decodedJSON[element].toString() + "\n";
-    });
+    // decodedJSON.keys.forEach((element) {
+    //   output += element + ":" + decodedJSON[element].toString() + "\n";
+    // });
 
     return decodedJSON;
   }

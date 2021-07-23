@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dev_tools/pages/json-validator/json-format-page.dart';
 import 'package:dev_tools/pages/json-validator/json-validator-page.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,7 @@ class JsonPage extends StatefulWidget {
 
 class _JsonPageState extends State<JsonPage> {
   int _currIndex = 0;
-  List<Object> _pages = [
-    JsonValidatorPage(),
-  ];
+  List<Object> _pages = [JsonValidatorPage(), JsonFormatPage()];
 
   PageController _controller;
 
@@ -34,8 +33,6 @@ class _JsonPageState extends State<JsonPage> {
   void _selectPage(int index) {
     setState(() {
       _currIndex = index;
-      _controller.animateToPage(index,
-          duration: Duration(milliseconds: 200), curve: Curves.easeOut);
     });
   }
 

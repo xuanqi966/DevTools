@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gallery_saver/gallery_saver.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';

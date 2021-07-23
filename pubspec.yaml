@@ -50,7 +50,7 @@ dependencies:
   baseconvert: ^1.0.2
   csv: ^5.0.0
   ext_storage: ^1.0.3
-  gallery_saver: ^2.1.2
+  pretty_json: ^2.0.0
 
 
 dev_dependencies:
